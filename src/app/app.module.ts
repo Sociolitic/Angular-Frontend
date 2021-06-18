@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatButtonModule } from '@angular/material/button';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -22,7 +22,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-
+import { NavbarsComponent } from './views/base/navbars/navbars.component';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -42,6 +42,9 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { HomeComponent } from './containers/home/home.component';
+import { AnalysisReportComponent } from './views/analysis-report/analysis-report.component';
+import { SettingsComponent } from './views/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -59,6 +62,7 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    MatButtonModule
   ],
   declarations: [
     AppComponent,
@@ -66,7 +70,11 @@ import { ChartsModule } from 'ng2-charts';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    NavbarsComponent,
+    AnalysisReportComponent,
+    SettingsComponent
   ],
   providers: [
     {
