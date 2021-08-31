@@ -1,0 +1,22 @@
+<div class="wrapper">
+<header class="header child">
+  <p class='h5'>Profile</p>
+  <p class='h3'>Prof1</p>
+</header>
+<div class='agg-container child'>
+  <button type="button"
+   class="collapse-btn btn-block"
+   (click)="isCollapsed = !isCollapsed"
+  >
+  <div class='agg-text'>
+  Mentions <b>600</b>
+  </div >
+  <div class="icon">
+  <i class="fa fa-chevron-down fa-sm"></i>
+  </div>
+  </button>
+  <div [collapse]='isCollapsed'>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, facilis?
+  </div>
+</div>
+</div>

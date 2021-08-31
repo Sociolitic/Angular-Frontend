@@ -2,13 +2,32 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
+    title: true,
+    name: 'Navigation'
+  },
+  {
     name: 'Dashboard',
     url: '/default/dashboard',
-    icon: 'icon-speedometer',
+    icon: 'icon-paper-plane',
+  },
+  {
+    name: 'Analysis',
+    url: '/default/reports',
+    icon: 'icon-chart',
     badge: {
       variant: 'info',
       text: 'NEW'
     }
+  },
+  {
+    name: 'Settings',
+    url: '/default/settings',
+    icon: 'icon-settings',
+  },
+  {
+    name: 'Home',
+    url: '/home',
+    icon: 'icon-home',
   },
   {
     title: true,
@@ -16,12 +35,12 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Colors',
-    url: '/theme/colors',
+    url: '/default/theme/colors',
     icon: 'icon-drop'
   },
   {
     name: 'Typography',
-    url: '/theme/typography',
+    url: '/default/theme/typography',
     icon: 'icon-pencil'
   },
   {
@@ -30,107 +49,107 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Base',
-    url: '/base',
+    url: '/default/base',
     icon: 'icon-puzzle',
     children: [
       {
         name: 'Cards',
-        url: '/base/cards',
+        url: '/default/base/cards',
         icon: 'icon-puzzle'
       },
       {
         name: 'Carousels',
-        url: '/base/carousels',
+        url: '/default/base/carousels',
         icon: 'icon-puzzle'
       },
       {
         name: 'Collapses',
-        url: '/base/collapses',
+        url: '/default/base/collapses',
         icon: 'icon-puzzle'
       },
       {
         name: 'Forms',
-        url: '/base/forms',
+        url: '/default/base/forms',
         icon: 'icon-puzzle'
       },
       {
         name: 'Navbars',
-        url: '/base/navbars',
+        url: '/default/base/navbars',
         icon: 'icon-puzzle'
 
       },
       {
         name: 'Pagination',
-        url: '/base/paginations',
+        url: '/default/base/paginations',
         icon: 'icon-puzzle'
       },
       {
         name: 'Popovers',
-        url: '/base/popovers',
+        url: '/default/base/popovers',
         icon: 'icon-puzzle'
       },
       {
         name: 'Progress',
-        url: '/base/progress',
+        url: '/default/base/progress',
         icon: 'icon-puzzle'
       },
       {
         name: 'Switches',
-        url: '/base/switches',
+        url: '/default/base/switches',
         icon: 'icon-puzzle'
       },
       {
         name: 'Tables',
-        url: '/base/tables',
+        url: '/default/base/tables',
         icon: 'icon-puzzle'
       },
       {
         name: 'Tabs',
-        url: '/base/tabs',
+        url: '/default/base/tabs',
         icon: 'icon-puzzle'
       },
       {
         name: 'Tooltips',
-        url: '/base/tooltips',
+        url: '/default/base/tooltips',
         icon: 'icon-puzzle'
       }
     ]
   },
   {
     name: 'Buttons',
-    url: '/buttons',
+    url: '/default/buttons',
     icon: 'icon-cursor',
     children: [
       {
         name: 'Buttons',
-        url: '/buttons/buttons',
+        url: '/default/buttons/buttons',
         icon: 'icon-cursor'
       },
       {
         name: 'Dropdowns',
-        url: '/buttons/dropdowns',
+        url: '/default/buttons/dropdowns',
         icon: 'icon-cursor'
       },
       {
         name: 'Brand Buttons',
-        url: '/buttons/brand-buttons',
+        url: '/default/buttons/brand-buttons',
         icon: 'icon-cursor'
       }
     ]
   },
   {
     name: 'Charts',
-    url: '/charts',
+    url: '/default/charts',
     icon: 'icon-pie-chart'
   },
   {
     name: 'Icons',
-    url: '/icons',
+    url: '/default/icons',
     icon: 'icon-star',
     children: [
       {
         name: 'CoreUI Icons',
-        url: '/icons/coreui-icons',
+        url: '/default/icons/coreui-icons',
         icon: 'icon-star',
         badge: {
           variant: 'success',
@@ -139,12 +158,12 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Flags',
-        url: '/icons/flags',
+        url: '/default/icons/flags',
         icon: 'icon-star'
       },
       {
         name: 'Font Awesome',
-        url: '/icons/font-awesome',
+        url: '/default/icons/font-awesome',
         icon: 'icon-star',
         badge: {
           variant: 'secondary',
@@ -153,36 +172,36 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Simple Line Icons',
-        url: '/icons/simple-line-icons',
+        url: '/default/icons/simple-line-icons',
         icon: 'icon-star'
       }
     ]
   },
   {
     name: 'Notifications',
-    url: '/notifications',
+    url: '/default/notifications',
     icon: 'icon-bell',
     children: [
       {
         name: 'Alerts',
-        url: '/notifications/alerts',
+        url: '/default/notifications/alerts',
         icon: 'icon-bell'
       },
       {
         name: 'Badges',
-        url: '/notifications/badges',
+        url: '/default/notifications/badges',
         icon: 'icon-bell'
       },
       {
         name: 'Modals',
-        url: '/notifications/modals',
+        url: '/default/notifications/modals',
         icon: 'icon-bell'
       }
     ]
   },
   {
     name: 'Widgets',
-    url: '/widgets',
+    url: '/default/widgets',
     icon: 'icon-calculator',
     badge: {
       variant: 'info',
@@ -198,54 +217,29 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Pages',
-    url: '/pages',
+    url: '/default/pages',
     icon: 'icon-star',
     children: [
       {
         name: 'Login',
-        url: '/login',
+        url: '/default/login',
         icon: 'icon-star'
       },
       {
         name: 'Register',
-        url: '/register',
+        url: '/default/register',
         icon: 'icon-star'
       },
       {
         name: 'Error 404',
-        url: '/404',
+        url: '/default/404',
         icon: 'icon-star'
       },
       {
         name: 'Error 500',
-        url: '/500',
+        url: '/default/500',
         icon: 'icon-star'
       }
     ]
   },
-  {
-    name: 'Disabled',
-    url: '/dashboard',
-    icon: 'icon-ban',
-    badge: {
-      variant: 'secondary',
-      text: 'NEW'
-    },
-    attributes: { disabled: true },
-  },
-  {
-    name: 'Download CoreUI',
-    url: 'http://coreui.io/angular/',
-    icon: 'icon-cloud-download',
-    class: 'mt-auto',
-    variant: 'success',
-    attributes: { target: '_blank', rel: 'noopener' }
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'http://coreui.io/pro/angular/',
-    icon: 'icon-layers',
-    variant: 'danger',
-    attributes: { target: '_blank', rel: 'noopener' }
-  }
 ];

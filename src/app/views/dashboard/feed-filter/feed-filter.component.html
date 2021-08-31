@@ -1,0 +1,52 @@
+<button [matMenuTriggerFor]="menu" type="button" class="btn btn-primary dropdown-toggle">
+  Filters <span class="caret"></span>
+</button>
+<mat-menu #menu="matMenu">
+  <form (click)="$event.stopPropagation()" class='filter-section' [formGroup]='filterGroup'>
+    <div class='keyword-input-container'>
+    <mat-form-field class="keyword-form-field">
+      <mat-label>Filter by keywords</mat-label>
+      <input matInput formControlName='keywordControl'>
+    </mat-form-field>
+    <button type="button" class="btn btn-sm btn-pill btn-primary" (click)='addKeyword()'>add</button>
+    </div>
+    <div class='keyword-pill-container' *ngIf='keywords.size'>
+      <div class='keyword-pill-container__pill' *ngFor='let key of keywords'>
+        {{key}} <i class="fa fa-close fa-lg ml-1 close-icon" (click)='removeKey(key)'></i>
+      </div>
+    </div>
+
+    <mat-form-field class='select-form-field' appearance="fill">
+      <mat-label>Sources</mat-label>
+      <mat-select formControlName='sourceControl' multiple>
+        <mat-option *ngFor="let source of sourceList" [value]="source">{{source}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Advanced
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field appearance="fill">
+        <mat-label>Select a boolean funtion</mat-label>
+        <mat-select formControlName='booleanControl'>
+          <mat-option value="AND">AND</mat-option>
+          <mat-option value="OR">OR</mat-option>
+          <mat-option value="XOR">XOR</mat-option>
+          <mat-option value="NOR">XOR</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-expansion-panel>  
+  <div class='form-footer'>
+    <button type="button" class="btn btn-sm btn-ghost-secondary clear-btn" (click)='clearFilters()'>
+      Clear All
+    </button>
+    <button type="button" class="btn btn-sm btn-ghost-success" (click)='applyFilters()'>Apply</button>
+  </div>
+  </form>
+</mat-menu>
+
+
+
+

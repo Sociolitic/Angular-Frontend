@@ -1,0 +1,89 @@
+@import "variables";
+.feed-container{
+    height:80vh;
+    border-radius: 5px;
+    &__header{
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        &__label{
+            margin:0;
+        }
+        &__buttons{
+            display: flex;
+            align-items: center;
+            &__toggle{
+                margin-left:20px;
+            }
+
+        }
+    }
+    &__body{
+        padding:5px;
+        background-color: $dark-component-1;
+    }
+}
+.feed-card{
+    margin-bottom: 5px;
+    &__header{
+        padding:5px;
+        font-size: 14px;
+    }
+    &__body{
+        padding:5px;
+        font-size: 12px;
+    }
+
+}
+
+
+.mat-cell,
+.mat-header-cell {
+    color: $dark-bg-text-1;
+  word-wrap: initial;
+  padding: 0px 10px;
+  line-break: unset;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  
+}
+.mat-table {
+    background-color: $dark-component-3;
+    width: 100%;
+}
+.second {
+    text-overflow: ellipsis;
+    max-width:400px;
+}
+
+.mat-row {
+    transition: all 200ms ease-out;
+    &:hover {
+        background-color: rgba(123, 104, 238,0.7);
+        cursor: pointer;
+    }
+}
+.mention-container {
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    background-color:$dark-component-3;
+
+}
+.mention-card {
+    background-color: $dark-component-2;
+    max-width:50%;
+    color: $dark-bg-text-1;
+    mat-card-subtitle {
+        color: $dark-bg-text-1;
+    }
+}
+.mat-header-cell {
+    background-color: $dark-component-3;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+}

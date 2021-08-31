@@ -1,0 +1,24 @@
+<div class='row m-3 '>
+    
+    <div class='col-md-4 col-sm-6 col-xs-12 mb-2' *ngFor='let profile of profiles | keyvalue'>
+        <mat-card 
+        class='card d-flex flex-column align-items-center justify-content-center dark-card-1'
+        (click)='openDialog(profile.key)'
+        >
+            <h1>{{profile.value['brand']}}</h1>
+            <div class='d-flex flex-row justify-content-between'>
+                <h3><strong>Created on</strong> {{profile.value['createdAt']}}</h3>
+            </div>
+    </mat-card>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12 mb-2 d-flex flex-column justify-content-center">
+        <div 
+        class='create-profile d-flex flex-column justify-content-center align-items-center'
+        (click)='openDialog()'
+        >
+            <i class="fa fa-plus plus-icon fa-lg"></i>
+            <h1 class='mt-3'>Create Profile</h1>
+        </div>
+    </div>
+
+</div>

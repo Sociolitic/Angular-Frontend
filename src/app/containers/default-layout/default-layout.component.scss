@@ -1,0 +1,34 @@
+@import "variables";
+
+.nav-link{
+    cursor: pointer;
+    color: white;
+    &:hover{
+        font-weight: bolder;
+        color: #fff;
+    }
+
+}
+.active {
+    color: lawngreen !important;
+}
+::ng-deep .app-header{
+    background-color: #2f353a;
+    & .navbar-toggler{
+        min-width: 27px;
+        padding: 0;
+        margin: 0 10px;
+        
+        &:hover {
+            background-color: rgb(168, 168, 168);
+        }
+        
+        & .navbar-toggler-icon {
+            background-image: url('../../../assets/img/brand/ham.png');
+        }
+    }
+   
+}
+.navbar-nav {
+    color: #fff;
+}

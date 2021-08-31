@@ -1,0 +1,109 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab [label]="data? 'Edit profile':'create Profile'">
+    <div class="container-fluid d-flex justify-content-between">
+      <div class="container-fluid m-3 d-flex flex-column align-items-left">
+        <div>
+          <mat-form-field appearance="fill" class='mb-2'>
+            <mat-label>Enter your brand name</mat-label>
+            <input
+              matInput
+              placeholder="enter your brand"
+              [(ngModel)]="brand"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="d-flex flex-row justify-content-begin align-items-center">
+            <mat-form-field appearance="fill" class="competitor-form mb-2">
+              <mat-label>Enter your competitors</mat-label>
+              <input
+              (blur)="addCompetitor()"
+                [(ngModel)]="competitor"
+                matInput
+                placeholder="New competitor..."
+              />
+            </mat-form-field>
+            <div
+              class="
+                btn-container
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <button class="fab-btn" (click)="addCompetitor()">
+                <i class="fa fa-plus plus-icon fa-lg"></i>
+              </button>
+            </div>
+          </div>
+          <div>
+            <mat-chip-list
+              class="chip-container"
+              #chipList
+              aria-label="competitors List"
+            >
+              <mat-chip
+                *ngFor="let competitor of competitorList"
+                [removable]="true"
+                (removed)="removeCompetitor(competitor)"
+              >
+                {{competitor}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div class="container-fluid m-3 d-flex flex-column align-items-left">
+        <div class="checkbox-container d-flex flex-row align-items-center">
+          <mat-checkbox [(ngModel)]="alerts" class="checkbox"></mat-checkbox>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> alerts </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+          </mat-expansion-panel>
+        </div>
+        <div class="checkbox-container d-flex flex-row align-items-center">
+          <mat-checkbox [(ngModel)]="reports" class="checkbox"></mat-checkbox>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Reports </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+          </mat-expansion-panel>
+        </div>
+    <button mat-raised-button  
+        (click)='createProfile()'
+      color='primary'
+      class="mx-auto">
+      {{data? 'Save Changes':'Create Profile'}}
+    </button>
+
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Profile info" *ngIf="data">
+    <div class='container-fluid m-3'>
+        <mat-list>
+            <mat-list-item>
+                <strong class='label'>Brand Name: </strong>
+                <p class='info'> {{data.info.brand}}</p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <strong class='label'>Created On: </strong>
+                <p class='info'> {{data.info.createdAt}}</p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <strong class='label'>Updated On </strong>
+                <p class='info'> {{data.info.updatedAt}}</p>
+            </mat-list-item>
+          </mat-list>
+    </div>
+  </mat-tab>
+</mat-tab-group>

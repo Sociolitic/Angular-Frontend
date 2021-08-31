@@ -1,0 +1,32 @@
+@import "variables";
+.card {
+    padding: 40px;
+    text-align: center;
+    transition: all 100ms ease-out;
+    &:hover{
+        padding: 45px;
+        background-color:rgba(8, 8, 8, 0.062);
+        color: $dark-bg-text-1;
+        cursor:pointer;
+    }
+}
+
+.create-profile{
+    text-align: center;
+    color:$dark-bg-text-1;
+    margin-bottom: 24px;
+    padding:40px;
+    border-radius: 4px;
+    transition: all 200ms ease-out;
+    & i{
+    font-size: 50px;
+    }
+    & span {
+        font-size: 30px;
+    }
+    &:hover{
+        background-color: rgba(8, 8, 8, 0.438);
+        cursor: pointer;
+        color: white;
+    }
+}

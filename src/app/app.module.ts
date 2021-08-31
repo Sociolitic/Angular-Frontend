@@ -6,12 +6,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
-
+import {MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 import { AppComponent } from './app.component';
 
@@ -26,6 +37,20 @@ import { NavbarsComponent } from './views/base/navbars/navbars.component';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+const config={
+  apiKey: "AIzaSyDrqOimL_5FP7CnyT0BKpAbPVI471y1QqM",
+        authDomain: "sociolitic.firebaseapp.com",
+        projectId: "sociolitic",
+        storageBucket: "sociolitic.appspot.com",
+        messagingSenderId: "1075477400639",
+        appId: "1:1075477400639:web:d9fd5e9024dc03759ffc8a",
+        measurementId: "G-VYNRYTD9W3"
+};
 
 import {
   AppAsideModule,
@@ -45,7 +70,23 @@ import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './containers/home/home.component';
 import { AnalysisReportComponent } from './views/analysis-report/analysis-report.component';
 import { SettingsComponent } from './views/settings/settings.component';
-
+import { BrandSelectComponent } from './views/brand-select/brand-select.component';
+import { UserSettingsComponent } from './views/settings/components/user-settings/user-settings.component';
+import { ProfileDialog, ProfileSettingsComponent } from './views/settings/components/profile-settings/profile-settings.component';
+import { SubscriptionSettingsComponent } from './views/settings/components/subscription-settings/subscription-settings.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   imports: [
     BrowserModule,
@@ -62,7 +103,37 @@ import { SettingsComponent } from './views/settings/settings.component';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    HttpClientModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    NgbModule,
+    ModalModule,
+    CarouselModule,
+    MatTabsModule,
+    MatCardModule,
+    AngularTypewriterEffectModule,
+    MDBBootstrapModule.forRoot(),
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatListModule,
+    MatMenuModule
   ],
   declarations: [
     AppComponent,
@@ -74,7 +145,13 @@ import { SettingsComponent } from './views/settings/settings.component';
     HomeComponent,
     NavbarsComponent,
     AnalysisReportComponent,
-    SettingsComponent
+    SettingsComponent,
+    BrandSelectComponent,
+    UserSettingsComponent,
+    ProfileSettingsComponent,
+    SubscriptionSettingsComponent,
+    LoginPageComponent,
+    ProfileDialog
   ],
   providers: [
     {

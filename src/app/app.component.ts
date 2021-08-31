@@ -11,6 +11,7 @@ import { freeSet } from '@coreui/icons';
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit {
+  
   constructor(
     private router: Router,
     public iconSet: IconSetService
@@ -26,5 +27,6 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
+    
   }
 }

@@ -20,15 +20,18 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@coreui/icons/css/free.css",
               "node_modules/flag-icon-css/css/flag-icon.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/simple-line-icons/dist/styles/simple-line-icons.css",
-              "src/scss/style.scss"
+              "src/scss/style.scss",
+              "src/scss/variables.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./node_modules"
+                "./node_modules",
+                "src/scss"
               ]
             },
             "scripts": [],

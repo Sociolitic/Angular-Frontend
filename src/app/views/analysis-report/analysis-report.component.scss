@@ -1,0 +1,33 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul{
+    list-style-type: none;
+}
+
+.menu-button{
+    display: flex;
+    width:fit-content;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu-container{
+    padding:12px 20px;
+}
+.source-checkbox-list{
+    margin-bottom:0;
+}
+.collapsed>.nav-item{
+    
+    margin-top: 10px;
+}
+.nav-item{
+    &:first-child{
+        margin-right:10px;
+    }
+}
+::ng-deep .mat-form-field-wrapper{
+    margin-bottom: -1.25em;
+ }

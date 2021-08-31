@@ -1,1 +1,214 @@
-<p>analysis-report works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <span class='navbar-brand'>Analysis Reports</span>
+  <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isMenuCollapsed = !isMenuCollapsed"
+  >
+    &#9776;
+  </button>
+
+  <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <div [(ngbCollapse)]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul [class.collapsed]="!isMenuCollapsed" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Profile</mat-label>
+          <mat-select (selectionChange)='refreshGraphs($event.value)'>
+            <mat-option value="hourly">Profile 1</mat-option>
+            <mat-option value="daily">Profile 2</mat-option>
+            <mat-option value="monthly">Profile 3</mat-option>
+            <mat-option value="yearly">Profile 4</mat-option>
+          </mat-select>
+        </mat-form-field>  
+      </li>
+      <li class="nav-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Analysis Period</mat-label>
+          <mat-select [(ngModel)]='period' (selectionChange)='refreshGraphPeriod()'>
+            <mat-option value="hourly">last 24 hours</mat-option>
+            <mat-option value="daily">this month</mat-option>
+            <mat-option value="monthly">this year</mat-option>
+            <mat-option value="yearly">all years</mat-option>
+          </mat-select>
+        </mat-form-field>  
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="animated fadeIn">
+    <div class="card-columns cols-2">
+      <div class="card">
+        <div class="card-header">
+          <span>Mention count</span>
+          <button class="menu-button" mat-button [matMenuTriggerFor]="menu">
+            <i class="icon-options-vertical icons font-1sm mt-4"></i>  
+            <span>options</span> 
+            </button>
+            <mat-menu #menu="matMenu">
+                <div class='menu-container'(click)="$event.stopPropagation()">
+                  <section class="example-section">
+                    <span class="example-list-section">
+                      <mat-checkbox class="example-margin"
+                                    [checked]="allComplete"
+                                    [indeterminate]="someComplete()"
+                                    (change)="setAll($event.checked)">
+                        Show Selected Sites
+                      </mat-checkbox>
+                    </span>
+                    <span class="example-list-section">
+                      <ul class='source-checkbox-list'>
+                        <li *ngFor="let media of mediaArray">
+                          <mat-checkbox [(ngModel)]="media.mentionCompleted"
+                                        (ngModelChange)="updateAllComplete(media)">
+                            {{media.name}}
+                          </mat-checkbox>
+                        </li>
+                      </ul>
+                    </span>
+                  </section>
+                  </div>
+            </mat-menu>        
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas id='canvas'></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span>Sentiment anaylsis</span>
+          <button class="menu-button" mat-button [matMenuTriggerFor]="sentimentPieMenu">
+            <i class="icon-options-vertical icons font-1sm mt-4"></i>  
+            <span>options</span> 
+            </button>
+            <mat-menu #sentimentPieMenu="matMenu">
+                <div class="menu-container"(click)="$event.stopPropagation()">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select source</mat-label>
+                    <mat-select [(value)]='pieChartSource'(selectionChange)='createSentimentPieChart()'>
+                      <mat-option value="total">Aggregate</mat-option>
+                      <mat-option value="youtube">youtube</mat-option>
+                      <mat-option value="tumblr">tumblr</mat-option>
+                      <mat-option value="twitter">twitter</mat-option>
+                    </mat-select>
+                  </mat-form-field>  
+                </div>
+            </mat-menu>
+                
+        </div>
+        <div class="card-body">
+            <div class="chart-wrapper">
+              <canvas id='piecanvas'></canvas>
+              
+            </div>
+        </div>
+      </div>
+      <!-- <div class="card">
+        <div class="card-header">
+          Bar Chart
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted">docs</small>
+            </a>
+          </div>
+        </div> -->
+        <!-- <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="card">
+        <div class="card-header">
+          Doughnut Chart
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted">docs</small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Radar Chart
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted">docs</small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="radarChartData"
+            [labels]="radarChartLabels"
+            [chartType]="radarChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Pie Chart
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted">docs</small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Polar Area Chart
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted">docs</small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [data]="polarAreaChartData"
+            [labels]="polarAreaChartLabels"
+            [legend]="polarAreaLegend"
+            [chartType]="polarAreaChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div> -->
+      <!-- </div> -->
+    </div>
+  </div>

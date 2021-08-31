@@ -1,0 +1,39 @@
+<div class='container d-flex flex-column justify-content-center'>
+  
+  <mat-card class='card d-flex flex-column align-items-center justify-content-center dark-card-2'>
+    <div class="checkbox-container d-flex flex-row align-items-center">
+      <mat-checkbox [(ngModel)]='alerts' class="checkbox"></mat-checkbox>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            alerts
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+    </div>
+    <div class="checkbox-container d-flex flex-row align-items-center">
+      <mat-checkbox [(ngModel)]='reports' class="checkbox"></mat-checkbox>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Reports
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+    </div>
+    <div class="checkbox-container d-flex flex-row align-items-center">
+      <mat-checkbox [(ngModel)]='newsletters' class="checkbox"></mat-checkbox>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Newsletters
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+    </div>
+    <button (click)='updateAlerts()'class='button-apply'mat-raised-button color="primary">Apply Changes</button>
+  </mat-card>
+</div>

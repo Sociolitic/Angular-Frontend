@@ -1,0 +1,52 @@
+
+.filter-section {
+    padding:20px;
+}
+
+.keyword-input-container {
+    display:flex;
+    align-items: center;
+}
+
+.btn-pill {
+    width: 100%;
+}
+.keyword-form-field {
+    margin: 5px;
+}
+
+.select-form-field {
+    width: 100%;
+}
+.keyword-pill-container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 17px;
+    &__pill{
+        margin: 0 2px 2px 0;
+        display: flex;
+        align-items: center;
+        padding:2px 6px;
+        background-color: #4dbd74;
+        color: white;
+        border-radius: 16px;
+        .close-icon{
+            font-size: inherit;
+            cursor: pointer;
+
+        }
+    }
+}
+
+.form-footer {
+    display: flex;
+    margin-top:18px;
+    align-items: center;
+    justify-content: space-between;
+    padding:10px;
+    border-top: 1px solid #c8ced3;
+    .clear-btn{
+        color: black;
+    }
+}
