@@ -41,6 +41,9 @@
 
         
           <mat-card  *ngIf="showCard"class='mention-card col-md-6'>
+            <i
+            (click)='showCard=false' 
+            class="fa close-icon fa-close fa-lg"></i>
             <mat-card-header>
               <mat-card-title>{{cardObject.source}}</mat-card-title>
               <mat-card-subtitle>{{cardObject.created_time}}</mat-card-subtitle>

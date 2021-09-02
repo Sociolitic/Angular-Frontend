@@ -10,6 +10,11 @@
 
 .btn-pill {
     width: 100%;
+    border-radius: 30px;
+    &:hover{
+        background-color:lightgreen;
+        color: black;
+    }
 }
 .keyword-form-field {
     margin: 5px;

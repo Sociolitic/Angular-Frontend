@@ -1,14 +1,14 @@
-<button [matMenuTriggerFor]="menu" type="button" class="btn btn-primary dropdown-toggle">
+<button [matMenuTriggerFor]="menu" mat-stroked-button color='primary'>
   Filters <span class="caret"></span>
 </button>
-<mat-menu #menu="matMenu">
+<mat-menu #menu="matMenu" class='dark-card-1'>
   <form (click)="$event.stopPropagation()" class='filter-section' [formGroup]='filterGroup'>
     <div class='keyword-input-container'>
-    <mat-form-field class="keyword-form-field">
+    <mat-form-field class="keyword-form-field mb-3">
       <mat-label>Filter by keywords</mat-label>
       <input matInput formControlName='keywordControl'>
     </mat-form-field>
-    <button type="button" class="btn btn-sm btn-pill btn-primary" (click)='addKeyword()'>add</button>
+    <button mat-stroked-button color='accent' class="btn-pill" (click)='addKeyword()'>add</button>
     </div>
     <div class='keyword-pill-container' *ngIf='keywords.size'>
       <div class='keyword-pill-container__pill' *ngFor='let key of keywords'>
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <mat-form-field class='select-form-field' appearance="fill">
+    <mat-form-field class='select-form-field' appearance="fill" class='mb-3'>
       <mat-label>Sources</mat-label>
       <mat-select formControlName='sourceControl' multiple>
         <mat-option *ngFor="let source of sourceList" [value]="source">{{source}}</mat-option>
@@ -39,10 +39,10 @@
       </mat-form-field>
     </mat-expansion-panel>  
   <div class='form-footer'>
-    <button type="button" class="btn btn-sm btn-ghost-secondary clear-btn" (click)='clearFilters()'>
+    <button mat-button color='primary'(click)='clearFilters()'>
       Clear All
     </button>
-    <button type="button" class="btn btn-sm btn-ghost-success" (click)='applyFilters()'>Apply</button>
+    <button mat-button color='accent' (click)='applyFilters()'>Apply</button>
   </div>
   </form>
 </mat-menu>

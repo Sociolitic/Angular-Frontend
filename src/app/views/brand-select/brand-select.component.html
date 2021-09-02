@@ -1,91 +1,93 @@
-<mat-horizontal-stepper linear #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Subscription</ng-template>
-    <div class='container-fluid d-flex flex-row justify-content-around'>
-      <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-        <mat-expansion-panel-header class='sub-container' >
-          <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-            <h1 class='tier-name sub-content'>Free Tier</h1>
-            <h1 class='tier-price sub-content'> $200 per month </h1>
-            <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-            <i class="fa fa-chevron-down fa-lg mb-3"></i>
-          </div>
-        </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
-        <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-      </mat-expansion-panel>
-      <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-        <mat-expansion-panel-header class='sub-container' >
-          <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-            <h1 class='tier-name sub-content'>Free Tier</h1>
-            <h1 class='tier-price sub-content'> $200 per month </h1>
-            <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-            <i class="fa fa-chevron-down fa-lg mb-3"></i>
-          </div>
-        </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
-        <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-      </mat-expansion-panel>
-      <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-        <mat-expansion-panel-header class='sub-container' >
-          <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-            <h1 class='tier-name sub-content'>Free Tier</h1>
-            <h1 class='tier-price sub-content'> $200 per month </h1>
-            <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-            <i class="fa fa-chevron-down fa-lg mb-3"></i>
-          </div>
-        </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
-        <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-      </mat-expansion-panel>
-    </div>
-    <div class='mt-4'>
-      <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-      <button mat-raised-button color='primary' matStepperNext>Next</button>
-    </div>
-  </mat-step>
-    <mat-step [stepControl]="brandSelectFormGroup">
-      <form [formGroup]="brandSelectFormGroup">
-        <ng-template matStepLabel>Brand</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your brand name</mat-label>
-          <input matInput placeholder="enter your brand" formControlName="brandControl" required>
-        </mat-form-field>
-        <div>
-          <button mat-raised-button color='primary' matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step  label="competitors">
-
-        <mat-form-field appearance="fill" class='competitor-form'>
-          <mat-label>Enter your competitors</mat-label>
-          <mat-chip-list #chipList aria-label="competitors List">
-            <mat-chip *ngFor="let competitor of competitorList"
-                     [removable]="true" (removed)="removeCompetitor(competitor)">
-              {{competitor}}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-            <input placeholder="New competitor..."
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="true"
-           (matChipInputTokenEnd)="addCompetitor($event)">
-          </mat-chip-list>
-        </mat-form-field>
-        
-        <div>
-          <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-          <button mat-raised-button color='primary' matStepperNext>Next</button>
-        </div>
-    </mat-step>
-    
+<div class="d-flex stepper-container flex-column justify-content-center">
+  <mat-horizontal-stepper linear #stepper class='my-auto'>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button color='primary' matStepperPrevious>Back</button>
-        <button mat-button color='primary' (click)="submitForm()">Dashboard</button>
+      <ng-template matStepLabel>Subscription</ng-template>
+      <div class='container-fluid d-flex flex-row justify-content-around'>
+        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+          <mat-expansion-panel-header class='sub-container' >
+            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+              <h1 class='tier-name sub-content'>Free Tier</h1>
+              <h1 class='tier-price sub-content'> $200 per month </h1>
+              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
+              <i class="fa fa-chevron-down fa-lg mb-3"></i>
+            </div>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+          <mat-expansion-panel-header class='sub-container' >
+            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+              <h1 class='tier-name sub-content'>Free Tier</h1>
+              <h1 class='tier-price sub-content'> $200 per month </h1>
+              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
+              <i class="fa fa-chevron-down fa-lg mb-3"></i>
+            </div>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+          <mat-expansion-panel-header class='sub-container' >
+            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+              <h1 class='tier-name sub-content'>Free Tier</h1>
+              <h1 class='tier-price sub-content'> $200 per month </h1>
+              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
+              <i class="fa fa-chevron-down fa-lg mb-3"></i>
+            </div>
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
+        </mat-expansion-panel>
+      </div>
+      <div class='mt-4'>
+        <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+        <button mat-raised-button color='primary' matStepperNext>Next</button>
       </div>
     </mat-step>
-  </mat-horizontal-stepper>
+      <mat-step [stepControl]="brandSelectFormGroup">
+        <form [formGroup]="brandSelectFormGroup">
+          <ng-template matStepLabel>Brand</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Enter your brand name</mat-label>
+            <input matInput placeholder="enter your brand" formControlName="brandControl" required>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color='primary' matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step  label="competitors">
+  
+          <mat-form-field appearance="fill" class='competitor-form'>
+            <mat-label>Enter your competitors</mat-label>
+            <mat-chip-list #chipList aria-label="competitors List">
+              <mat-chip *ngFor="let competitor of competitorList"
+                       [removable]="true" (removed)="removeCompetitor(competitor)">
+                {{competitor}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New competitor..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="true"
+             (matChipInputTokenEnd)="addCompetitor($event)">
+            </mat-chip-list>
+          </mat-form-field>
+  
+          <div>
+            <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+            <button mat-raised-button color='primary' matStepperNext>Next</button>
+          </div>
+      </mat-step>
+  
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button color='primary' matStepperPrevious>Back</button>
+          <button mat-button color='primary' (click)="submitForm()">Dashboard</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+</div>

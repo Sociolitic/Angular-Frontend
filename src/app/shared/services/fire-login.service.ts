@@ -89,4 +89,11 @@ export class FireLoginService {
       err => console.log("ERR WHILE LOGOUT",err)
     )
   }
+  getBearer(){
+    const user:User= JSON.parse(localStorage.getItem('user'));
+    return user.bearer;
+  }
+
 }
+
+

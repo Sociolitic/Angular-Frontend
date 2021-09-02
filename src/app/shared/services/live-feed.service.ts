@@ -5,6 +5,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { feedObject } from '../models/live-feed.model';
 import { User } from '../models/user.model';
 import { T } from '@angular/cdk/keycodes';
+const source="twitter";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,14 +33,14 @@ export class LiveFeedService {
     console.log(profileId);
     console.log("listen called");
     return new Observable<feedObject[]>((subscriber)=>{
-      this.socket.on("combinedFeed",(data)=>{
+      this.socket.on(source+"Feed",(data)=>{
         if(!Array.isArray(data))
           data=[data];
         const stream:feedObject[]=this.formatStream(data)
         subscriber.next(stream)
       })
-      this.socket.on('combinedFeedEnd',(data)=>{
-        this.socket.emit("combinedStream",profileId);
+      this.socket.on(source+'FeedEnd',(data)=>{
+        this.socket.emit(source,profileId);
       
       this.socket.on("error",(err)=>
       console.log("ERROR IN SOCK"+err))
@@ -51,7 +52,7 @@ export class LiveFeedService {
   emit(profileId:string){
     console.log("listen called");
     this.socket.emit('refresh',true);
-    this.socket.emit("combinedStream",profileId);
+    this.socket.emit(source,profileId);
   }
 
 

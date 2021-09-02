@@ -11,6 +11,10 @@ $dark-card-1:#16161b;
 $dark-card-2:map-get($mat-blue-gray, 900 );;
 $dark-button-1:rgb(0, 4, 240);
 $dark-button-2:red;
-$dark-text-white: white;
+$dark-bg-text-2: white;
 $dark-text-dark: black;
- 
+$gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
+$gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
+$gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
+$gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
+$gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);

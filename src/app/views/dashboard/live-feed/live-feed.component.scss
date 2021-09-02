@@ -51,7 +51,7 @@
   
 }
 .mat-table {
-    background-color: $dark-component-3;
+    background-color: $dark-card-1;
     width: 100%;
 }
 .second {
@@ -70,11 +70,12 @@
     width: 50%;
     height: 100%;
     overflow-y: auto;
-    background-color:$dark-component-3;
+    background-color:$dark-card-1;
 
 }
 .mention-card {
-    background-color: $dark-component-2;
+    position:relative;
+    background-color: $dark-card-1;
     max-width:50%;
     color: $dark-bg-text-1;
     mat-card-subtitle {
@@ -82,8 +83,19 @@
     }
 }
 .mat-header-cell {
-    background-color: $dark-component-3;
+    background-color: $dark-card-1;
     font-weight: bold;
     font-size: large;
     text-align: center;
+}
+
+.close-icon{
+    position:absolute;
+    top:16px;
+    right:16px;
+    cursor:pointer;
+    &:hover{
+        color:rgba(123, 104, 238);
+
+    }
 }

@@ -86,3 +86,10 @@
      }
      
  }
+
+ .navbar-link-text{
+    background-image: $gradient-telegram;
+    background-clip: text;
+    -webkit-extension-text-fill-color: transparent;
+    font-size: 20px;
+ }

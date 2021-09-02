@@ -4,25 +4,38 @@ import { ChartDataService } from '../../shared/services/chart-data.service';
 import { StatisticsData } from '../../shared/models/graphs.model';
 import { LineChartData } from '../../shared/models/graphs.model';
 import { graphBorderColors,graphBackgroundColors } from '../../shared/constants';
+import { User } from '../../shared/models/user.model';
+import { BrandRegistrationService } from '../../shared/services/brand-registration.service';
 @Component({
   selector: 'app-analysis-report',
   templateUrl: './analysis-report.component.html',
   styleUrls: ['./analysis-report.component.scss']
 })
 export class AnalysisReportComponent implements OnInit {
-  constructor(private dataService: ChartDataService) { 
-    for(let i=1;i<=24;i++)
-      this.hourlyLabels.push("hour "+i);
-  }
-  hourlyLabels:string[]=[];
+  constructor(private dataService: ChartDataService, private brandReg: BrandRegistrationService) {}
+  loading:boolean=true;
+  profiles:object={};
+  selectedProfile:string="";
+  user:User;
   mentionChart:Chart=null;
   sentimentPieChart:Chart=null;
   sentimentBarChart:Chart=null;
   statisticsData:StatisticsData=null;
   ngOnInit(): void {
-    this.initializeMentionChart();
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
+    console.log(this.user.profiles);
+    this.brandReg.findProfiles(this.user.profiles,this.user.bearer).subscribe(
+      (res)=>{
+        this.profiles=res;
+        console.log(this.profiles)
+        this.selectedProfile=this.user.profiles[0];
+        this.initializeMentionChart();
     this.initializeSentimentPieChart();
-    this.fetchGraphData();
+        this.changeProfile();
+      },
+      err => console.log("error in fetching profiles",err)
+    )
   }
 
   mediaArray = [
@@ -111,7 +124,7 @@ export class AnalysisReportComponent implements OnInit {
     }
     if(this.mentionChart){
       this.mentionChart.data={
-        labels: this.hourlyLabels,
+        labels: this.dataService.labels(this.period),
         datasets: lineDataset
       }
       this.mentionChart.update();
@@ -138,12 +151,14 @@ export class AnalysisReportComponent implements OnInit {
     }
   }
   fetchGraphData(){
-    this.dataService.getDailyData().subscribe(
+    this.loading=true;
+    this.dataService.getChartData(this.selectedProfile).subscribe(
       (statData:StatisticsData)=> {
         this.statisticsData=statData;
-        
+        console.log(this.statisticsData);
         this.createMentionChart();
         this.createSentimentPieChart();
+        this.loading=false;
       },
       error => {
         console.log('error fetching data'+error);
@@ -154,5 +169,8 @@ export class AnalysisReportComponent implements OnInit {
     // this.period=period;
     this.createSentimentPieChart();
     this.createMentionChart();
+  }
+  changeProfile(){
+    this.fetchGraphData();
   }
 }
