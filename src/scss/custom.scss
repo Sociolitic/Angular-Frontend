@@ -27,7 +27,9 @@ body {
  .mat-form-field-wrapper{
     margin-bottom: -1.25em;
  }
-
+ mat-form-field{
+  color: white;
+}
  ::-webkit-scrollbar {
     width: 1vw;
     height: 1vw;

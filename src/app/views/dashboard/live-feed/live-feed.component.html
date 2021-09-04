@@ -21,8 +21,8 @@
       <table mat-table [dataSource]="dataGridSource" class='mat-table'>
         <ng-container matColumnDef="source">
           <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Source</th>
-          <td mat-cell *matCellDef="let element" class='mat-cell'>
-                {{ element.source }}
+          <td mat-cell *matCellDef="let element" class='mat-cell mx-auto'>
+              <img class='source-logo' *ngIf='logos.hasOwnProperty(element.source)'[src]='logos[element.source]' [alt]='element.source'>
           </td>
         </ng-container>
         <ng-container matColumnDef="text" >
@@ -33,6 +33,7 @@
         </ng-container>
         <tr mat-header-row class='mat-header-row' *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row class='mat-row'
+          [matTooltip]='row.sentiment'
          *matRowDef="let row; columns: displayedColumns"
          (click)="showMentionDetails(row)"
          ></tr>
@@ -45,6 +46,7 @@
             (click)='showCard=false' 
             class="fa close-icon fa-close fa-lg"></i>
             <mat-card-header>
+              <img mat-card-avatar class='source-logo' *ngIf='logos.hasOwnProperty(cardObject.source)'[src]='logos[cardObject.source]'>
               <mat-card-title>{{cardObject.source}}</mat-card-title>
               <mat-card-subtitle>{{cardObject.created_time}}</mat-card-subtitle>
             </mat-card-header>

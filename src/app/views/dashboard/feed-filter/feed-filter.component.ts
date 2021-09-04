@@ -4,7 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 export interface filterObj{
   keywords: string[];
   sources:string[];
-  booleanFuntion:string
+  booleanFuntion:string;
+  sentiment?:string;
 }
 @Component({
   selector: 'app-feed-filter',
@@ -17,7 +18,8 @@ export class FeedFilterComponent implements OnInit {
   filterGroup:FormGroup= new FormGroup({
     keywordControl: new FormControl(''),
     sourceControl: new FormControl(),
-    booleanControl: new FormControl('OR')
+    booleanControl: new FormControl('OR'),
+    sentimentControl: new FormControl(),
   });
   @Output() filterEmitter: EventEmitter<filterObj> = new EventEmitter<filterObj>();
   
@@ -45,7 +47,8 @@ export class FeedFilterComponent implements OnInit {
         keywords: Array.from(this.keywords),
         sources: this.filterGroup.get('sourceControl').value?
           this.filterGroup.get('sourceControl').value:[],
-        booleanFuntion: this.filterGroup.get('booleanControl').value
+        booleanFuntion: this.filterGroup.get('booleanControl').value,
+        sentiment: this.filterGroup.get('sentimentControl').value
       }
       console.dir(appliedFilters);
       this.filterEmitter.emit(appliedFilters);

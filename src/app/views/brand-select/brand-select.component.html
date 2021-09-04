@@ -1,54 +1,10 @@
 <div class="d-flex stepper-container flex-column justify-content-center">
-  <mat-horizontal-stepper linear #stepper class='my-auto'>
-    <mat-step>
-      <ng-template matStepLabel>Subscription</ng-template>
-      <div class='container-fluid d-flex flex-row justify-content-around'>
-        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-          <mat-expansion-panel-header class='sub-container' >
-            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-              <h1 class='tier-name sub-content'>Free Tier</h1>
-              <h1 class='tier-price sub-content'> $200 per month </h1>
-              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-              <i class="fa fa-chevron-down fa-lg mb-3"></i>
-            </div>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-          <mat-expansion-panel-header class='sub-container' >
-            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-              <h1 class='tier-name sub-content'>Free Tier</h1>
-              <h1 class='tier-price sub-content'> $200 per month </h1>
-              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-              <i class="fa fa-chevron-down fa-lg mb-3"></i>
-            </div>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-        </mat-expansion-panel>
-        <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
-          <mat-expansion-panel-header class='sub-container' >
-            <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
-              <h1 class='tier-name sub-content'>Free Tier</h1>
-              <h1 class='tier-price sub-content'> $200 per month </h1>
-              <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
-              <i class="fa fa-chevron-down fa-lg mb-3"></i>
-            </div>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-          <button mat-raised-button color='primary' (click)='selectSub()'>Buy Now</button>
-        </mat-expansion-panel>
-      </div>
-      <div class='mt-4'>
-        <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-        <button mat-raised-button color='primary' matStepperNext>Next</button>
-      </div>
-    </mat-step>
+  <mat-horizontal-stepper linear #stepper class='dark-card-2'>
+    
       <mat-step [stepControl]="brandSelectFormGroup">
         <form [formGroup]="brandSelectFormGroup">
           <ng-template matStepLabel>Brand</ng-template>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class='mb-3'>
             <mat-label>Enter your brand name</mat-label>
             <input matInput placeholder="enter your brand" formControlName="brandControl" required>
           </mat-form-field>
@@ -59,7 +15,7 @@
       </mat-step>
       <mat-step  label="competitors">
   
-          <mat-form-field appearance="fill" class='competitor-form'>
+          <mat-form-field appearance="fill" class='competitor-form mb-3'>
             <mat-label>Enter your competitors</mat-label>
             <mat-chip-list #chipList aria-label="competitors List">
               <mat-chip *ngFor="let competitor of competitorList"
@@ -80,7 +36,85 @@
             <button mat-raised-button color='primary' matStepperNext>Next</button>
           </div>
       </mat-step>
-  
+      <mat-step>
+        <ng-template matStepLabel>Subscription</ng-template>
+        <div class='container-fluid d-flex flex-row justify-content-around align-items-stretch'>
+          <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+            <mat-expansion-panel-header class='sub-container' >
+              <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+                <h1 class='tier-name sub-content'>Free Tier</h1>
+                <h1 class='tier-price sub-content'> No charges applied </h1>
+                <p class='tier-desc sub-content'> Access to 1 profile, 3 data sources and full monitoring</p>
+                <i class="fa fa-chevron-down fa-lg mb-3"></i>
+              </div>
+            </mat-expansion-panel-header>
+            <div class='list'>
+              
+                  <p class='info'> No credit card details required</p>
+              
+              <mat-divider></mat-divider>
+              
+                  <p class='info'> Get timely alerts and notifications</p>
+              
+              <mat-divider></mat-divider>
+              
+                  <p class='info'> Select if you are looking for a trial</p>
+              
+            </div>
+            <button mat-stroked-button color='accent' (click)='selectSub()'>Buy Now</button>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+            <mat-expansion-panel-header class='sub-container' >
+              <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+                <h1 class='tier-name sub-content'>Paid 1</h1>
+                <h1 class='tier-price sub-content'> $50 per month </h1>
+                <p class='tier-desc sub-content'> Access to 3 profile, 5 data sources and full monitoring</p>
+                <i class="fa fa-chevron-down fa-lg mb-3"></i>
+              </div>
+            </mat-expansion-panel-header>
+            <div class='list'>
+              
+                  <p class='info'>Monitor upto 3 topics with separate configurations</p>
+              
+              <mat-divider></mat-divider>
+              
+                  <p class='info'>Monitor upto 5 data sources of choice </p>
+              
+              <mat-divider></mat-divider>
+              
+                  <p class='info'>Great for individuals who want to monitor only specific online communities</p>
+              
+            </div>
+            <button mat-stroked-button color='accent' (click)='selectSub()'>Buy Now</button>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle class='sub-container mr-3 dark-card-1'>
+            <mat-expansion-panel-header class='sub-container' >
+              <div class='container-fluid pt-3 d-flex flex-column justify-content-around align-items-center'>
+                <h1 class='tier-name sub-content'>Paid 2</h1>
+                <h1 class='tier-price sub-content'> $100 per month </h1>
+                <p class='tier-desc sub-content'> Upto 6 profile, all data sources and full monitoring</p>
+                <i class="fa fa-chevron-down fa-lg mb-3"></i>
+              </div>
+            </mat-expansion-panel-header>
+            <div class='list'>
+              
+                  <p class='info'> Create upto 6 profiles </p>
+          
+              <mat-divider></mat-divider>
+                  <p class='info'> Accesss to all data sources available*</p>
+             
+              <mat-divider></mat-divider>
+                  <p class='info'> Best for organizations who want to have complete information of every mention on the web</p>
+             
+            </div>
+            <button mat-stroked-button color='accent' (click)='selectSub()'>Buy Now</button>
+          </mat-expansion-panel>
+        </div>
+        <div class='mt-4'>
+          <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+          <button mat-raised-button color='primary' matStepperNext>Next</button>
+        </div>
+      </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>

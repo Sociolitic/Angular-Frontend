@@ -22,7 +22,18 @@
         <mat-option *ngFor="let source of sourceList" [value]="source">{{source}}</mat-option>
       </mat-select>
     </mat-form-field>
+    
+    <mat-form-field class='select-form-field' appearance="fill" class='mb-3'>
+      <mat-label>Sentiment</mat-label>
+      <mat-select formControlName='sentimentControl'>
+        <mat-option value="">All</mat-option>
+        <mat-option value="Positive">Positive</mat-option>
+        <mat-option value="Negative">Negative</mat-option>
+        <mat-option value="Neutral">Neutral</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-expansion-panel>
+    
       <mat-expansion-panel-header>
         <mat-panel-title>
           Advanced
@@ -34,7 +45,7 @@
           <mat-option value="AND">AND</mat-option>
           <mat-option value="OR">OR</mat-option>
           <mat-option value="XOR">XOR</mat-option>
-          <mat-option value="NOR">XOR</mat-option>
+          <mat-option value="NOR">NOR</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-expansion-panel>  

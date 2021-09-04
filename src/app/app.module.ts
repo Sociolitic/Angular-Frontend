@@ -87,6 +87,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   imports: [
     BrowserModule,
@@ -133,7 +134,8 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatDividerModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,

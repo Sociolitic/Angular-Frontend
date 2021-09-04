@@ -16,32 +16,7 @@ export const graphBackgroundColors = [
 ]
 
 
-export const hourlyLabels = [
-    "hour 1",
-    "hour 2",
-    "hour 3",
-    "hour 4",
-    "hour 5",
-    "hour 6",
-    "hour 7",
-    "hour 8",
-    "hour 9",
-    "hour 10",
-    "hour 11",
-    "hour 12",
-    "hour 13",
-    "hour 14",
-    "hour 15",
-    "hour 16",
-    "hour 17",
-    "hour 18",
-    "hour 19",
-    "hour 20",
-    "hour 21",
-    "hour 22",
-    "hour 23",
-    "hour 24",
-]
+
 export const server:string='https://sociolitic.nbot.live';
 export const localhost:string='http://localhost:8080';
 
@@ -68,3 +43,10 @@ export const sectionContents=[
         url: "assets/img/home-page/img1.jpg"
     }
 ]
+
+export const mediaImages: object ={
+    twitter:'assets/img/sources/twitter.png',
+    reddit:'assets/img/sources/reddit.png',
+    youtube:'assets/img/sources/youtube.jpg',
+    tumblr:'assets/img/sources/tumblr.jpg'
+}

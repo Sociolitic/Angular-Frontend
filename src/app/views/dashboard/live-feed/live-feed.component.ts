@@ -7,6 +7,7 @@ import { mergeMap } from 'rxjs/operators';
 import { User } from '../../../shared/models/user.model';
 import { feedObject } from '../../../shared/models/live-feed.model';
 import { BrandRegistrationService } from '../../../shared/services/brand-registration.service';
+import { mediaImages } from '../../../shared/constants';
 export interface feedSource {
   source_name: string;
   source_observable: Observable<feedObject[]>;
@@ -18,6 +19,7 @@ export interface feedSource {
   styleUrls: ['./live-feed.component.scss']
 })
 export class LiveFeedComponent implements OnInit,OnDestroy {
+  logos = mediaImages;
   @ViewChild(MatTable) table:MatTable<feedObject>;
   tableData:feedObject[]=[];
   more:boolean=false;
@@ -84,7 +86,8 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
       if(filter.sources.length && !filter.sources.includes(feedItem.source)){
         sourceBool=false;
       }
-      return keywordsBool&&sourceBool;
+      let sentimentBool = filter.sentiment?filter.sentiment==feedItem.sentiment:true;
+      return keywordsBool&&sourceBool&&sentimentBool;
     }
   }
   initialiseLiveFeed(){
