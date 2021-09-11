@@ -17,7 +17,7 @@ export const graphBackgroundColors = [
 
 
 
-export const server:string='https://sociolitic.nbot.live';
+export const server:string='http://3.216.86.216';
 export const localhost:string='http://localhost:8080';
 
 

@@ -93,6 +93,10 @@ export class FireLoginService {
     const user:User= JSON.parse(localStorage.getItem('user'));
     return user.bearer;
   }
+  getUser():User{
+    return JSON.parse(localStorage.getItem('user'));
+    
+  }
 
 }
 

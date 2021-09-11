@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { User } from '../../shared/models/user.model';
 import { BrandRegistrationService } from '../../shared/services/brand-registration.service';
+import { PaymentsService } from '../../shared/services/payments.service';
 @Component({
   selector: 'app-brand-select',
   templateUrl: './brand-select.component.html',
@@ -16,7 +17,8 @@ export class BrandSelectComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   user:User;
   constructor(private _formBuilder: FormBuilder,
-    private _BrandRegisterSvc: BrandRegistrationService) { }
+    private _BrandRegisterSvc: BrandRegistrationService,
+    private stripeCheckout:PaymentsService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -42,5 +44,7 @@ export class BrandSelectComponent implements OnInit {
     const brand=this.brandSelectFormGroup.get('brandControl').value;
     this._BrandRegisterSvc.registerBrand(brand,[...this.competitorList]);
   }
-
+  checkout(plan:string){
+    this.stripeCheckout.checkout(plan);
+  }
 }

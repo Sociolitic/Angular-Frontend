@@ -13,6 +13,7 @@
     color: lawngreen !important;
 }
 ::ng-deep .app-header{
+    border:none;
     background-color: #2f353a;
     & .navbar-toggler{
         min-width: 27px;

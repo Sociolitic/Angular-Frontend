@@ -22,7 +22,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppComponent } from './app.component';
 
@@ -135,7 +135,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDividerModule,
     MatListModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxStripeModule.forRoot('pk_test_51HJE3RGX3LiFGzdnbkkeuOOHWoT3cR3HjadPMBGA7ftisLj0iihOIWbI9EqQZP7H65Dd0ElkgwhJ7y8jKdjQt8Ob00bbCbdUAY'),
+    
   ],
   declarations: [
     AppComponent,
@@ -153,7 +155,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProfileSettingsComponent,
     SubscriptionSettingsComponent,
     LoginPageComponent,
-    ProfileDialog
+    ProfileDialog,
+    
   ],
   providers: [
     {
