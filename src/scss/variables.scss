@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 // Variable overrides
-$dark-bg: rgb(26, 26, 26);
+$dark-bg: #1a1a1a;
 $dark-nav: #2f353a;
 $dark-nav-secondary: rgb(32, 28, 44);
 $dark-component-1:map-get($mat-blue-gray, 900 );
@@ -18,3 +18,4 @@ $gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
 $gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
 $gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
 $gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
+$gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);

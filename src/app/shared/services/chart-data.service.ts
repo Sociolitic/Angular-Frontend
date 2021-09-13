@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StatisticsData } from '../models/graphs.model';
-import {server,localhost} from '../constants';
+import {server} from '../constants';
 import { FireLoginService } from './fire-login.service';
 @Injectable({
   providedIn: 'root'

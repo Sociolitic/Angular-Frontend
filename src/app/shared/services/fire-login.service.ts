@@ -40,7 +40,7 @@ export class FireLoginService {
                     user.bearer = authRes['authToken'];
                     localStorage.setItem("user", JSON.stringify(user));
                     if (user.stage == 1) {
-                      this.router.navigate(["brand-select"]);
+                      this.router.navigate(["subscriptions"]);
                     } else this.router.navigate(["default", "dashboard"]);
                   },
                   (err) => console.log("HTTP Error in FETCH", err)

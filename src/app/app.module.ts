@@ -88,6 +88,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SubscriptionComponent } from './views/subscription/subscription.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -156,6 +157,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SubscriptionSettingsComponent,
     LoginPageComponent,
     ProfileDialog,
+    SubscriptionComponent,
     
   ],
   providers: [

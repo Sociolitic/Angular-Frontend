@@ -4,13 +4,14 @@ import {io, Socket} from 'socket.io-client';
 import { Observable, Subscriber } from 'rxjs';
 import { feedObject } from '../models/live-feed.model';
 import { User } from '../models/user.model';
+import { server } from '../constants';
 
-const source="twitter";
+const source="combinedStream";
 @Injectable({
   providedIn: 'root'
 })
 export class LiveFeedService {
-  readonly uri ="http://13.234.201.120:7000";
+  readonly uri ='http://localhost:7000';
   constructor(private _http: HttpClient) {
     
   }
@@ -40,7 +41,7 @@ export class LiveFeedService {
         subscriber.next(stream)
       })
       this.socket.on(source+'FeedEnd',(data)=>{
-        this.socket.emit(source,profileId);
+        this.socket.emit(source+'Combined',profileId);
       
       this.socket.on("error",(err)=>
       console.log("ERROR IN SOCK"+err))

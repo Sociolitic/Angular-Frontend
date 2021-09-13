@@ -3,7 +3,8 @@
 
 
 body {
-    background-color: $dark-bg;
+   background-color: $dark-nav ;
+    background-image:url('/assets/img/background/Hexagon-gradient.svg');
     //color:$dark-bg-text-1;
 }
 .dark-bg-text-1{
@@ -38,7 +39,7 @@ body {
   /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 10px;
-    background:rgba(black,0);
+    background:transparent;
   }
   
   /* Handle */

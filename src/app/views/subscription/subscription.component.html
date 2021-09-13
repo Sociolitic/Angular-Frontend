@@ -1,0 +1,101 @@
+<nav class="navbar fixed-top navbar-expand dark-nav navbar-dark bg-dark mb-3">
+    <a class="navbar-brand" [routerLink]="'/'">
+    <img class='logo' src='assets/img/brand/white-text.png'></a>
+    
+      <ul class="navbar-nav ml-auto navbar-link-text">
+        <li class="nav-item">
+          <!-- Step 4: Close the menu when a link is clicked. -->
+          <a class="nav-link" [routerLink]="'../home'" (click)="isMenuCollapsed = true"
+            >Home</a
+          >
+        </li> 
+      </ul>
+  </nav>
+
+<div class="container">
+    <div class="row gx-2 justify-content-center">
+
+        <div class='col-md-4 col-sm-8 mb-4'>
+            <mat-card class='sub-card dark-card-1 t1'>
+                <mat-card-header class='header'>
+                    <h1 class=' header-text mx-auto'>FREE TIER</h1>
+                </mat-card-header>
+                <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                <h1 class='tier-price mb-2'><strong class='price'>$0</strong>/month </h1>
+              <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+            </div>
+                <div class='list'>
+                   <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                    </span>
+              </div>
+            </mat-card>
+        </div>
+        <div class='col-md-4 col-sm-8 mb-4'>
+            <mat-card class='sub-card dark-card-1 t2'>
+                <mat-card-header class='header'>
+                    <h1 class=' header-text mx-auto'>PAID I</h1>
+                </mat-card-header>
+                <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                <h1 class='tier-price mb-2'><strong class='price'>$25</strong>/month </h1>
+              <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+            </div>
+                <div class='list'>
+                   <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'> Access to 3 profile, 5 data sources and full monitoring</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Monitor upto 5 data sources of choice</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Great for individuals who want to monitor only specific online communities</p>
+                    </span>
+              </div>
+            </mat-card>
+        </div>
+        <div class='col-md-4 col-sm-8 mb-4'>
+            <mat-card class='sub-card dark-card-1 t3'>
+                <mat-card-header class='header'>
+                    <h1 class=' header-text mx-auto'>PAID II</h1>
+                </mat-card-header>
+                <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                <h1 class='tier-price mb-2'><strong class='price'>$50</strong>/month </h1>
+              <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+            </div>
+                <div class='list'>
+                   <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>  Create upto 6 profiles</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'> Accesss to all data sources available*</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'> 
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Best for organizations who want to have complete information of every mention on the web</p>
+                    </span>
+              </div>
+            </mat-card>
+        </div>
+        
+    </div>
+</div>

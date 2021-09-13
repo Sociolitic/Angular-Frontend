@@ -13,6 +13,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { BrandSelectComponent } from './views/brand-select/brand-select.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SubscriptionComponent } from './views/subscription/subscription.component';
 export const routes: Routes = [
   {
     path: '',
@@ -34,6 +35,11 @@ export const routes: Routes = [
   {
     path: 'brand-select',
     component: BrandSelectComponent,
+    canActivate: [AuthguardService]
+  },
+  {
+    path: 'subscriptions',
+    component: SubscriptionComponent,
     canActivate: [AuthguardService]
   },
   {

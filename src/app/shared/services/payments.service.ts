@@ -21,7 +21,7 @@ export class PaymentsService {
       'plan':plan
     }
     console.log(body);
-    this._http.post('http://3.216.86.216/pay/stripe/create-checkout-session', body,{headers:headers}).subscribe(
+    this._http.post(server+'/pay/stripe/create-checkout-session', body,{headers:headers}).subscribe(
       session => this.redirectToCheckout(session),
       err => console.log(err)
     )
