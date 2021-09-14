@@ -3,8 +3,8 @@
 
 
 body {
-   background-color: $dark-nav ;
-    background-image:url('/assets/img/background/Hexagon-gradient.svg');
+   background-color: $dark-bg ;
+    // background-image:url('/assets/img/background/Hexagon-gradient.svg');
     //color:$dark-bg-text-1;
 }
 .dark-bg-text-1{
@@ -56,3 +56,4 @@ body {
   .card,.card-header,.card-body{
     border:none;
 }
+

@@ -14,7 +14,7 @@
 }
 ::ng-deep .app-header{
     border:none;
-    background-color: #2f353a;
+    background-color: $dark-nav;
     & .navbar-toggler{
         min-width: 27px;
         padding: 0;
@@ -30,6 +30,9 @@
     }
    
 }
+::ng-deep .sidebar{
+    background-color: $dark-nav;
+  }
 .navbar-nav {
     color: #fff;
 }

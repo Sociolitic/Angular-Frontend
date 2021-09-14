@@ -52,7 +52,6 @@ export class LiveFeedService {
 
   emit(profileId:string){
     console.log("listen called");
-    this.socket.emit('refresh',true);
     this.socket.emit(source,profileId);
   }
 

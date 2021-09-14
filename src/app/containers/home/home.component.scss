@@ -10,7 +10,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .carousal {
     width: 80vw;
     margin: auto;
@@ -31,7 +30,6 @@
     cursor: pointer;
 }
 .banner{
-    margin-top: 100px;
     height:200px;
     width:80vw;
 }
@@ -93,4 +91,13 @@
     background-clip: text;
     -webkit-extension-text-fill-color: transparent;
     font-size: 20px;
+ }
+
+ .jumbotron{
+     background-image: url('/assets/img/background/dashboard.jpg');
+     height:70vh;
+ }
+ .typewriter-container{
+     height:100%;
+     background-color: rgb(0,0,0,0.6);
  }
