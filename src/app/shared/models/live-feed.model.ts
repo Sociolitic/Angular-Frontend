@@ -3,6 +3,33 @@ export interface feedObject {
     source:string;
     text:string;
     sentiment:string;
-    created_time: string;
+    created_time: Date;
     misc:any;
+    ner:Ner;
+}
+
+export interface Ner{
+    CARDINAL: string[];
+    DATE: string[];
+    EVENT: string[];
+    FAC: string[];
+    GPE: string[];
+    LANGUAGE: string[];
+    LAW: string[];
+    LOC: string[];
+    MONEY: string[];
+    NORP: string[];
+    ORDINAL: string[];
+    ORG: string[];
+    PERCENT: string[];
+    PERSON: string[];
+    PRODUCT: string[];
+    QUNATITY: string[];
+    TIME: string[];
+    WORK_OF_ART: string[];
+}
+
+export interface FeedData{
+    textFeed: feedObject[];
+    aggregate:any;
 }

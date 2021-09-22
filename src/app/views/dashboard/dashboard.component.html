@@ -1,5 +1,61 @@
-<div class='feed-container'>
-  <div class='row'>
-  <div class="container-fluid"><app-live-feed></app-live-feed></div>
+<div class="container-fluid wrapper p-0">
+  <nav class="navbar navbar-expand-md navbar-dark dark-nav-secondary mb-3">
+    <span class="navbar-brand">LIVE FEED</span>
+    <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+    >
+      &#9776;
+    </button>
+
+    <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+    <div [(ngbCollapse)]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul
+        [class.collapsed]="!isMenuCollapsed"
+        class="navbar-nav ml-auto align-items-center"
+      >
+        <li class="nav-item mx-2">
+          <button mat-raised-button (click)="startFeed()">Start Feed</button>
+        </li>
+        <li class="nav-item mx-2">
+          <button mat-raised-button (click)="stopFeed()">Stop Feed</button>
+        </li>
+        <li class="nav-item mx-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Profile</mat-label>
+            <mat-select
+              [(ngModel)]="selectedProfile"
+              (selectionChange)="changeProfile()"
+            >
+              <mat-option
+                *ngFor="let profile of profiles | keyvalue"
+                [value]="profile.key"
+                >{{ profile.value["brand"] }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </li>
+        <li class="nav-item mx-2">
+          <app-feed-filter (filterEmitter)="applyFilters($event)">
+          </app-feed-filter>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid stat-container animated fadeIn">
+    <div class="mb-3">
+      <app-live-feed
+        [setStatus]="status"
+        [changeProfile]="selectedProfile"
+        [applyFilters]="filters"
+      >
+      </app-live-feed>
+    </div>
+
+    <div class="mb-3">
+      <app-source-statistics [setStatus]="status"></app-source-statistics>
+    </div>
   </div>
 </div>

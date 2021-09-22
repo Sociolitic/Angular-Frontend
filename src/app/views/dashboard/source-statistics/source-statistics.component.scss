@@ -1,37 +1,76 @@
-.wrapper {
-    padding:0;
-    border-left: 1px solid #c8ced3;
-    border-right: 1px solid #c8ced3;
-    background-color: white;
-    & > *{
-        border-top: 1px solid #c8ced3;
-    }
-    &:last-child {
-        border-bottom:1px solid #c8ced3;
-    }
+@import 'variables';
+
+// .wrapper {
+//     padding:0;
+//     border-left: 1px solid #c8ced3;
+//     border-right: 1px solid #c8ced3;
+//     background-color: white;
+//     & > *{
+//         border-top: 1px solid #c8ced3;
+//     }
+//     &:last-child {
+//         border-bottom:1px solid #c8ced3;
+//     }
+// }
+// .header {
+//     padding: 5px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+// .agg-container .collapse-btn {
+//     padding:5px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     background-color: white;
+//     height: 100%;
+//     border:none;
+//     &:hover{
+//         background-color: #f0f3f5;
+//     }
+// }
+// .icon{
+//     align-self: center;
+// }
+
+// .header:first-child {
+//     margin-bottom: 2px;
+// }
+.mat-table {
+    background-color: $dark-card-1;
+    width: 100%;
 }
-.header {
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.agg-container .collapse-btn {
-    padding:5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    height: 100%;
-    border:none;
-    &:hover{
-        background-color: #f0f3f5;
-    }
-}
-.icon{
-    align-self: center;
+// .card-header {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+// }
+// .card-body{
+//     position: relative;
+// }
+ .spinner-container {
+    position:absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgb(black,0.4);
+ }
+ .source-logo{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
-.header:first-child {
-    margin-bottom: 2px;
+.ner-container {
+    height:50vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    background-color:$dark-card-1;
+
+}
+.chart-wrapper{
+    color:white;
+    position: relative;
 }

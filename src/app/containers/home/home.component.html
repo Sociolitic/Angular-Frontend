@@ -28,12 +28,12 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true"
+        <a class="nav-link" [routerLink]="'.'" 
           >Examples</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true"
+        <a class="nav-link" [routerLink]="'.'" 
           >About</a
         >
       </li>
@@ -41,14 +41,14 @@
         <a
           *ngIf="!loggedIn"
           class="nav-link login-link"
-          (click)="smallModal.show(); isMenuCollapsed = true"
+          (click)="smallModal.show()"
         >
           Login
         </a>
         <a
           *ngIf="loggedIn"
           class="nav-link login-link"
-          (click)="logout(); isMenuCollapsed = true"
+          (click)="logout()"
         >
           Logout
         </a>
@@ -89,15 +89,14 @@
 </div>
 <section class="content">
   <div class="jumbotron p-0">
-    <div class="container-fluid typewriter-container d-flex justify-content-center align-items-center">
-      <div class="banner">
-        <div class="typewriter-text">
+    <div class="container-fluid typewriter-container d-flex flex-column justify-content-center align-items-center">
+        <h1 class="banner-text d-flex flex-column justify-content-center align-items-center">SOCIAL MEDIA MONITORING, ANALYSIS AND CONCLUSIONS AT YOUR FINGERTIPS</h1>
+        <div class="banner-subtext">
           <ngtypewriter
             [StringList]="headerTextArray"
             [speed]="1000"
           ></ngtypewriter>
         </div>
-      </div>
     </div>
   </div>
   <div class="container">

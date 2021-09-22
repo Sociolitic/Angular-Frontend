@@ -1,13 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit,ViewChild,OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit,ViewChild,OnDestroy, Input } from '@angular/core';
 import { filterObj } from '../feed-filter/feed-filter.component';
 import { MatTable,MatTableDataSource } from '@angular/material/table';
 import { LiveFeedService } from '../../../shared/services/live-feed.service';
 import { Observable,Subscription,interval } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { User } from '../../../shared/models/user.model';
-import { feedObject } from '../../../shared/models/live-feed.model';
+import { FeedData, feedObject } from '../../../shared/models/live-feed.model';
 import { BrandRegistrationService } from '../../../shared/services/brand-registration.service';
 import { mediaImages } from '../../../shared/constants';
+import { DateTimeService } from '../../../shared/services/date-time.service';
 export interface feedSource {
   source_name: string;
   source_observable: Observable<feedObject[]>;
@@ -21,6 +22,19 @@ export interface feedSource {
 export class LiveFeedComponent implements OnInit,OnDestroy {
   logos = mediaImages;
   @ViewChild(MatTable) table:MatTable<feedObject>;
+  @Input()set changeProfile(profile:string){
+    console.log(profile);
+    if(profile.length)
+    {
+    this.selectedProfile=profile;
+    this.dataGridSource.data=[];
+    this.startFeed();
+  }
+  }
+  @Input()set applyFilters(filters:filterObj){
+    this.dataGridSource.filter=JSON.stringify(filters);
+    console.dir(filters);
+  }
   tableData:feedObject[]=[];
   more:boolean=false;
   dataGridSource:MatTableDataSource<feedObject> = new MatTableDataSource<feedObject>([]);
@@ -34,26 +48,11 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   user:User;
   constructor(private _feedsvc:LiveFeedService,
     private brandReg: BrandRegistrationService,
-    private cdRef: ChangeDetectorRef) { }
+    private datesvc: DateTimeService) { }
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
     this._setFilterPredicate();
-    console.log(this.user.profiles);
-    this.brandReg.findProfiles(this.user.profiles,this.user.bearer).subscribe(
-      (res)=>{
-        this.profiles=res;
-        console.log(this.profiles)
-        this.selectedProfile=this.user.profiles[0];
-        this.startFeed();
-      },
-      err => console.log("error in fetching profiles",err)
-    )
   }
-  applyFilters(filters:filterObj){
-    this.dataGridSource.filter=JSON.stringify(filters);
-    console.dir(filters);
-  }
+  
   private _setFilterPredicate():void {
     this.dataGridSource.filterPredicate = (feedItem:feedObject,filters:string) =>{
       let filter:filterObj = JSON.parse(filters);
@@ -92,10 +91,10 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   }
   initialiseLiveFeed(){
     this.socketConn=this._feedsvc.listen(this.selectedProfile).subscribe(
-            (res:feedObject[]) =>{
+            (res:FeedData) =>{
               if(res)
               {
-              res.forEach(element => {
+              res.textFeed.forEach(element => {
                 this.dataGridSource.data.unshift(element);
                 this.more=true;
               });
@@ -105,12 +104,16 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
               console.log('STREAM ERROR',error);
             }
           )
-    this._feedsvc.emit(this.selectedProfile)
   }
 
+  @Input() set setStatus(status:boolean){
+    if(status)
+      this.startFeed();
+    else
+      this.stopFeed();
+  }
   startFeed(){
     this.stopFeed();
-    this._feedsvc.connect();
     this.initialiseLiveFeed();
   }
   stopFeed(){
@@ -118,7 +121,6 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
       this.socketConn.unsubscribe();
       this.socketConn=null;
     }
-    this._feedsvc.disconnect();
   }
   ngOnDestroy(){
     this.stopFeed();
@@ -127,8 +129,5 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
     this.cardObject=mention;
     this.showCard=true;
   }
-  changeProfile(){
-    this.dataGridSource.data=[];
-    this.startFeed();
-  }
+  
 }

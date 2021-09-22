@@ -89,6 +89,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SubscriptionComponent } from './views/subscription/subscription.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { FeedFilterComponent } from './views/dashboard/feed-filter/feed-filter.component';
+import { LiveFeedComponent } from './views/dashboard/live-feed/live-feed.component';
+import { SourceStatisticsComponent } from './views/dashboard/source-statistics/source-statistics.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -158,7 +162,10 @@ import { SubscriptionComponent } from './views/subscription/subscription.compone
     LoginPageComponent,
     ProfileDialog,
     SubscriptionComponent,
-    
+    DashboardComponent,
+    FeedFilterComponent,
+    LiveFeedComponent,
+    SourceStatisticsComponent
   ],
   providers: [
     {
