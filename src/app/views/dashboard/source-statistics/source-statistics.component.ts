@@ -80,6 +80,8 @@ export class SourceStatisticsComponent implements OnInit {
     if (this.socketConn) {
       this.socketConn.unsubscribe();
       this.socketConn = null;
+      this.loadingMentions=false;
+      this.loadingSentiment=false;
     }
   }
   ngOnDestroy() {

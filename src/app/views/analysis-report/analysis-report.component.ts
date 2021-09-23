@@ -79,6 +79,18 @@ export class AnalysisReportComponent implements OnInit {
           legend: {
             position: 'top',
           }
+        },
+        scales:{
+          xAxes:[{
+            ticks:{
+              display:false
+            }
+          }],
+          yAxes:[{
+            ticks:{
+              display:false
+            }
+          }]
         }
       }
     })
@@ -166,7 +178,6 @@ export class AnalysisReportComponent implements OnInit {
     );
   }
   refreshGraphPeriod(){
-    // this.period=period;
     this.createSentimentPieChart();
     this.createMentionChart();
   }

@@ -22,30 +22,57 @@ export class ChartDataService {
     return this.http.get<StatisticsData>(server+'/data/aggregate',options);
   }
 
-  labels(period,years=null):string[]{
-    let index=24;
-    let tag='hour ';
+  labels(period):string[]{
+    console.log(period);
+    let res=[];
+    let currentDate:Date = new Date();
     switch(period){
-      case 'daily ':{
-        index=30;
-        tag='day';
+      case 'hourly':{
+        for( let i=23;i>=0;i--){
+          res.push(this.subtractPeriod(currentDate,period,i));
+        }
+        break;
+      }
+      case 'daily':{
+        for( let i=29;i>=0;i--){
+          res.push(this.subtractPeriod(currentDate,period,i));
+        }
         break;
       }
       case 'monthly':{
-        index=12;
-        tag='month ';
+        for( let i=11;i>=0;i--){
+          res.push(this.subtractPeriod(currentDate,period,i));
+        }
         break;
       }
       case 'yearly':{
-        index=5;
-        tag='year ';
+        for( let i=4;i>=0;i--){
+          res.push(this.subtractPeriod(currentDate,period,i));
+        }
         break;
       }
       default: break;
     }
-    let res=[];
-    for(let i=1;i<=index;i++)
-      res.push(tag+i);
+    console.log(res);
     return res;
+  }
+
+  subtractPeriod(currentdate:Date,period:string,sub:number):string{
+    let date= new Date(currentdate);
+    switch(period){
+      case 'hourly':{
+        return (new Date(date.setHours(date.getHours()-sub))).toLocaleString('en-GB');
+      }
+      case 'daily':{
+        return (new Date(date.setDate(date.getDate()-sub))).toLocaleString('en-GB');
+      }
+      case 'monthly':{
+        return (new Date(date.setMonth(date.getMonth()-sub))).toLocaleString('en-GB');
+      }
+      case 'yearly':{
+        return (new Date(date.setFullYear(date.getFullYear()-sub))).toLocaleString('en-GB');
+      }
+      default: return date.toLocaleString();
+    }
   }
 }
