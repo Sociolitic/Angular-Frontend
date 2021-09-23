@@ -1,13 +1,11 @@
-<!-- <a routerLink='/login'>Login</a> -->
-<nav
-  class="navbar sticky-top navbar-expand-sm dark-nav navbar-dark"
->
-  <a class="navbar-brand" [routerLink]="'/'">
-    <img class="logo" src="assets/img/brand/white-text.png"
-  /></a>
+<header class='header'>
+  <div class="container">
+    <div class="navbar navbar-expand-sm navbar-dark">
+      <a class="navbar-brand" [routerLink]="'/'">
+        <img class="logo" src="assets/img/brand/white-text.png"
+      /></a>
 
-  <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
-  <button
+      <button
     class="navbar-toggler"
     type="button"
     (click)="isMenuCollapsed = !isMenuCollapsed"
@@ -55,114 +53,40 @@
       </li>
     </ul>
   </div>
-</nav>
 
-<div
-  bsModal
-  #smallModal="bs-modal"
-  class="modal fade"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Login</h4>
-        <button
-          type="button"
-          class="close"
-          (click)="smallModal.hide()"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-login></app-login>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<section class="content">
-  <div class="jumbotron p-0">
-    <div class="container-fluid typewriter-container d-flex flex-column justify-content-center align-items-center">
-        <h1 class="banner-text d-flex flex-column justify-content-center align-items-center">SOCIAL MEDIA MONITORING, ANALYSIS AND CONCLUSIONS AT YOUR FINGERTIPS</h1>
-        <div class="banner-subtext">
-          <ngtypewriter
-            [StringList]="headerTextArray"
-            [speed]="1000"
-          ></ngtypewriter>
-        </div>
     </div>
   </div>
-  <div class="container">
-    <div
-      class="content-container d-flex justify-content-around align-items-center"
-      *ngFor="let content of contents"
-    >
-      <p class="content-text">{{ content["text"] }}</p>
-      <img class="content-img" [src]="content['url']" />
+  <section class="top-background">
+    <div class="banner-container container">
+      <h1 class="banner-text">SOCIAL MEDIA MONITORING, ANALYSIS AND CONCLUSIONS AT YOUR FINGERTIPS</h1>
     </div>
-  </div>
+    <img class='dashboard-bg' src='/assets/img/background/dashboard.jpg'>
 </section>
-<section class="footers text-light dark-nav p-3">
-  <div class="container-fluid">
+</header>
+
+<section class='content'>
+  <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-8 footers-one">
-        <div class="footers-logo">
-          <img src="assets/img/brand/white-text.png" alt="Logo" class="logo" />
-        </div>
-        <div class="footers-info mt-3 mb-3">
-          <p>
-            Businesses have been watching out for opinions of their consumers on
-            their products as well as their competitor’s products since times
-            immemorial. Tracking customer sentiments helps businesses to make
-            better decisions for improving customer satisfaction as well as
-            looking out for potential rivals to their products. The digital era
-            has brought with it vast amounts of information about people. The
-            most valuable sources of information from the company's perspective
-            come from social media and online news sources.
-          </p>
-          <strong
-            >With Sociolitic you have the power to make the best out of your
-            social media footprint.</strong
-          >
-        </div>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/"
-            ><i id="social-fb" class="fa fa-facebook-square fa-2x social"></i
-          ></a>
-          <a href="https://twitter.com/"
-            ><i id="social-tw" class="fa fa-twitter-square fa-2x social"></i
-          ></a>
-          <a href="https://plus.google.com/"
-            ><i id="social-gp" class="fa fa-google-plus-square fa-2x social"></i
-          ></a>
-          <a href="mailto:bootsnipp@gmail.com"
-            ><i id="social-em" class="fa fa-envelope-square fa-2x social"></i
-          ></a>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Friendly Interface</div>
+          <div class="card-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi explicabo distinctio excepturi ad doloribus quaerat consequuntur aliquid culpa! Atque, veritatis?</div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-2 footers-two">
-        <h2>Essentials</h2>
-        <ul class="list-unstyled">
-          <li><a href="maintenance.html">Search</a></li>
-        </ul>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Pay-as-you-go subscriptions</div>
+          <div class="card-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, iste?</div>
+        </div>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-2 footers-three">
-        <h2>Information</h2>
-        <ul class="list-unstyled">
-          <li><a href="maintenance.html">Register Now</a></li>
-          <li><a href="contact.html">Advice</a></li>
-          <li><a href="about.html">Videos</a></li>
-          <li><a href="about.html">Blog</a></li>
-          <li><a href="about.html">Services</a></li>
-        </ul>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Profitable Insights</div>
+          <div class="card-body">Lorem ipsum dolor sit amet.</div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="container"></div>
+  <div class="container"></div>
 </section>
