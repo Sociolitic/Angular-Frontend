@@ -1,6 +1,7 @@
-<header class='header'>
+<header #header class='header '>
+  <div #navbar [ngClass]="{'dark-nav': !isMenuCollapsed}" class="container-fluid fixed-top nav-anim">
   <div class="container">
-    <div class="navbar navbar-expand-sm navbar-dark">
+    <div  class="navbar navbar-expand-sm navbar-dark ">
       <a class="navbar-brand" [routerLink]="'/'">
         <img class="logo" src="assets/img/brand/white-text.png"
       /></a>
@@ -56,37 +57,183 @@
 
     </div>
   </div>
-  <section class="top-background">
+</div>
+  <!-- <section class="top-background">
     <div class="banner-container container">
       <h1 class="banner-text">SOCIAL MEDIA MONITORING, ANALYSIS AND CONCLUSIONS AT YOUR FINGERTIPS</h1>
     </div>
-    <img class='dashboard-bg' src='/assets/img/background/dashboard.jpg'>
-</section>
+    <div class="dashboard-bg"><img  src='/assets/img/background/dashboard.jpg'></div>
+</section> -->
+<div class="banner-container container d-flex flex-column justify-content-center align-items-center">
+  <h1 class="banner-text">Social media monitoring, analysis and conclusions at your fingertips</h1>
+  <button mat-raised-button color='primary' class='action-btn-1 mt-3 p-3'>Check out our plans</button>
+</div>
 </header>
 
-<section class='content'>
-  <div class="container">
+<section class='content mt-3'>
+  <div class="container py-5">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 mcol">
         <div class="card">
-          <div class="card-header">Friendly Interface</div>
-          <div class="card-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi explicabo distinctio excepturi ad doloribus quaerat consequuntur aliquid culpa! Atque, veritatis?</div>
+          <div class="card-header h3">Friendly Interface</div>
+          <div class="card-body lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi explicabo distinctio excepturi ad doloribus quaerat consequuntur aliquid culpa! Atque, veritatis?</div>
+        </div>
+      </div>
+      <div class="col-md-4 mcol">
+        <div class="card">
+          <div class="card-header h3">Pay-as-you-go subscriptions</div>
+          <div class="card-body lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, iste?</div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header">Pay-as-you-go subscriptions</div>
-          <div class="card-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, iste?</div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">Profitable Insights</div>
-          <div class="card-body">Lorem ipsum dolor sit amet.</div>
+          <div class="card-header h3">Profitable Insights</div>
+          <div class="card-body lead">Lorem ipsum dolor sit amet.</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="container"></div>
-  <div class="container"></div>
+  <mat-divider class='divider'></mat-divider>
+  <div class="container">
+    <div
+      class="content-container py-5 row"
+      *ngFor="let content of contents"
+    >
+      <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="content-header">SOme header here</h1>
+        <p class="content-text lead">{{ content["text"] }}</p>
+        <button mat-raised-button color='accent' class="action-btn-2 p-2 mt-3 ">View our plans</button>
+      </div>
+      <div class="col-md-6 col-sm-12"><img class="content-img" [src]="content['url']" /></div>
+    </div>
+  </div>
+  <mat-divider class='divider'></mat-divider>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      
+      <div class="col-md-7 col-sm-12">
+        <mat-tab-group>
+          <mat-tab label="Free Tier">
+                  <div >
+                    <mat-card class='sub-card dark-card-1 t1'>
+                        <mat-card-header class='sub-card-header'>
+                            <h1 class=' sub-card-header-text mx-auto'>FREE TIER</h1>
+                        </mat-card-header>
+                        <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                        <h1 class='tier-price mb-2'><strong class='price'>$0</strong>/month </h1>
+                      <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+                    </div>
+                        <div class='list'>
+                           <span class='info-container'>
+                            <i class="fa fa-check fa-lg pr-2"></i>
+                            <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                            </span>
+                        <mat-divider></mat-divider>
+                        <span class='info-container'>
+                            <i class="fa fa-check fa-lg pr-2"></i>
+                            <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                            </span>
+                        <mat-divider></mat-divider>
+                        <span class='info-container'>
+                            <i class="fa fa-check fa-lg pr-2"></i>
+                            <p class='info'>Access to 1 profile, 3 data sources and full monitoring</p>
+                            </span>
+                      </div>
+                    </mat-card>
+                  </div>
+          </mat-tab>
+          <mat-tab label='t2'>
+            <div >
+              <mat-card class='sub-card dark-card-1 t2'>
+                <mat-card-header class='sub-card-header'>
+                    <h1 class=' sub-card-header-text mx-auto'>PAID I</h1>
+                </mat-card-header>
+                <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                <h1 class='tier-price mb-2'><strong class='price'>$25</strong>/month </h1>
+              <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+                        </div>
+                <div class='list'>
+                   <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'> Access to 3 profile, 5 data sources and full monitoring</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Monitor upto 5 data sources of choice</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Great for individuals who want to monitor only specific online communities</p>
+                    </span>
+              </div>
+                        </mat-card>
+            </div>
+          </mat-tab>
+
+            <mat-tab label='t3'>
+              <div >
+              <mat-card class='sub-card dark-card-1 t3'>
+                <mat-card-header class='sub-card-header'>
+                    <h1 class=' sub-card-header-text mx-auto'>PAID II</h1>
+                </mat-card-header>
+                <div class='plan d-flex flex-column justify-content-center align-items-center py-2'>
+                <h1 class='tier-price mb-2'><strong class='price'>$50</strong>/month </h1>
+              <button mat-stroked-button color='accent' (click)='checkout("1")'>Buy Now</button>
+            </div>
+                <div class='list'>
+                   <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>  Create upto 6 profiles</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'> Accesss to all data sources available*</p>
+                    </span>
+                <mat-divider></mat-divider>
+                <span class='info-container'>
+                    <i class="fa fa-check fa-lg pr-2"></i>
+                    <p class='info'>Best for organizations who want to have complete information of every mention on the web</p>
+                    </span>
+              </div>
+            </mat-card>
+          </div>
+          </mat-tab>
+          </mat-tab-group>
+      </div>
+    </div>
+  </div>
 </section>
+<footer class="footers text-light py-2">
+  <div class="container">
+    <div class="row g-3 justify-content-between">
+      <div class="col-sm-6 col-md-4 d-flex justify-content-left align-items-center my-2">
+        <p class='mb-0'>© Sociolitic 2021. All rights reserved.</p>
+      </div>
+      <div class="col-sm-6 col-md-4 d-flex justify-content-center align-items-center my-2">
+        <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center mb-0">
+          <a href="#" class='mx-2'>privacy policy</a>
+          <a href="#" class='mx-2'>Terms and conditions</a>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-md-4 d-flex justify-content-end align-items-center my-2">
+        <div class="social-icons d-flex justify-content-center align-items-center">
+          <a href="https://www.facebook.com/"
+            ><i id="social-fb" class="fa fa-facebook-square fa-2x social mr-1"></i
+          ></a>
+          <a href="https://twitter.com/"
+            ><i id="social-tw" class="fa fa-twitter-square fa-2x social mr-1"></i
+          ></a>
+          <a href="https://plus.google.com/"
+            ><i id="social-gp" class="fa fa-google-plus-square fa-2x social mr-1"></i
+          ></a>
+          <a href="mailto:bootsnipp@gmail.com"
+            ><i id="social-em" class="fa fa-envelope-square fa-2x social mr-1"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

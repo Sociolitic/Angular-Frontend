@@ -93,6 +93,7 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { FeedFilterComponent } from './views/dashboard/feed-filter/feed-filter.component';
 import { LiveFeedComponent } from './views/dashboard/live-feed/live-feed.component';
 import { SourceStatisticsComponent } from './views/dashboard/source-statistics/source-statistics.component';
+import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
 @NgModule({
   imports: [
     BrowserModule,
@@ -165,7 +166,8 @@ import { SourceStatisticsComponent } from './views/dashboard/source-statistics/s
     DashboardComponent,
     FeedFilterComponent,
     LiveFeedComponent,
-    SourceStatisticsComponent
+    SourceStatisticsComponent,
+    ScrollAnimDirective
   ],
   providers: [
     {
