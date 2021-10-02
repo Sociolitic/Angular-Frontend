@@ -47,7 +47,7 @@
   <div class="container-fluid stat-container animated fadeIn">
     <div class="mb-3">
       <app-live-feed
-        [setStatus]="status"
+        [feedStop]="status"
         [changeProfile]="selectedProfile"
         [applyFilters]="filters"
       >
@@ -55,7 +55,7 @@
     </div>
 
     <div class="mb-3">
-      <app-source-statistics [setStatus]="status"></app-source-statistics>
+      <app-source-statistics [feedStatus]="!status"></app-source-statistics>
     </div>
   </div>
 <div class="container">

@@ -23,7 +23,7 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   logos = mediaImages;
   @ViewChild(MatTable) table:MatTable<feedObject>;
   @Input()set changeProfile(profile:string){
-    console.log(profile);
+    // console.log(profile);
     if(profile.length)
     {
     this.selectedProfile=profile;
@@ -32,7 +32,8 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   }
   }
   @Input()set applyFilters(filters:filterObj){
-    this.dataGridSource.filter=JSON.stringify(filters);
+    if(filters)
+      this.dataGridSource.filter=JSON.stringify(filters);
     console.dir(filters);
   }
   tableData:feedObject[]=[];
@@ -90,6 +91,7 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
     }
   }
   initialiseLiveFeed(){
+    console.log(this.selectedProfile);
     this.socketConn=this._feedsvc.listen(this.selectedProfile).subscribe(
             (res:FeedData) =>{
               if(res)
@@ -106,10 +108,8 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
           )
   }
 
-  @Input() set setStatus(status:boolean){
+  @Input() set feedStop(status:boolean){
     if(status)
-      this.startFeed();
-    else
       this.stopFeed();
   }
   startFeed(){

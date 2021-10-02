@@ -46,15 +46,16 @@ export class DashboardComponent implements OnInit {
     this._feedsvc.emit(this.selectedProfile);
   }
   startFeed() {
-    this.status=true;
+    
     if (this.selectedProfile.length) {
       this._feedsvc.disconnect();
       this._feedsvc.connect();
       this._feedsvc.emit(this.selectedProfile);
+      this.status=true;
     }
   }
   stopFeed() {
-    this.status=false;
+    this.status=true;
     this._feedsvc.disconnect();
   }
 }

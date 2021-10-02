@@ -15,7 +15,7 @@ export interface nerAggr{
   tag:string;
   phrase:string;
 }
-const source="twitter";
+const source="combinedStream";
 @Injectable({
   providedIn: 'root'
 })
@@ -47,7 +47,7 @@ export class LiveFeedService {
     console.log(profileId);
     console.log("listen called");
     return new Observable<FeedData>((subscriber)=>{
-      this.socket.on("twitterFeed",(data)=>{
+      this.socket.on(source+"Feed",(data)=>{
         if(!Array.isArray(data))
           data=[data];
         const stream:feedObject[]=this.formatStream(data)
@@ -61,8 +61,8 @@ export class LiveFeedService {
           }
         })
       })
-      this.socket.on(source+'FeedEnd',(data)=>{
-        this.socket.emit(source+'Combined',profileId);
+      this.socket.on(source+'End',(data)=>{
+        this.socket.emit(data+'Combined',profileId);
       
       this.socket.on("error",(err)=>
       console.log("ERROR IN SOCK"+err))

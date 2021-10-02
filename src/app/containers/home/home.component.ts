@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit,AfterViewInit {
     "Backed up by powerful natural language processing models",
     "Bring forth key information from the data provided"
   ];
+  @ViewChild('smallModal') public smallModal: ModalDirective;
+
   @ViewChild('navbar', { read: ElementRef, static:false }) navbar: ElementRef;
   //@ViewChild('smallModal') public smallModal: ModalDirective;
   @ViewChild('header',{ read: ElementRef, static:false }) header: ElementRef;

@@ -1,7 +1,11 @@
 @import "variables";
 
 
-
+.modal-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .logo {
     width: 150px;
 }
