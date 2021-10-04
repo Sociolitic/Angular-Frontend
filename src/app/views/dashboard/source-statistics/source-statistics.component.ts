@@ -29,15 +29,35 @@ export class SourceStatisticsComponent implements OnInit {
   nerGridSource: MatTableDataSource<nerAggr> = new MatTableDataSource<nerAggr>(
     []
   );
+  title = 'Browser market shares at a specific website, 2014';
+  type = 'PieChart';
+  data = [
+     ['Firefox', 45.0],
+     ['IE', 26.8],
+     ['Chrome', 12.8],
+     ['Safari', 8.5],
+     ['Opera', 6.2],
+     ['Others', 0.7] 
+  ];
+  columnNames = ['Browser', 'Percentage'];
+  options = {    
+  };
+  width = 550;
+  height = 400;
+  mentionData=[];
+  mentionLabels=[];
   @ViewChild(MatTable) table:MatTable<nerAggr>;
 
   @Input() set changeProfile(profile: string) {
+
     console.log(profile);
     if (profile.length) {
       this.selectedProfile = profile;
       this.nerGridSource.data = [];
       this.startFeed();
     }
+    else
+      this.stopFeed();
   }
   socketConn: Subscription;
 
@@ -48,8 +68,8 @@ export class SourceStatisticsComponent implements OnInit {
   
   ngOnInit(): void {
     this.nerGridSource.data = [...this._feedsvc.nerCount];
-    this.initializeMentionChart();
-    this.initializeSentimentChart();
+    // this.initializeMentionChart();
+    // this.initializeSentimentChart();
   }
   initialiseLiveFeed() {
     this.socketConn = this._feedsvc.listen(this.selectedProfile).subscribe(
@@ -58,7 +78,7 @@ export class SourceStatisticsComponent implements OnInit {
           console.log(res);
           const data = res.aggregate;
           this.updateMentionChart(data["sources"]);
-          this.updateSentimentChart(data["sentiment"]);
+          //this.updateSentimentChart(data["sentiment"]);
           if (data["ner"]) {this.nerGridSource.data.push(data["ner"]);
           this.table.renderRows();}
         }
@@ -68,10 +88,10 @@ export class SourceStatisticsComponent implements OnInit {
       }
     );
   }
-  @Input() set setStatus(status: boolean) {
-    if (status)
-      this.stopFeed();
-  }
+  // @Input() set setStatus(status: boolean) {
+  //   if (status)
+  //     this.stopFeed();
+  // }
   startFeed() {
     this.stopFeed();
     this.initialiseLiveFeed();
@@ -88,64 +108,64 @@ export class SourceStatisticsComponent implements OnInit {
     this.stopFeed();
   }
 
-  initializeMentionChart() {
-    console.log("sentiment initialized");
-    this.mentionChart = new Chart("mentioncanvas", {
-      type: "doughnut",
+  // initializeMentionChart() {
+  //   console.log("sentiment initialized");
+  //   this.mentionChart = new Chart("mentioncanvas", {
+  //     type: "doughnut",
       
-      options: {
-        animation:{
-          animateRotate:false,
-          animateScale:false
-        },
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-        },
-      },
-    });
-    if (Object.keys(this._feedsvc.sourceCount).length) {
-      this.updateMentionChart(this._feedsvc.sourceCount);
-    }
-  }
-  initializeSentimentChart() {
-    console.log("sentiment initialized");
-    this.sentimentChart = new Chart("sentimentcanvas", {
-      type: "bar",
-      data: {
-        labels: ["positive", "negative", "neutral"],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top",
-          },
-        },
-        animation:{
-          animateRotate:false,
-          animateScale:false,
-        },
-        scales: {
-          xAxes: [
-            {
-              stacked: true,
-            },
-          ],
-          yAxes: [
-            {
-              stacked: true,
-            },
-          ],
-        },
-      },
-    });
-    if (Object.keys(this._feedsvc.sentimentCount).length) {
-      this.updateMentionChart(this._feedsvc.sentimentCount);
-    }
-  }
+  //     options: {
+  //       animation:{
+  //         animateRotate:false,
+  //         animateScale:false
+  //       },
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: "top",
+  //         },
+  //       },
+  //     },
+  //   });
+  //   if (Object.keys(this._feedsvc.sourceCount).length) {
+  //     this.updateMentionChart(this._feedsvc.sourceCount);
+  //   }
+  // }
+  // initializeSentimentChart() {
+  //   console.log("sentiment initialized");
+  //   this.sentimentChart = new Chart("sentimentcanvas", {
+  //     type: "bar",
+  //     data: {
+  //       labels: ["positive", "negative", "neutral"],
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       plugins: {
+  //         legend: {
+  //           position: "top",
+  //         },
+  //       },
+  //       animation:{
+  //         animateRotate:false,
+  //         animateScale:false,
+  //       },
+  //       scales: {
+  //         xAxes: [
+  //           {
+  //             stacked: true,
+  //           },
+  //         ],
+  //         yAxes: [
+  //           {
+  //             stacked: true,
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   });
+  //   if (Object.keys(this._feedsvc.sentimentCount).length) {
+  //     this.updateMentionChart(this._feedsvc.sentimentCount);
+  //   }
+  // }
 
   updateSentimentChart(sentiment: Object) {
     let data: LineChartData[] = [];
@@ -165,23 +185,27 @@ export class SourceStatisticsComponent implements OnInit {
   }
 
   updateMentionChart(mentions: Object) {
-    this.mentionChart.data.labels = [];
-    let data: number[] = [];
+    //this.mentionChart.data.labels = [];
+    let data: any[] = [];
     let colors: string[] = [];
     let counter = 0;
+    //let labels: string[]= []
     for (let i in mentions) {
-      this.mentionChart.data.labels.push(i);
-      data.push(mentions[i]);
+      //this.mentionChart.data.labels.push(i);
+      //labels.push(i);
+      data.push([i,mentions[i]]);
       colors.push(graphBackgroundColors[counter]);
       counter++;
     }
-    this.mentionChart.data.datasets = [
-      {
-        data: data,
-        backgroundColor: colors,
-      },
-    ];
-    this.mentionChart.update();
-    this.loadingMentions = false;
+    this.mentionLabels=['media','mentions'];
+    this.mentionData=data;
+    // this.mentionChart.data.datasets = [
+    //   {
+    //     data: data,
+    //     backgroundColor: colors,
+    //   },
+    // ];
+    // this.mentionChart.update();
+    // this.loadingMentions = false;
   }
 }

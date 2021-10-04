@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   status:boolean=false;
   profiles: object = {};
   selectedProfile: string = "";
+  inputProfile:string = "";
   user: User;
   filters: filterObj;
   @Output() filterEmitter: EventEmitter<filterObj> =
@@ -51,11 +52,11 @@ export class DashboardComponent implements OnInit {
       this._feedsvc.disconnect();
       this._feedsvc.connect();
       this._feedsvc.emit(this.selectedProfile);
-      this.status=false;
+      this.inputProfile=this.selectedProfile;
     }
   }
   stopFeed() {
-    this.status=true;
+    this.inputProfile='';
     this._feedsvc.disconnect();
   }
 }

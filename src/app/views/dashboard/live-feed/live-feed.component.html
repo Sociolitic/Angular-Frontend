@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row gx-2">
+  <div class="row feed-row gx-2">
       <div class="col-md-7">
         <div class="mention-container">
   
@@ -26,7 +26,7 @@
         </div>
           </div>
   
-          <div *ngIf="showCard" class='col-md-5 d-flex flex-column justify-content-center align-items-center'>
+          <div *ngIf="showCard" class='col-md-5 d-flex cards-container flex-column justify-content-center align-items-center'>
             <div *ngIf='cardObject.source=="youtube"' class="embed-responsive embed-responsive-16by9 mb-3">
               <iframe class="embed-responsive-item embed-frame " [src]='selectedUrl' allowfullscreen></iframe>
             </div>
@@ -39,10 +39,9 @@
                 <mat-card-title>{{cardObject.source}}</mat-card-title>
                 <mat-card-subtitle>{{datesvc.displayDate(cardObject.created_time)}}</mat-card-subtitle>
               </mat-card-header>
-              <mat-card-content>
-                <p>
-                  {{cardObject.text}}
-                </p>
+              <mat-card-content class='moreinfo-container'>
+                
+                  {{cardObject.text}} 
               </mat-card-content>
               <mat-card-actions>
                 <button mat-button>LIKE</button>
