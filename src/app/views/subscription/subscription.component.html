@@ -1,18 +1,24 @@
-<nav class="navbar fixed-top navbar-expand dark-nav navbar-dark bg-dark mb-3">
-    <a class="navbar-brand" [routerLink]="'/'">
-    <img class='logo' src='assets/img/brand/white-text.png'></a>
-    
-      <ul class="navbar-nav ml-auto navbar-link-text">
-        <li class="nav-item">
-          <!-- Step 4: Close the menu when a link is clicked. -->
-          <a class="nav-link" [routerLink]="'../home'" (click)="isMenuCollapsed = true"
-            >Home</a
-          >
-        </li> 
-      </ul>
-  </nav>
-
 <div class="container">
+    <div  class="navbar  navbar-expand navbar-dark mb-3">
+      <a class="navbar-brand" [routerLink]="'/'">
+        <img class="logo" src="assets/img/brand/white-text.png"
+      /></a>
+
+  <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <ul class="navbar-nav ml-auto navbar-link-text">
+    <li class="nav-item">
+      <!-- Step 4: Close the menu when a link is clicked. -->
+      <a class="nav-link" [routerLink]="'../home'" (click)="isMenuCollapsed = true"
+        >Home</a
+      >
+    </li> 
+  </ul>
+
+    </div>
+  </div>
+  
+
+<div class="container container-sub">
     <div class="row gx-2 justify-content-center">
 
         <div class='col-md-4 col-sm-8 mb-4'>

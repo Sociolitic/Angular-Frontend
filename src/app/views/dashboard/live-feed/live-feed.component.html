@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row gx-2">
       <div class="col-md-7">
         <div class="mention-container">
@@ -26,8 +26,11 @@
         </div>
           </div>
   
-          <div class='col-md-5 d-flex justify-content-center align-items-center'>
-            <mat-card  *ngIf="showCard"class='mention-card'>
+          <div *ngIf="showCard" class='col-md-5 d-flex flex-column justify-content-center align-items-center'>
+            <div *ngIf='cardObject.source=="youtube"' class="embed-responsive embed-responsive-16by9 mb-3">
+              <iframe class="embed-responsive-item embed-frame " [src]='selectedUrl' allowfullscreen></iframe>
+            </div>
+            <mat-card class='mention-card'> 
               <i
               (click)='showCard=false'
               class="fa close-icon fa-close fa-lg"></i>

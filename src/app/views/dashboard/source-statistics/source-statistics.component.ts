@@ -69,8 +69,8 @@ export class SourceStatisticsComponent implements OnInit {
     );
   }
   @Input() set setStatus(status: boolean) {
-    if (status) this.startFeed();
-    else this.stopFeed();
+    if (status)
+      this.stopFeed();
   }
   startFeed() {
     this.stopFeed();

@@ -94,6 +94,7 @@ import { FeedFilterComponent } from './views/dashboard/feed-filter/feed-filter.c
 import { LiveFeedComponent } from './views/dashboard/live-feed/live-feed.component';
 import { SourceStatisticsComponent } from './views/dashboard/source-statistics/source-statistics.component';
 import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
+import { GoogleChartsModule } from 'angular-google-charts';
 @NgModule({
   imports: [
     BrowserModule,
@@ -143,7 +144,7 @@ import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
     MatMenuModule,
     MatTooltipModule,
     NgxStripeModule.forRoot('pk_test_51HJE3RGX3LiFGzdnbkkeuOOHWoT3cR3HjadPMBGA7ftisLj0iihOIWbI9EqQZP7H65Dd0ElkgwhJ7y8jKdjQt8Ob00bbCbdUAY'),
-    
+    GoogleChartsModule,
   ],
   declarations: [
     AppComponent,
@@ -167,7 +168,8 @@ import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
     FeedFilterComponent,
     LiveFeedComponent,
     SourceStatisticsComponent,
-    ScrollAnimDirective
+    ScrollAnimDirective,
+    
   ],
   providers: [
     {

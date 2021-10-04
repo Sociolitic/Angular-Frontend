@@ -9,6 +9,7 @@ import { FeedData, feedObject } from '../../../shared/models/live-feed.model';
 import { BrandRegistrationService } from '../../../shared/services/brand-registration.service';
 import { mediaImages } from '../../../shared/constants';
 import { DateTimeService } from '../../../shared/services/date-time.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 export interface feedSource {
   source_name: string;
   source_observable: Observable<feedObject[]>;
@@ -44,12 +45,14 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   socketConn:Subscription;
   showCard:boolean=false;
   cardObject:feedObject=null;
+  selectedUrl:SafeUrl=null;
   profiles:object={};
   selectedProfile:string="";
   user:User;
   constructor(private _feedsvc:LiveFeedService,
     private brandReg: BrandRegistrationService,
-    private datesvc: DateTimeService) { }
+    private datesvc: DateTimeService,
+    private sanitizer: DomSanitizer) { }
   ngOnInit(): void {
     this._setFilterPredicate();
   }
@@ -127,7 +130,15 @@ export class LiveFeedComponent implements OnInit,OnDestroy {
   }
   showMentionDetails(mention:feedObject){
     this.cardObject=mention;
+    let url="";
+    if(mention.source == 'youtube'){
+      url = "https://www.youtube.com/embed/"+mention.id;
+    }
+    this.selectedUrl=this.sanitizer.bypassSecurityTrustResourceUrl(url);
     this.showCard=true;
+    
+    
+
   }
-  
+
 }

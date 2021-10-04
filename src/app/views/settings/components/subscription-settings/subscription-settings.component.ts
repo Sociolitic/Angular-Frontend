@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-subscription-settings',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subscription-settings.component.scss']
 })
 export class SubscriptionSettingsComponent implements OnInit {
-
+  
+  selected=1;
   constructor() { }
 
   ngOnInit(): void {
+    
   }
+  
 
 }

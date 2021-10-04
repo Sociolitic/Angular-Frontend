@@ -43,11 +43,12 @@ export class LiveFeedService {
     this.socket.close();
   }
   }
+  //for listening: use combinedFeed
   listen(profileId:string){
     console.log(profileId);
     console.log("listen called");
     return new Observable<FeedData>((subscriber)=>{
-      this.socket.on(source+"Feed",(data)=>{
+      this.socket.on("combinedFeed",(data)=>{
         if(!Array.isArray(data))
           data=[data];
         const stream:feedObject[]=this.formatStream(data)
@@ -93,7 +94,7 @@ export class LiveFeedService {
         feedItem={
           id:obj['id'],
           source:obj['source'],
-          text:obj['source']==='tumblr'?obj['misc']['body']:obj['text'],
+          text:obj['text'],
           sentiment:obj['sentiment'],
           created_time: new Date(obj['created_time']),
           misc:obj['misc']?obj['misc']:null,

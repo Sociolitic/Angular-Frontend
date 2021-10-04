@@ -73,6 +73,7 @@
     }
     .banner-container{
         animation: banner-anim 700ms ease-out;
+        animation-fill-mode: backwards;
     }
     .banner-text{
         color: white;

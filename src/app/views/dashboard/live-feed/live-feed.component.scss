@@ -74,6 +74,7 @@
 
 }
 .mention-card {
+    border-radius: 10px;
     position:relative;
     background-color: $dark-card-1;
     width:100%;
@@ -104,4 +105,8 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.embed-frame {
+    border-radius: 10px;
 }
