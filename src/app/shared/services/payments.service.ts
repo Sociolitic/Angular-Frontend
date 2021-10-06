@@ -1,16 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { server } from '../constants';
 import { User } from '../models/user.model';
 import { FireLoginService } from './fire-login.service';
-// import { NgxStripe } from 'ngx-stripe';
+
 declare const Stripe;
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentsService {
 
-  constructor(private _http:HttpClient, private auth:FireLoginService) { }
+  constructor(private _http:HttpClient, private auth:FireLoginService,private router: Router) { }
   checkout(plan:string){
     console.log(plan);
     const user:User= this.auth.getUser();
@@ -39,5 +40,20 @@ export class PaymentsService {
       alert(result.error.message);
       }
     });
+  }
+
+  dummycheckout(plan:string){
+    const user:User= this.auth.getUser();
+    const headers: HttpHeaders=new HttpHeaders().set("Content-Type", "application/json");
+    const body= {
+      'email': user.email,
+    }
+    this._http.get(server+"/webhook/testConfirm/"+user.email,{responseType:'text'}).subscribe(
+      (response)=>{
+        this.router.navigate(["default", "dashboard"]);
+      },
+      err=> console.log(err)
+    );
+
   }
 }
