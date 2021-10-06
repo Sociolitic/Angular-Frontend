@@ -27,7 +27,7 @@
             <mat-label>Profile</mat-label>
             <mat-select
               [(ngModel)]="selectedProfile"
-              (selectionChange)="changeProfile()"
+              (selectionChange)="startFeed()"
             >
               <mat-option
                 *ngFor="let profile of profiles | keyvalue"
@@ -57,15 +57,4 @@
       <app-source-statistics [changeProfile]="inputProfile"></app-source-statistics>
     </div>
   </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      
-        <blockquote class="twitter-tweet">
-          <a href="https://twitter.com/x/status/1407369903930167298"></a>
-        </blockquote>
-      
-    </div>
-  </div>
-</div> 
 </div>

@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   public isMenuCollapsed: boolean = true;
+  
   applyFilters(appliedFilters: filterObj) {
     this.filters = appliedFilters;
   }
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit {
     this._feedsvc.disconnect();
     this._feedsvc.connect();
     this._feedsvc.emit(this.selectedProfile);
+    this.inputProfile=this.selectedProfile;
   }
   startFeed() {
     

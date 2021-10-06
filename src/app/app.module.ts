@@ -108,7 +108,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
+    
     IconModule,
     IconSetModule.forRoot(),
     MatButtonModule,

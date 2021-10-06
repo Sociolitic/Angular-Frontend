@@ -1,53 +1,102 @@
 <div class="container-fluid">
   <div class="row feed-row gx-2">
-      <div class="col-md-7">
-        <div class="mention-container">
-  
-          <table mat-table [dataSource]="dataGridSource" class='mat-table'>
-            <ng-container matColumnDef="source">
-              <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Source</th>
-              <td mat-cell *matCellDef="let element" class='mat-cell mx-auto'>
-                  <img class='source-logo' *ngIf='logos.hasOwnProperty(element.source)'[src]='logos[element.source]' [alt]='element.source'>
-              </td>
-            </ng-container>
-            <ng-container matColumnDef="text" >
-              <th mat-header-cell *matHeaderCellDef class='mat-header-cell second'>Text</th>
-              <td mat-cell *matCellDef="let element" class='mat-cell second'>
-                    {{ element.text }}
-              </td>
-            </ng-container>
-            <tr mat-header-row class='mat-header-row' *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row class='mat-row'
-              [matTooltip]='row.sentiment'
-             *matRowDef="let row; columns: displayedColumns"
-             (click)="showMentionDetails(row)"
-             ></tr>
-          </table>
-        </div>
-          </div>
-  
-          <div *ngIf="showCard" class='col-md-5 d-flex cards-container flex-column justify-content-center align-items-center'>
-            <div *ngIf='cardObject.source=="youtube"' class="embed-responsive embed-responsive-16by9 mb-3">
-              <iframe class="embed-responsive-item embed-frame " [src]='selectedUrl' allowfullscreen></iframe>
-            </div>
-            <mat-card class='mention-card'> 
-              <i
-              (click)='showCard=false'
-              class="fa close-icon fa-close fa-lg"></i>
-              <mat-card-header>
-                <img mat-card-avatar class='source-logo' *ngIf='logos.hasOwnProperty(cardObject.source)'[src]='logos[cardObject.source]'>
-                <mat-card-title>{{cardObject.source}}</mat-card-title>
-                <mat-card-subtitle>{{datesvc.displayDate(cardObject.created_time)}}</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content class='moreinfo-container'>
-                
-                  {{cardObject.text}} 
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-              </mat-card-actions>
-            </mat-card>
+    <div class="col-md-7">
+      <div class="mention-container">
+        <table mat-table [dataSource]="dataGridSource" class="mat-table">
+          <ng-container matColumnDef="source">
+            <th mat-header-cell *matHeaderCellDef class="mat-header-cell first">
+              Source
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-cell mx-auto">
+              <img
+                class="source-logo"
+                *ngIf="logos.hasOwnProperty(element.source)"
+                [src]="logos[element.source]"
+                [alt]="element.source"
+              />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="text">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="mat-header-cell second"
+            >
+              Text
+            </th>
+            <td mat-cell *matCellDef="let element" class="mat-cell second">
+              {{ element.text }}
+            </td>
+          </ng-container>
+          <tr
+            mat-header-row
+            class="mat-header-row"
+            *matHeaderRowDef="displayedColumns"
+          ></tr>
+          <tr
+            mat-row
+            class="mat-row"
+            [matTooltip]="row.sentiment"
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="showMentionDetails(row)"
+          ></tr>
+        </table>
       </div>
+    </div>
+    <!-- [class.nodisplay]='showCard && cardObject.source!=="twitter"' -->
+    <!-- <div [class.nodisplay]='showCard && cardObject.source==="twitter"'class="col-md-5 cards-container">
+      
+    </div> -->
+
+    <div
+      class="
+        col-md-5
+        d-flex
+        cards-container
+        flex-column
+        justify-content-center
+        align-items-center
+      "
+    >
+      <div
+        *ngIf="showCard && cardObject.source === 'youtube'"
+        class="embed-responsive embed-responsive-16by9 mb-3"
+      >
+        <iframe
+          class="embed-responsive-item embed-frame"
+          [src]="selectedUrl"
+          allowfullscreen
+        ></iframe>
+      </div>
+      
+      <div #tweetContainer [class.nodisplay]=' showCard && cardObject.source!=="twitter"'class="container-fluid tweet-container p-0">
+        <blockquote *ngIf='showCard && cardObject.source==="twitter"'class="twitter-tweet">
+          <a [href]="selectedUrl"></a>
+        </blockquote>
+      </div>
+
+      <mat-card  *ngIf=" showCard && cardObject.source !== 'twitter'" class="mention-card">
+        <i (click)="showCard = false" class="fa close-icon fa-close fa-lg"></i>
+        <mat-card-header>
+          <img
+            mat-card-avatar
+            class="source-logo"
+            *ngIf="logos.hasOwnProperty(cardObject.source)"
+            [src]="logos[cardObject.source]"
+          />
+          <mat-card-title>{{ cardObject.source }}</mat-card-title>
+          <mat-card-subtitle>{{
+            datesvc.displayDate(cardObject.created_time)
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="moreinfo-container">
+          {{ cardObject.text }}
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

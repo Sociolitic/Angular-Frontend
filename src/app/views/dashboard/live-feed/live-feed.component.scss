@@ -6,7 +6,6 @@
 .cards-container {
 
     height:100%;
-    animation: mention-card-anim 500ms ease-out backwards;
 }
 .mat-cell,
 .mat-header-cell {
@@ -47,9 +46,9 @@
     position:relative;
     background-color: $dark-card-1;
     width:100%;
-    height:100%;
     overflow-y: auto;
     color: $dark-bg-text-1;
+    animation: mention-card-anim 500ms ease-out backwards;
     mat-card-subtitle {
         color: $dark-bg-text-1;
     }
@@ -91,4 +90,17 @@
         opacity: 1;
         transform:translateX(0);
     }
+}
+.tweet-container{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+.twitter-tweet.twitter-tweet-rendered{
+    margin-top:0;
+}
+
+.nodisplay{
+    height:0;
 }

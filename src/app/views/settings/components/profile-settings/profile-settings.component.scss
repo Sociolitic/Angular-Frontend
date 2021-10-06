@@ -3,10 +3,12 @@
     padding: 40px;
     text-align: center;
     transition: all 100ms ease-out;
+    color: $dark-bg-text-1;
     &:hover{
-        padding: 45px;
-        background-color:rgba(8, 8, 8, 0.062);
-        color: $dark-bg-text-1;
+        transform:translate(2px,-2px);
+        box-shadow: 2px 2px 5px 0px rgba(184, 184, 184, 0.267);
+        background-color:rgba(rgba(59, 59, 77, 0.815), 0.918);
+        
         cursor:pointer;
     }
 }

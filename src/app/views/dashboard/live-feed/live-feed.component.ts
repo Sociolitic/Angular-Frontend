@@ -5,6 +5,7 @@ import {
   ViewChild,
   OnDestroy,
   Input,
+  ElementRef,
 } from "@angular/core";
 import { filterObj } from "../feed-filter/feed-filter.component";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
@@ -21,6 +22,7 @@ import {
   SafeResourceUrl,
   SafeUrl,
 } from "@angular/platform-browser";
+
 export interface feedSource {
   source_name: string;
   source_observable: Observable<feedObject[]>;
@@ -33,14 +35,18 @@ export interface feedSource {
 })
 export class LiveFeedComponent implements OnInit, OnDestroy {
   logos = mediaImages;
+  twitter:any;
+  @ViewChild('tweetContainer') tweetContainer: ElementRef<any>;
   @ViewChild(MatTable) table: MatTable<feedObject>;
   @Input() set changeProfile(profile: string) {
     // console.log(profile);
     if (profile.length) {
+      if(this.selectedProfile.length) this.dataGridSource.data = [];
       this.selectedProfile = profile;
-      this.dataGridSource.data = [];
+      
       this.startFeed();
     } else {
+      this.selectedProfile='';
       this.stopFeed();
     }
   }
@@ -151,12 +157,23 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
     this.stopFeed();
   }
   showMentionDetails(mention: feedObject) {
+    
     this.cardObject = mention;
     let url = "";
-    if (mention.source == "youtube") {
-      url = "https://www.youtube.com/embed/" + mention.id;
-    }
-    this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     this.showCard = true;
+    if (mention.source === "youtube") {
+
+      url = "https://www.youtube.com/embed/" + mention.id;
+      this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      
+    }
+    else if(mention.source === "twitter"){
+      url = "https://twitter.com/x/status/" + mention.id;
+      this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      (<any>window).twttr.widgets.load(this.tweetContainer.nativeElement);
+    }
+    
+    
+    
   }
 }
