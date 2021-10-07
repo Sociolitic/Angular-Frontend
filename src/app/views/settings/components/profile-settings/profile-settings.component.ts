@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FireLoginService } from '../../../../shared/services/fire-login.service';
+import { DateTimeService } from '../../../../shared/services/date-time.service';
 export interface ProfileDialogInterface {
   id:string;
   info:BrandProfile;
@@ -19,7 +20,8 @@ export class ProfileSettingsComponent implements OnInit {
   profiles:object={};
   user: User =null;
   constructor(private brandReg: BrandRegistrationService,
-    public dialog:MatDialog) { }
+    public dialog:MatDialog,
+    private datesvc:DateTimeService) { }
   exampleProfs = ['first','second','third','fourth','fifth','sixth'];
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));

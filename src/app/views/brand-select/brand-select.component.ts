@@ -1,5 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { User } from '../../shared/models/user.model';
@@ -14,11 +15,12 @@ export class BrandSelectComponent implements OnInit {
   competitorList:Set<string> =new Set<string>();
   brandSelectFormGroup: FormGroup;
   competitorSelectFormGroup: FormGroup;
+  competitorLimit:boolean=false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   user:User;
   constructor(private _formBuilder: FormBuilder,
     private _BrandRegisterSvc: BrandRegistrationService,
-    private stripeCheckout:PaymentsService) { }
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -26,17 +28,19 @@ export class BrandSelectComponent implements OnInit {
     this.brandSelectFormGroup= this._formBuilder.group(
       {brandControl:['',Validators.required]}
       )
-    // this.competitorSelectFormGroup = this._formBuilder.group(
-    //   { competitorControl:['']}
-    // )
+    
   }
   addCompetitor(event:MatChipInputEvent):void{
     console.log("called adder");
     const competitor = (event.value || '').trim();
-    if(competitor)
+    if(competitor){
       this.competitorList.add(competitor);
-  }
+      if(this.competitorList.size>=3){this.competitorLimit=true;
+      this.cdr.detectChanges();};
+
+  }}
   removeCompetitor(key:string){
+    this.competitorLimit=false;
     this.competitorList.delete(key);
   }
   submitForm(){
@@ -44,7 +48,5 @@ export class BrandSelectComponent implements OnInit {
     const brand=this.brandSelectFormGroup.get('brandControl').value;
     this._BrandRegisterSvc.registerBrand(brand,[...this.competitorList]);
   }
-  checkout(plan:string){
-    this.stripeCheckout.checkout(plan);
-  }
+  
 }

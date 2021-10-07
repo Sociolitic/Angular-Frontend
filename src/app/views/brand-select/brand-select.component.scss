@@ -1,3 +1,15 @@
+.logo {
+    width: 150px;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: rgb(228, 228, 228);
+    font-size: 18px;
+    &:hover{
+        color:#4099FF;
+    }
+ }
+
 .competitor-form{
     width:100%;
 }
@@ -13,7 +25,7 @@
 }
 
 .stepper-container{
-    height: 100vh;
+    
 }
 .list{
     text-align: center;

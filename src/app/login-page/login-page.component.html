@@ -1,3 +1,29 @@
-<mat-card>
-    <app-login></app-login>
-</mat-card>
+<div class="container">
+    <div  class="navbar  navbar-expand navbar-dark mb-3">
+      <a class="navbar-brand" [routerLink]="'/'">
+        <img class="logo" src="assets/img/brand/white-text.png"
+      /></a>
+
+  <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <ul class="navbar-nav ml-auto navbar-link-text">
+    <li class="nav-item">
+      <!-- Step 4: Close the menu when a link is clicked. -->
+      <a class="nav-link" [routerLink]="'../home'" (click)="isMenuCollapsed = true"
+        >Home</a
+      >
+    </li> 
+  </ul>
+
+    </div>
+  </div>
+
+<div class="container login-container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-12">
+            <mat-card class='d-flex flex-column align-items-center'>
+                <h3>Login to access the website</h3>
+                <app-login></app-login>
+            </mat-card>
+        </div>
+    </div>
+</div>

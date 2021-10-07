@@ -7,7 +7,7 @@
         >
             <h1>{{profile.value['brand']}}</h1>
             <div class='d-flex flex-row justify-content-between'>
-                <h3><strong>Created on</strong> {{profile.value['createdAt']}}</h3>
+                <h3><strong>Created on</strong> {{datesvc.displayDate(profile.value['createdAt'])}}</h3>
             </div>
     </mat-card>
     </div>
