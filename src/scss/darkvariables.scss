@@ -1,0 +1,48 @@
+@import '~@angular/material/theming';
+// Variable overrides
+$dark-bg: #ececec;
+$dark-nav: #52ab98;
+$dark-nav-secondary: #8896a3;
+// $dark-component-1:map-get($mat-blue-gray, 900 );
+// $dark-component-2: #171010;
+// $dark-component-3: #595B83;
+//$dark-bg-text-1: #e2e2e2;
+$dark-card-1:#c8d8e4;
+$dark-card-2:#f2f2f2;
+$dark-card-3:#2b6777;
+$card-hover-1: rgb(252, 171, 105);
+$card-hover-2:teal;
+//$dark-button-1:rgb(0, 4, 240);
+//$dark-button-2:red;
+//$dark-bg-text-2: white;
+//$dark-text-dark: black;
+$gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
+$gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
+$gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
+$gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
+$gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
+$gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
+
+$success:rgb(0, 199, 0);
+$primary: map-get( $mat-indigo,400);
+$accent: map-get($mat-pink,400);
+$warn: red;
+
+
+//typography variables
+
+$text-invert-0: rgb(255, 255, 255);
+$text-invert-1: rgb(226, 226, 226);
+$text-invert-2:rgb(172, 172, 172);
+$text-primary-0: #000;
+$text-primary-1: #444;
+$text-primary-2: #666;
+$text-primary-muted:rgba(0, 0, 0, 0.493);
+$text-invert-muted:rgba(255,255,255,0.493);
+$text-warn: red;
+$text-success: rgb(0, 187, 0);
+$text-primary: map-get( $mat-indigo,400);
+$text-accent: map-get($mat-pink,400);
+
+//logo
+$logo: "assets/img/brand/black-text.png";

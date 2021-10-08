@@ -2,15 +2,15 @@
 
 .nav-link{
     cursor: pointer;
-    color: white;
+    color: $text-invert-0;
     &:hover{
         font-weight: bolder;
-        color: #fff;
+        color: $text-accent;
     }
 
 }
 .active {
-    color: lawngreen !important;
+    color: $text-success !important;
 }
 ::ng-deep .app-header{
     border:none;
@@ -34,7 +34,7 @@
     background-color: $dark-nav;
   }
 .navbar-nav {
-    color: #fff;
+    color: $text-invert-0;
 }
 .outlet{
     overflow-y: hidden;

@@ -6,18 +6,13 @@
     justify-content: center;
     align-items: center;
 }
-.logo {
-    width: 150px;
-}
 
 .login-link {
-    color: greenyellow;
+    color:$text-success;
     cursor: pointer;
 }
 
-.footers a {color:#ebebeb;}
-.footers p {color:#ebebeb;}
-.footers ul {line-height:30px;}
+
 #social-fb:hover {
      color: #3B5998;
      border-radius: 100%;
@@ -38,19 +33,19 @@
 
  .content-{
      &container{
-        background-color: #222830 ;
+        background-color: $dark-card-1 ;
          &:nth-child(odd){
-            background-color: #303944 ;
+            background-color: $dark-card-2;
             flex-direction: row-reverse;
         }
      }
      &header{
          font-size: clamp(30px, 2vw, 50px);;
-         color:white;
+         color:$text-primary-0;
      }
      &text{
          margin:0;
-         color: rgb(201, 201, 201);
+         color: $text-primary-muted;
          font-size: clamp(20px, 2vw, 40px);
          line-height:  clamp(20px, 2vw, 40px);
      }
@@ -76,7 +71,7 @@
         animation-fill-mode: backwards;
     }
     .banner-text{
-        color: white;
+        color: $text-invert-0;
             font-family: monospace;
             font-size: 5vw;
             line-height: 5vw;
@@ -89,10 +84,10 @@
         background: None;
     }
     .card-header{
-        color: white;
+        color: $text-primary-0;
     }
     .card-body{
-        color:rgb(201, 201, 201)
+        color:$text-primary-muted;
     }
     .mcol{
         border-right: 2px solid gray;
@@ -100,7 +95,7 @@
 
     .divider{
         border-radius: 50%;
-        color:gray;
+        color:$dark-card-3;
     }
 
     .action-btn{
@@ -112,14 +107,6 @@
         }
     }
 
-    .navbar-dark .navbar-nav .nav-link{
-        color: rgb(228, 228, 228);
-        font-size: 18px;
-        &:hover{
-            color:#4099FF;
-        }
-     }
-
      //SUBSCRIPTION CSS
 
      .sub-card {
@@ -129,7 +116,7 @@
     }
     
     .sub-card-header {
-        border-bottom: 2px solid #fff;
+        border-bottom: 2px solid $text-invert-1;
         padding:15px 0;
         &-text{
             font-size: 24px;
@@ -170,38 +157,38 @@
     
     .t1{
         &:hover{
-        box-shadow: 0px 0px 24px 1px greenyellow;
+        box-shadow: 0px 0px 24px 1px $success;
         }
         .sub-card-header{
-            border-bottom-color: greenyellow;
+            border-bottom-color: $success;
             
         }
         button{
-            color: greenyellow;
+            color: $success;
         }
     }
     .t2{
         &:hover{
-        box-shadow: 0px 0px 24px 1px #ffa52f;
+        box-shadow: 0px 0px 24px 1px $primary;
         
         }.sub-card-header{
-            border-bottom-color: #ffa52f;
+            border-bottom-color: $primary;
             
         }
         button{
-            color: #ffa52f;
+            color: $primary;
         }
     }
     .t3{
         &:hover{
-        box-shadow: 0px 0px 24px 1px #ff2fcb;
+        box-shadow: 0px 0px 24px 1px $accent;
         }
         .sub-card-header{
-            border-bottom-color: #ff2fcb;
+            border-bottom-color: $accent;
             
         }
         button{
-            color: #ff2fcb;
+            color: $accent;
         }
     }
 

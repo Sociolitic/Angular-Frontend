@@ -13,7 +13,7 @@ import {
   graphBackgroundColors,
   graphBorderColors,
 } from "../../../shared/constants";
-Chart.defaults.global.defaultFontColor='#fff';
+Chart.defaults.global.defaultFontColor='#000';
 @Component({
   selector: "app-source-statistics",
   templateUrl: "./source-statistics.component.html",

@@ -3,19 +3,18 @@
     padding: 40px;
     text-align: center;
     transition: all 100ms ease-out;
-    color: $dark-bg-text-1;
+    color: $text-primary-1;
     &:hover{
         transform:translate(2px,-2px);
-        box-shadow: 2px 2px 5px 0px rgba(184, 184, 184, 0.267);
-        background-color:rgba(rgba(59, 59, 77, 0.815), 0.918);
-        
+        box-shadow: 2px 2px 5px 0px rgba(66, 66, 66, 0.267);
+        background-color:$card-hover-2;
         cursor:pointer;
     }
 }
 
 .create-profile{
     text-align: center;
-    color:$dark-bg-text-1;
+    color:$text-primary-0;
     margin-bottom: 24px;
     padding:40px;
     border-radius: 4px;
@@ -27,8 +26,8 @@
         font-size: 30px;
     }
     &:hover{
-        background-color: rgba(8, 8, 8, 0.438);
+        background-color: $card-hover-1;
         cursor: pointer;
-        color: white;
+        color: $text-accent;
     }
 }

@@ -1,0 +1,64 @@
+@import '~@angular/material/theming';
+// Variable overrides
+$green-card-1:#dbe7e4;
+$green-card-2:#c5dedd;
+$blue-card-1:#d6e2e9;
+$blue-card-2:#bcd4e6;
+$blue-card-3:#99c1de;
+$orange-card-1:#f8edeb;
+$orange-card-2:#fae1dd;
+$orange-card-3:#fcd5ce;
+$orange-card-4:#fec5bb;
+$gray-card-1:#f8f9fa;
+$gray-card-2:#e9ecef;
+$gray-card-3:#dee2e6;
+$gray-card-4:#ced4da;
+
+$dark-bg: #dbdbdb;
+$dark-nav: #293241;
+$dark-nav-secondary: #323c4e;
+// $dark-component-1:map-get($mat-blue-gray, 900 );
+// $dark-component-2: #171010;
+// $dark-component-3: #595B83;
+//$dark-bg-text-1: #e2e2e2;
+$dark-card-1:#e4e4e4;
+$dark-card-2:#adb1a9;
+$dark-card-3:rgb(134, 134, 134);
+$card-hover-1: $orange-card-4;
+$card-hover-2:$blue-card-3;
+//$dark-button-1:rgb(0, 4, 240);
+//$dark-button-2:red;
+//$dark-bg-text-2: white;
+//$dark-text-dark: black;
+$gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
+$gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
+$gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
+$gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
+$gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
+$gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
+
+$success:rgb(0, 199, 0);
+$primary: map-get( $mat-indigo,400);
+$accent: map-get($mat-pink,400);
+$warn: red;
+
+
+//typography variables
+
+$text-invert-0: rgb(255, 255, 255);
+$text-invert-1: rgb(226, 226, 226);
+$text-invert-2:rgb(172, 172, 172);
+$text-primary-0: #000;
+$text-primary-1: #444;
+$text-primary-2: #666;
+$text-primary-muted:rgba(0, 0, 0, 0.493);
+$text-invert-muted:rgba(255,255,255,0.493);
+$text-warn: red;
+$text-success: rgb(0, 187, 0);
+$text-primary: map-get( $mat-indigo,400);
+$text-accent: map-get($mat-pink,400);
+
+//logo
+$logo: "assets/img/brand/black-text.png";
+
+

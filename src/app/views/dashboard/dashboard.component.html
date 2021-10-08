@@ -1,5 +1,5 @@
 <div class="container-fluid wrapper p-0">
-  <nav class="navbar navbar-expand-md navbar-dark dark-nav-secondary mb-3">
+  <nav class="navbar navbar-expand-md navbar-light dark-nav-secondary mb-3">
     <span class="navbar-brand">LIVE FEED</span>
     <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
     <button
@@ -23,7 +23,7 @@
           <button mat-raised-button (click)="stopFeed()">Stop Feed</button>
         </li>
         <li class="nav-item mx-2">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class='profile-field'>
             <mat-label>Profile</mat-label>
             <mat-select
               [(ngModel)]="selectedProfile"

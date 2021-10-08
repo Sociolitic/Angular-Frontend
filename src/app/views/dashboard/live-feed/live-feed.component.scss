@@ -9,7 +9,7 @@
 }
 .mat-cell,
 .mat-header-cell {
-    color: $dark-bg-text-1;
+    color: $text-primary-1;
   word-wrap: initial;
   padding: 0px 10px;
   line-break: unset;
@@ -47,10 +47,13 @@
     background-color: $dark-card-1;
     width:100%;
     overflow-y: auto;
-    color: $dark-bg-text-1;
+    color: $text-primary-0;
     animation: mention-card-anim 500ms ease-out backwards;
+    mat-card-header {
+        color: $text-primary-1
+    }
     mat-card-subtitle {
-        color: $dark-bg-text-1;
+        color: $text-primary-2;
     }
 }
 .mat-header-cell {

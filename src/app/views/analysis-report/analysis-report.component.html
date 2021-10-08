@@ -47,13 +47,13 @@
 <div class="animated fadeIn">
   <div class="card-columns cols-2">
     <div class="card">
-      <div class="card-header dark-card-2 dark-bg-text-2">
+      <div class="card-header dark-card-2">
         <span>Mention count</span>
         <button class="menu-button" mat-button [matMenuTriggerFor]="menu">
           <i class="icon-options-vertical icons font-1sm mt-4"></i>
           <span>options</span>
         </button>
-        <mat-menu #menu="matMenu" class="dark-bg-text-2">
+        <mat-menu #menu="matMenu">
           <div class="menu-container" (click)="$event.stopPropagation()">
             <section class="example-section">
               <span class="example-list-section">
@@ -103,7 +103,7 @@
     </div>
 
     <div class="card">
-      <div class="card-header dark-card-2 dark-bg-text-2">
+      <div class="card-header dark-card-2 ">
         <span>Sentiment anaylsis</span>
         <button
           class="menu-button"

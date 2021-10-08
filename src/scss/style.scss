@@ -47,7 +47,7 @@ $ng-theme-dark: mat-dark-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($ng-theme-dark);
+@include angular-material-theme($ng-theme-light);
 
 // If you want to override variables do it here
 @import "variables";
