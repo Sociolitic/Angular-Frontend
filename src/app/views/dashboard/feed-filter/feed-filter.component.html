@@ -1,10 +1,10 @@
-<button [matMenuTriggerFor]="menu" mat-stroked-button color='primary'>
+<button [matMenuTriggerFor]="menu" mat-raised-button color='accent'>
   Filters <span class="caret"></span>
 </button>
 <mat-menu #menu="matMenu" class='dark-card-1'>
   <form (click)="$event.stopPropagation()" class='filter-section' [formGroup]='filterGroup'>
     <div class='keyword-input-container'>
-    <mat-form-field class="keyword-form-field mb-3">
+    <mat-form-field color="accent" class="keyword-form-field mb-3">
       <mat-label>Filter by keywords</mat-label>
       <input matInput formControlName='keywordControl'>
     </mat-form-field>
@@ -16,14 +16,14 @@
       </div>
     </div>
 
-    <mat-form-field class='select-form-field' appearance="fill" class='mb-3'>
+    <mat-form-field class='select-form-field' color="accent" appearance="fill" class='mb-3'>
       <mat-label>Sources</mat-label>
       <mat-select formControlName='sourceControl' multiple>
         <mat-option *ngFor="let source of sourceList" [value]="source">{{source}}</mat-option>
       </mat-select>
     </mat-form-field>
     
-    <mat-form-field class='select-form-field' appearance="fill" class='mb-3'>
+    <mat-form-field class='select-form-field' color="accent" appearance="fill" class='mb-3'>
       <mat-label>Sentiment</mat-label>
       <mat-select formControlName='sentimentControl'>
         <mat-option value="">All</mat-option>
@@ -39,7 +39,7 @@
           Advanced
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" color="accent">
         <mat-label>Select a boolean funtion</mat-label>
         <mat-select formControlName='booleanControl'>
           <mat-option value="AND">AND</mat-option>

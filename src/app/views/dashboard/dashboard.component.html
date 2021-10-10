@@ -23,7 +23,7 @@
           <button mat-raised-button (click)="stopFeed()">Stop Feed</button>
         </li>
         <li class="nav-item mx-2">
-          <mat-form-field appearance="fill" class='profile-field'>
+          <mat-form-field appearance="fill" color="accent" class='profile-field'>
             <mat-label>Profile</mat-label>
             <mat-select
               [(ngModel)]="selectedProfile"
@@ -45,16 +45,14 @@
     </div>
   </nav>
   <div class="container-fluid stat-container animated fadeIn">
-    <!-- <div class="mb-3">
+    <div class="mb-3">
       <app-live-feed
         [changeProfile]="inputProfile"
         [applyFilters]="filters"
       >
       </app-live-feed>
-    </div> -->
-
-    <div class="mb-3">
-      <app-source-statistics [changeProfile]="inputProfile"></app-source-statistics>
     </div>
+
+    
   </div>
 </div>
