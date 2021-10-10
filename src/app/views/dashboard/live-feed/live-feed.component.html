@@ -30,7 +30,7 @@
           </ng-container>
           <tr
             mat-header-row
-            class="mat-header-row"
+            class="mat-header-row dark-card-3"
             *matHeaderRowDef="displayedColumns"
           ></tr>
           <tr
@@ -69,7 +69,8 @@
         ></iframe>
       </div>
       
-      <div #tweetContainer [class.nodisplay]=' showCard && cardObject.source!=="twitter"'class="container-fluid tweet-container p-0">
+      <div #tweetContainer [class.nodisplay]='!showCard || (showCard && cardObject.source!=="twitter")'class="container-fluid tweet-container p-0">
+        <load-anim *ngIf="showCard && cardObject.source === 'twitter'"class="tweet-container-anim"></load-anim>
         <blockquote *ngIf='showCard && cardObject.source==="twitter"'class="twitter-tweet">
           <a [href]="selectedUrl"></a>
         </blockquote>
@@ -100,3 +101,4 @@
     </div>
   </div>
 </div>
+

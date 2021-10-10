@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
         this.profiles = res;
         console.log(this.profiles);
         this.selectedProfile = this.user.profiles[0];
-        this.startFeed();
+        //this.startFeed();
       },
       (err) => console.log("error in fetching profiles", err)
     );

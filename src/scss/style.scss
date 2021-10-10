@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import "variables";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,9 +13,29 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ng-primary-light: mat-palette($mat-indigo);
-$ng-accent-light: mat-palette($mat-pink, A200, A100, A400);
 
+
+//LIGHT THEME
+$ng-primary-light: mat-palette($primary-pallete,500,400,600);
+$ng-accent-light: mat-palette($accent-pallete,500,400,600);
+$custom-light-bg:(
+  status-bar: black,
+app-bar:    map-get($mat-grey, 900),
+background: $dark-bg,
+hover:      rgba(white, 0.04), 
+card:       $dark-card-1,
+dialog:     $dark-card-1,
+disabled-button: rgba(white, 0.12),
+raised-button: $dark-card-3,
+focused-button: $light-focused,
+selected-button: map-get($mat-grey, 900),
+selected-disabled-button: map-get($mat-grey, 800),
+disabled-button-toggle: black,
+unselected-chip: $dark-card-2,
+disabled-list-option: black,
+tooltip: map-get($mat-grey, 700),
+);
+$mat-light-theme-background: map_merge($mat-light-theme-background,$custom-light-bg );
 // The warn palette is optional (defaults to red).
 $ng-warn-light: mat-palette($mat-red);
 
@@ -28,8 +49,29 @@ $ng-theme-light: mat-light-theme((
   )
 ));
 
-$ng-primary-dark: mat-palette($mat-light-blue);
-$ng-accent-dark: mat-palette($mat-light-green, A200, A100, A400);
+//DARK THEME
+
+$custom-dark-bg:(
+  status-bar: black,
+app-bar:    map-get($mat-grey, 900),
+background: $dark-bg,
+hover:      rgba(white, 0.04), 
+card:       $dark-card-1,
+dialog:     $dark-card-1,
+disabled-button: rgba(white, 0.12),
+raised-button: $dark-card-3,
+focused-button: $light-focused,
+selected-button: map-get($mat-grey, 900),
+selected-disabled-button: map-get($mat-grey, 800),
+disabled-button-toggle: black,
+unselected-chip: $dark-card-2,
+disabled-list-option: black,
+tooltip: map-get($mat-grey, 700),
+);
+
+$ng-primary-dark: mat-palette($primary-pallete,500,400,600);
+$ng-accent-dark: mat-palette($accent-pallete,500,400,600);
+$mat-dark-theme-background: map_merge($mat-dark-theme-background,$custom-dark-bg );
 
 // The warn palette is optional (defaults to red).
 $ng-warn-dark: mat-palette($mat-red);
@@ -41,16 +83,16 @@ $ng-theme-dark: mat-dark-theme((
     primary: $ng-primary-dark,
     accent: $ng-accent-dark,
     warn: $ng-warn-dark,
-  )
-));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($ng-theme-light);
+    )
+  )
+);
+
+
+@include angular-material-theme($ng-theme-dark);
 
 // If you want to override variables do it here
-@import "variables";
+
 
 // Import styles
 @import "~@coreui/coreui/scss/coreui";

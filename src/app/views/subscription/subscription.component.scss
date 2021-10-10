@@ -1,7 +1,13 @@
 @import "variables";
 
 
-
+.nav-link {
+    font-size: 1rem;
+    color: $text-primary-0;
+    &:hover{
+        color:$text-primary-0;
+    }
+}
 .container-sub {
     margin-top: 15vh;
 }

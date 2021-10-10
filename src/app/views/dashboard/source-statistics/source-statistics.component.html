@@ -1,4 +1,19 @@
 <div class='container-fluid'>
+  <div class="row g-3 mb-3">
+    <div class="col-md-3 col-sm-6">
+      <mat-card class="color-card-1">
+        <h1>Total mentions:</h1>
+        <h1>{{_feedsvc.totalCount}}</h1>
+      </mat-card>
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <mat-card class="color-card-2">
+        <div><span>Positive mentions:</span> <span>{{_feedsvc.sentimentCounter[0]}} ({{sentimentCounter(0)}}%)</span></div>
+        <div><span>Negative mentions:</span> <span>{{_feedsvc.sentimentCounter[1]}} ({{sentimentCounter(1)}}%)</span></div>
+        <div><span>Neutral mentions:</span> <span>{{_feedsvc.sentimentCounter[2]}} ({{sentimentCounter(2)}}%)</span></div>
+      </mat-card>
+    </div>
+  </div>
   <div class='row g-3 mb-3'>
     <div class='col-md-6'>
       <div class="chart-container">

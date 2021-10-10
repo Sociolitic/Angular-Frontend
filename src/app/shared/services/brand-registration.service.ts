@@ -72,4 +72,16 @@ export class BrandRegistrationService {
     console.log(body);
     return this._http.post(server+"/brand/createProfile",body,{ headers:headers,responseType:'text' })
   }
+  deleteProfile(profile:string){
+    let user:User = JSON.parse(localStorage.getItem("user"));
+    const token:string = user.bearer;
+    const headers= new HttpHeaders()
+    .set("Content-Type", "application/json")
+    .set("Authorization","Bearer "+token);
+    const body={
+      "id":profile
+    }
+    console.log(body);
+    return this._http.post(server+"/brand/deleteProfile",body,{ headers:headers,responseType:'text' })
+  }
 }

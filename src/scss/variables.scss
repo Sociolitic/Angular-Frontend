@@ -1,22 +1,6 @@
-// @import '~@angular/material/theming';
-// // Variable overrides
-// $dark-bg: #14181d;
-// $dark-nav: #212830;
-// $dark-nav-secondary: #2d343b;
-// $dark-component-1:map-get($mat-blue-gray, 900 );
-// $dark-component-2: #171010;
-// $dark-component-3: #595B83;
-// $dark-bg-text-1: #e2e2e2;
-// $dark-card-1:#1e242b;
-// $dark-card-2:map-get($mat-blue-gray, 900 );;
-// $dark-button-1:rgb(0, 4, 240);
-// $dark-button-2:red;
-// $dark-bg-text-2: white;
-// $dark-text-dark: black;
-// $gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
-// $gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
-// $gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
-// $gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
-// $gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
-// $gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
-@import "lightvariables";
+$font-xs: 1.4rem;
+$font-s: 1.5rem;
+$font-md:1.6rem;
+$font-lg:1.8rem;
+//@import "lightvariables";
+@import "darkvariables";

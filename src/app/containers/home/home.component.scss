@@ -40,14 +40,14 @@
         }
      }
      &header{
-         font-size: clamp(30px, 2vw, 50px);;
+         font-size: 2rem;//clamp(30px, 2vw, 50px);;
          color:$text-primary-0;
      }
      &text{
          margin:0;
          color: $text-primary-muted;
-         font-size: clamp(20px, 2vw, 40px);
-         line-height:  clamp(20px, 2vw, 40px);
+         font-size: 1.4rem;
+         line-height:  1.4rem;
      }
      &img{
          width:100%;
@@ -71,11 +71,11 @@
         animation-fill-mode: backwards;
     }
     .banner-text{
-        color: $text-invert-0;
+        color: $text-light-0;
             font-family: monospace;
-            font-size: 5vw;
-            line-height: 5vw;
-            font-weight: 600;
+            font-size: 3.4rem;
+            line-height: 3.4rem;
+            font-weight: 300;
             text-align: center;
     }
 
@@ -119,14 +119,14 @@
         border-bottom: 2px solid $text-invert-1;
         padding:15px 0;
         &-text{
-            font-size: 24px;
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: 2px;
             font-family:monospace;
             margin:0; 
         }
     }
-    ::ng-deep.mat-card-header-text.sub-card-header{
+    ::ng-deep.sub-card-header .mat-card-header-text{
         display:none;
     }
     

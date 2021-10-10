@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { BrandProfile, User } from '../../../../shared/models/user.model';
 import { BrandRegistrationService } from '../../../../shared/services/brand-registration.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -7,6 +7,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FireLoginService } from '../../../../shared/services/fire-login.service';
 import { DateTimeService } from '../../../../shared/services/date-time.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 export interface ProfileDialogInterface {
   id:string;
   info:BrandProfile;
@@ -66,7 +67,7 @@ export class ProfileSettingsComponent implements OnInit {
 export class ProfileDialog {
   brand:string='';
   competitor:string='';
-
+  
   competitorList:Set<string> =new Set<string>();
   constructor(
     private _brandRegisterSvc: BrandRegistrationService,
@@ -95,7 +96,12 @@ export class ProfileDialog {
   removeCompetitor(key:string){
     this.competitorList.delete(key);
   }
-
+  deleteProfile(){
+    this._brandRegisterSvc.deleteProfile(this.data.id).subscribe(
+      (res)=> this.dialogRef.close(),
+      err => {console.log(err)}
+    );
+  }
   createProfile(){
     if(!this.brand)
     {

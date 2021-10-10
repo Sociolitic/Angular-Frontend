@@ -152,7 +152,7 @@ export class AnalysisReportComponent implements OnInit {
         neutral_mentions[source][this.period].reduce((a,b)=>a+b,0);
         const pieData:LineChartData[] = [{
           data: [postiveCount,negativeCount,neutralCount],
-          backgroundColor:["#75bfac","#777","#AB4925"] 
+          backgroundColor:graphBorderColors.slice(0,3) 
         }]
     if(this.sentimentPieChart){
       this.sentimentPieChart.data={

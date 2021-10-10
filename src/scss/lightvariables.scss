@@ -14,16 +14,16 @@ $gray-card-2:#e9ecef;
 $gray-card-3:#dee2e6;
 $gray-card-4:#ced4da;
 
-$dark-bg: #dbdbdb;
-$dark-nav: #293241;
-$dark-nav-secondary: #323c4e;
+$dark-bg: #d6e2e9;
+$dark-nav: #373A3C;//#293241;
+$dark-nav-secondary: #3f4244;
 // $dark-component-1:map-get($mat-blue-gray, 900 );
 // $dark-component-2: #171010;
 // $dark-component-3: #595B83;
 //$dark-bg-text-1: #e2e2e2;
-$dark-card-1:#e4e4e4;
-$dark-card-2:#adb1a9;
-$dark-card-3:rgb(134, 134, 134);
+$dark-card-1:#e1edf3;
+$dark-card-2:#cfdce3;
+$dark-card-3:#DC136C;
 $card-hover-1: $orange-card-4;
 $card-hover-2:$blue-card-3;
 //$dark-button-1:rgb(0, 4, 240);
@@ -44,13 +44,21 @@ $warn: red;
 
 
 //typography variables
-
+$text-light-0: rgb(255, 255, 255);
+$text-light-1: rgb(226, 226, 226);
+$text-light-2:rgb(172, 172, 172);
+$text-dark-0: #000;
+$text-dark-1: #444;
+$text-dark-2: #666;
 $text-invert-0: rgb(255, 255, 255);
 $text-invert-1: rgb(226, 226, 226);
 $text-invert-2:rgb(172, 172, 172);
+
 $text-primary-0: #000;
 $text-primary-1: #444;
 $text-primary-2: #666;
+$text-dark-muted:rgba(0, 0, 0, 0.493);
+$text-light-muted:rgba(255,255,255,0.493);
 $text-primary-muted:rgba(0, 0, 0, 0.493);
 $text-invert-muted:rgba(255,255,255,0.493);
 $text-warn: red;

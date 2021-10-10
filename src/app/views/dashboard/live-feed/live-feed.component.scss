@@ -57,7 +57,7 @@
     }
 }
 .mat-header-cell {
-    background-color: $dark-card-1;
+    //background-color: $dark-card-3;
     font-weight: bold;
     font-size: large;
     text-align: center;
@@ -95,10 +95,23 @@
     }
 }
 .tweet-container{
+    position: relative;
     display: flex;
     align-items: center;
     border-radius: 10px;
+    height:100%;
     overflow-y: auto;
+    &-anim{
+        position:absolute;
+        top:0;
+        left:0;
+        z-index: -1;
+        height:100%;
+        width:100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 .twitter-tweet.twitter-tweet-rendered{
     margin-top:0;
@@ -106,4 +119,5 @@
 
 .nodisplay{
     height:0;
+    overflow:hidden;
 }

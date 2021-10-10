@@ -202,4 +202,8 @@ export class SourceStatisticsComponent implements OnInit {
     this.mentionChart.update();
     this.loadingMentions = false;
   }
+
+  sentimentCounter(index:number):number{
+    return Math.round(this._feedsvc.totalCount?this._feedsvc.sentimentCounter[index]*100/this._feedsvc.totalCount:0);
+  }
 }

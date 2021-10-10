@@ -20,9 +20,11 @@ const source = "combinedStream";
   providedIn: "root",
 })
 export class LiveFeedService {
+  public totalCount:number=0;
+  public sentimentCounter=[0,0,0];
   backoff: Object={};
-  sourceCount: Object = {};
-  sentimentCount: Object = {};
+  public sourceCount: Object = {};
+  public sentimentCount: Object = {};
   nerCount: nerAggr[] = [];
   readonly uri = "http://localhost:7000";
   constructor(private _http: HttpClient) {}
@@ -47,9 +49,11 @@ export class LiveFeedService {
     console.log("listen called");
     return new Observable<FeedData>((subscriber) => {
       this.socket.on("combinedFeed", (data) => {
-        if (!Array.isArray(data)) data = [data];
+        //if (!Array.isArray(data)) data = [data];
+        console.log("--->> recieved data:",data);
         const stream: feedObject[] = this.formatStream(data);
-        console.log(data);
+        console.log("FORMATTED STREAM: ",stream);
+        
         subscriber.next({
           textFeed: stream,
           aggregate: {
@@ -92,6 +96,8 @@ export class LiveFeedService {
         console.log("OBJECT does not have specified parameters");
         console.log(obj);
       } else {
+        this.totalCount+=1;
+        this.sentimentCounter[sentMap[obj['sentiment']]]+=1
         this.backoff[obj["source"]] = 1;
         feedItem = {
           id: obj["id"],

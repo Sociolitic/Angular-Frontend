@@ -1,0 +1,38 @@
+.anim{
+    &-object{
+        display:inline-block;
+        margin: 0 2px;
+        height: 4vh;
+        width: 4vh;
+        border-radius: 50%;
+        &-1{
+            animation: load-anim 0.8s ease-in-out forwards;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        &-2{
+            animation: load-anim 0.8s ease-in-out 0.1s forwards;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        &-3{
+            animation: load-anim 0.8s ease-in-out 0.2s forwards;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+    }
+}
+
+@keyframes load-anim{
+    0%{
+        background: white;
+        transform:scale(1.2,1.2);
+    }
+    50%{
+        transform:scale(0,0);
+    }
+    100%{
+        background: rgb(179, 179, 179);
+        transform:scale(0.8,0.8);
+    }
+}

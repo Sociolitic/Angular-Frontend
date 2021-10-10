@@ -1,18 +1,21 @@
 @import "variables";
 .card {
     padding: 40px;
+    cursor:pointer;
     text-align: center;
     transition: all 100ms ease-out;
     color: $text-primary-1;
+    animation: card-anim 300ms ease-in backwards;
     &:hover{
         transform:translate(2px,-2px);
         box-shadow: 2px 2px 5px 0px rgba(66, 66, 66, 0.267);
         background-color:$card-hover-2;
-        cursor:pointer;
+        
     }
 }
 
 .create-profile{
+    cursor:pointer;
     text-align: center;
     color:$text-primary-0;
     margin-bottom: 24px;
@@ -20,14 +23,27 @@
     border-radius: 4px;
     transition: all 200ms ease-out;
     & i{
-    font-size: 50px;
+    transition: all 100ms ease-in;
+    font-size: 3.5rem;
     }
     & span {
-        font-size: 30px;
+        font-size: 2.8rem;
     }
     &:hover{
-        background-color: $card-hover-1;
-        cursor: pointer;
-        color: $text-accent;
+        i {
+            transform: scale(1.2,1.2);
+            transform-origin: center;
+        }
+    }
+}
+
+@keyframes card-anim {
+    from{
+        opacity:0;
+        transform: translateY(10vh);
+    }
+    to{
+        opacity:1;
+        transform: translatY(0);
     }
 }

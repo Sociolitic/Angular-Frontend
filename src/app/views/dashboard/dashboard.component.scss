@@ -11,3 +11,13 @@
 mat-form-field.mat-form-field {
     color:white;
   }
+
+  .navbar-brand {
+    color: $text-primary-0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.25rem;
+    &:hover{
+      color: $text-primary-0;
+    }
+  }

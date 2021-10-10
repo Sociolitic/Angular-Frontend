@@ -1,6 +1,113 @@
 @import "variables";
+//html{ font-size: 62.5%;}
+@media only screen and (max-width: 600px) {
+  html{ font-size: 14px;}
+  // body,.body-font{
+  //   font-size: $font-xs;
+  // }
+  // h1,.h1{
+  //   font-size: calc(2.8*$font-xs);
+  // }
+  // h2,.h2{
+  //   font-size: calc(2.5*$font-xs);
+  // }
+  // h3,.h3{
+  //   font-size: calc(2.3*$font-xs);
+  // }
+  // h4,.h4{
+  //   font-size: calc(2*$font-xs);
+  // }
+  // h5,.h5{
+  //   font-size: calc(1.8*$font-xs);
+  // }
+  // h6,.h6{
+  //   font-size: calc(1.5*$font-xs);
+  // }
+}
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  html{ font-size: 15px;}
+  // .body-font{
+  //   font-size: $font-s;
+  // }
+  // h1,.h1{
+  //   font-size: calc(3*$font-s);
+  // }
+  // h2,.h2{
+  //   font-size: calc(2.8*$font-s);
+  // }
+  // h3,.h3{
+  //   font-size: calc(2.5*$font-s);
+  // }
+  // h4,.h4{
+  //   font-size: calc(2.3*$font-s);
+  // }
+  // h5,.h5{
+  //   font-size: calc(2*$font-s);
+  // }
+  // h6,.h6{
+  //   font-size: calc(1.8*$font-s);
+  // }
+}
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  html{ font-size: 16px;}
+  // .body-font{
+  //   font-size: $font-md;
+  // }
+  // h1,.h1{
+  //   font-size: calc(3*$font-md);
+  // }
+  // h2,.h2{
+  //   font-size: calc(2.8*$font-md);
+  // }
+  // h3,.h3{
+  //   font-size: calc(2.5*$font-md);
+  // }
+  // h4,.h4{
+  //   font-size: calc(2.3*$font-md);
+  // }
+  // h5,.h5{
+  //   font-size: calc(2*$font-md);
+  // }
+  // h6,.h6{
+  //   font-size: calc(1.8*$font-md);
+  // }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  html{ font-size: 16px;}
+  // body,.body-font{
+  //   font-size: $font-lg;
+  // }
+  // h1,.h1{
+  //   font-size: calc(3*$font-lg);
+  // }
+  // h2,.h2{
+  //   font-size: calc(2.8*$font-lg);
+  // }
+  // h3,.h3{
+  //   font-size: calc(2.5*$font-lg);
+  // }
+  // h4,.h4{
+  //   font-size: calc(2.3*$font-lg);
+  // }
+  // h5,.h5{
+  //   font-size: calc(2*$font-lg);
+  // }
+  // h6,.h6{
+  //   font-size: calc(1.8*$font-lg);
+  // }
+  
+}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {
+//   html: font-size: 16px;
+// }
 
 body {
    background-color: $dark-bg ;
@@ -26,6 +133,9 @@ body {
 .dark-card-2{
     background-color: $dark-card-2;
 }
+.dark-card-3{
+  background-color: $dark-card-3;
+}
  .mat-form-field-wrapper{
     margin-bottom: -1.25em;
  }
@@ -39,16 +149,16 @@ body {
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background-color:$dark-card-1;
+    background-color:$dark-card-2;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     // background-image: linear-gradient(45deg, #00aeff, #a68eff);
-    background-color: $dark-card-3;
+    background-color: $dark-card-1;
     
     &:hover{
-      background-color: #6b6b6b;
+      background-color: rgb(108, 124, 131);
     }
   }
   ::-webkit-scrollbar-corner{
@@ -63,17 +173,45 @@ body {
   width: 150px;
 }
 
-.navbar .navbar-nav .nav-link{
+// .navbar .navbar-nav .nav-link{
+//   font-size: 1rem;
+//   transition: all 300ms ease-out;
+//   &:hover{
+//     border-radius: 10px;
+//     color:$text-primary-0;
+//     background-color:rgba($primary,0.2) ;
+//   }
+// }
+
+// .navbar .navbar-nav .nav-link{
+//   font-size: 1rem;
+//   transition: all 300ms ease-out;
+//   color:$text-primary-0;
+//   &:hover{
+//     border-radius: 10px;
+//     color:$text-primary-0;
+//     background-color:rgba($primary,0.2) ;
+//   }
+// }
+.navbar-light .navbar-nav .nav-link{
   font-size: 1rem;
+  transition: all 300ms ease-out;
+  color:$text-dark-0;
   &:hover{
-      color:$text-accent;
+    border-radius: 10px;
+    color:$text-dark-0;
+    background-color:rgba($primary,0.2) ;
   }
 }
-.navbar-light .navbar-nav .nav-link{
-  color:$text-primary-0;
-}
 .navbar-dark .navbar-nav .nav-link{
-  color:$text-invert-0;
+  font-size: 1rem;
+  transition: all 300ms ease-out;
+  color:$text-light-0;
+  &:hover{
+    border-radius: 10px;
+    color:$text-light-0;
+    background-color:rgba($primary,0.2) ;
+  }
 }
 .footers a {color:$text-primary-0;}
 .footers p {color:$text-primary-1}

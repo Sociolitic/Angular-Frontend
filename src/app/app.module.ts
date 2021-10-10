@@ -95,6 +95,7 @@ import { LiveFeedComponent } from './views/dashboard/live-feed/live-feed.compone
 import { SourceStatisticsComponent } from './views/dashboard/source-statistics/source-statistics.component';
 import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { LoadingAnimationComponent } from './views/loading-animation/loading-animation.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -169,6 +170,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     LiveFeedComponent,
     SourceStatisticsComponent,
     ScrollAnimDirective,
+    LoadingAnimationComponent,
     
   ],
   providers: [

@@ -1,12 +1,16 @@
 @import "variables";
 
-.nav-link{
+.nav .nav-item .nav-link{
     cursor: pointer;
-    color: $text-invert-0;
-    &:hover{
-        font-weight: bolder;
-        color: $text-accent;
-    }
+    color: $text-light-0;
+    transition: all 300ms ease-out;
+    padding:0.75rem;
+    border-radius: 10px;
+  &:hover{
+    
+    color:$text-light-0;
+    background-color:rgba($primary,0.2) ;
+  }
 
 }
 .active {
@@ -15,6 +19,7 @@
 ::ng-deep .app-header{
     border:none;
     background-color: $dark-nav;
+    font-size: 1rem;
     & .navbar-toggler{
         min-width: 27px;
         padding: 0;

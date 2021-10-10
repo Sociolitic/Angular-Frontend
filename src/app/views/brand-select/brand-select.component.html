@@ -1,71 +1,91 @@
 <div class="container">
-  <div  class="navbar navbar-expand navbar-light mb-3">
+  <div class="navbar navbar-expand mb-3">
     <a class="navbar-brand" [routerLink]="'/'">
-      <img class="logo" src="assets/img/brand/black-text.png"
+      <img class="logo" src="assets/img/brand/white-text.png"
     /></a>
 
-<!-- Step 2: Add the ngbCollapse directive to the element below. -->
-<ul class="navbar-nav ml-auto navbar-link-text">
-  <li class="nav-item">
-    <!-- Step 4: Close the menu when a link is clicked. -->
-    <a class="nav-link" [routerLink]="'../home'" (click)="isMenuCollapsed = true"
-      >Home</a
-    >
-  </li> 
-</ul>
-
+    <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+    <ul class="navbar-nav ml-auto navbar-link-text">
+      <li class="nav-item">
+        <!-- Step 4: Close the menu when a link is clicked. -->
+        <a
+          class="nav-link"
+          [routerLink]="'../home'"
+          (click)="isMenuCollapsed = true"
+          >Home</a
+        >
+      </li>
+    </ul>
   </div>
 </div>
 
 <div class="d-flex stepper-container flex-column justify-content-center">
-  <mat-vertical-stepper linear #stepper class='dark-card-2'>
-    
-      <mat-step [stepControl]="brandSelectFormGroup">
-        <form [formGroup]="brandSelectFormGroup">
-          <ng-template matStepLabel>Brand</ng-template>
-          <mat-form-field appearance="fill" class='mb-3'>
-            <mat-label>Enter your brand name</mat-label>
-            <input matInput placeholder="enter your brand" formControlName="brandControl" required>
-            <mat-error *ngIf='brandSelectFormGroup.get("brandControl").invalid'>Please provide a brand name to monitor!</mat-error>
-          </mat-form-field>
-          <div>
-            <button mat-raised-button color='primary' class='mt-4'matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step  label="competitors">
-  
-          <mat-form-field appearance="fill" class='competitor-form mb-3'>
-            <mat-label>Enter your competitors</mat-label>
-            <mat-chip-list #chipList aria-label="competitors List">
-              <mat-chip *ngFor="let competitor of competitorList"
-                       [removable]="true" (removed)="removeCompetitor(competitor)">
-                {{competitor}}
-                <mat-icon matChipRemove>cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="New competitor..."
-              [disabled]='competitorLimit'
-             [matChipInputFor]="chipList"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="addCompetitor($event)">
-             <mat-error *ngIf='competitorLimit'>competitor limit reached</mat-error>
-            </mat-chip-list>
-          </mat-form-field>
-  
-          <div>
-            <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-            <button mat-raised-button color='primary' matStepperNext>Next</button>
-          </div>
-      </mat-step>
-      
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+  <mat-vertical-stepper linear #stepper class="dark-card-2">
+    <mat-step [stepControl]="brandSelectFormGroup">
+      <form [formGroup]="brandSelectFormGroup">
+        <ng-template matStepLabel>Brand</ng-template>
+        <mat-form-field appearance="fill" color="accent" class="mb-3">
+          <mat-label>Enter your brand name</mat-label>
+          <input
+            matInput
+            placeholder="enter your brand"
+            formControlName="brandControl"
+            required
+          />
+          <mat-error *ngIf="brandSelectFormGroup.get('brandControl').invalid"
+            >Please provide a brand name to monitor!</mat-error
+          >
+        </mat-form-field>
         <div>
-          <button mat-button color='primary' matStepperPrevious>Back</button>
-          <button mat-button color='primary' (click)="submitForm()">Dashboard</button>
+          <button mat-raised-button color="primary" class="mt-4" matStepperNext>
+            Next
+          </button>
         </div>
-      </mat-step>
-    </mat-vertical-stepper>
+      </form>
+    </mat-step>
+    <mat-step label="competitors">
+      <mat-form-field appearance="fill" color="accent" class="competitor-form mb-3">
+        <mat-label>Enter your competitors</mat-label>
+        <mat-chip-list #chipList aria-label="competitors List">
+          <mat-chip
+            *ngFor="let competitor of competitorList"
+            [removable]="true"
+            (removed)="removeCompetitor(competitor)"
+          >
+            {{ competitor }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="New competitor..."
+            [disabled]="competitorLimit"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="addCompetitor($event)"
+          />
+          <mat-error *ngIf="competitorLimit"
+            >competitor limit reached</mat-error
+          >
+        </mat-chip-list>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>
+          Back
+        </button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button color="primary" matStepperPrevious>Back</button>
+        <button mat-button color="primary" (click)="submitForm()">
+          Dashboard
+        </button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
 </div>
