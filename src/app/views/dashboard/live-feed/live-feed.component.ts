@@ -224,7 +224,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   initializeSentimentChart() {
     console.log("sentiment initialized");
     this.sentimentChart = new Chart("sentimentcanvas", {
-      type: "bar",
+      type: "radar",
       data: {
         labels: ["positive", "negative", "neutral"],
         datasets: [],
@@ -236,19 +236,31 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
             position: "top",
           },
         },
-
-        scales: {
-          xAxes: [
-            {
-              stacked: true,
-            },
-          ],
-          yAxes: [
-            {
-              stacked: true,
-            },
-          ],
-        },
+        scales:{
+          xAxes:[{
+            ticks:{
+              display:false
+            }
+          }],
+          yAxes:[{
+            ticks:{
+              display:false
+            }
+      
+          }]
+        }
+        // scales: {
+        //   xAxes: [
+        //     {
+        //       stacked: true,
+        //     },
+        //   ],
+        //   yAxes: [
+        //     {
+        //       stacked: true,
+        //     },
+        //   ],
+        // },
       },
     });
     if (Object.keys(this._feedsvc.sentimentCount).length) {

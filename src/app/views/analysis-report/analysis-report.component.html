@@ -13,7 +13,7 @@
   <div [(ngbCollapse)]="isMenuCollapsed" class="collapse navbar-collapse">
     <ul [class.collapsed]="!isMenuCollapsed" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" color='accent'>
           <mat-label>Profile</mat-label>
           <mat-select
             [(ngModel)]="selectedProfile"
@@ -28,7 +28,7 @@
         </mat-form-field>
       </li>
       <li class="nav-item">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" color='accent'>
           <mat-label>Select Analysis Period</mat-label>
           <mat-select
             [(ngModel)]="period"
@@ -44,7 +44,7 @@
     </ul>
   </div>
 </nav>
-<div class="container animated fadeIn">
+<div class="container-fluid animated fadeIn">
   <div class="card-columns cols-2">
     <div class="card">
       <div class="card-header dark-card-3">
@@ -82,7 +82,7 @@
           </div>
         </mat-menu>
       </div>
-      <div class="card-body dark-card-1">
+      <div class="card-body card-invert-1">
         <div
           class="
             spinner-container
@@ -130,7 +130,7 @@
           </div>
         </mat-menu>
       </div>
-      <div class="card-body dark-card-1">
+      <div class="card-body card-invert-1">
         <div
           class="
             spinner-container

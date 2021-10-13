@@ -6,12 +6,7 @@
     transition: all 100ms ease-out;
     color: $text-primary-1;
     animation: card-anim 300ms ease-in backwards;
-    &:hover{
-        transform:translate(2px,-2px);
-        box-shadow: 2px 2px 5px 0px rgba(66, 66, 66, 0.267);
-        background-color:$card-hover-2;
-        
-    }
+    
 }
 
 .create-profile{

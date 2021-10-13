@@ -24,8 +24,12 @@ $dark-card-3:#e63946;
 $card-hover-1: $orange-card-4;
 $card-hover-2:$blue-card-3;
 
-$card-invert-1:#FED9B7;
-
+$card-invert-1:#f1faee;
+$color-card-1: #7D80DA;
+$color-card-2: #23967F;
+$color-card-3: #CA3CFF;
+$color-card-4: #4BB3FD;
+$color-card-5: #558C8C;
 $gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
 $gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
 $gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
@@ -52,7 +56,7 @@ $text-invert-2:#666;
 $text-primary-0: #f1faee;
 $text-primary-1: #dbe2d8;
 $text-primary-2: #c5ccc3;
-$text-primary-muted:rgba(255,255,255,0.493);
+$text-primary-muted:rgba(255, 255, 255, 0.658);
 $text-invert-muted:rgba(0, 0, 0, 0.493);
 $text-warn: red;
 $text-success: rgb(0, 187, 0);

@@ -16,7 +16,7 @@
   white-space: nowrap;
   overflow: hidden;
   vertical-align: middle;
-  
+  text-align: center;
 }
 .mat-table {
     background-color: $dark-card-1;
@@ -126,4 +126,8 @@
     background-color: $card-invert-1;
     padding: 1.5rem;
     border-radius: 10px;
+}
+.stat-info-cards{
+    height:100%;
+    color: $text-primary-muted;
 }
