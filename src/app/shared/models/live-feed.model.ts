@@ -1,3 +1,5 @@
+import { nerAggr } from "../services/live-feed.service";
+
 export interface feedObject {
     id:string;
     source:string;
@@ -6,6 +8,8 @@ export interface feedObject {
     created_time: Date;
     misc:any;
     ner:Ner;
+    url:String;
+    spam: Boolean;
 }
 
 export interface Ner{
@@ -31,5 +35,10 @@ export interface Ner{
 
 export interface FeedData{
     textFeed: feedObject[];
-    aggregate:any;
+    aggregate:Aggr;
+}
+export interface Aggr{
+    sources:Object;
+    sentiment: Object;
+    ner: nerAggr[];
 }

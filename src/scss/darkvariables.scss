@@ -1,74 +1,5 @@
 @import '~@angular/material/theming';
 // Variable overrides
-$green-card-1:#dbe7e4;
-$green-card-2:#c5dedd;
-$blue-card-1:#d6e2e9;
-$blue-card-2:#bcd4e6;
-$blue-card-3:#99c1de;
-$orange-card-1:#f8edeb;
-$orange-card-2:#fae1dd;
-$orange-card-3:#fcd5ce;
-$orange-card-4:#fec5bb;
-$gray-card-1:#f8f9fa;
-$gray-card-2:#e9ecef;
-$gray-card-3:#dee2e6;
-$gray-card-4:#ced4da;
-
-$dark-bg: #1d3557;
-$dark-nav: #13243b;//#293241;
-$dark-nav-secondary: #3f4244;
-
-$dark-card-1:#1c3150;
-$dark-card-2:#1e385c;
-$dark-card-3:#e63946;
-$card-hover-1: $orange-card-4;
-$card-hover-2:$blue-card-3;
-
-$card-invert-1:#f1faee;
-$color-card-1: #7D80DA;
-$color-card-2: #23967F;
-$color-card-3: #CA3CFF;
-$color-card-4: #4BB3FD;
-$color-card-5: #558C8C;
-$gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
-$gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
-$gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
-$gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
-$gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
-$gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
-
-$success:rgb(0, 199, 0);
-$primary: #eb5160;
-$accent: #fcd757;
-$warn: red;
-
-
-//typography variables
-$text-light-0: rgb(255, 255, 255);
-$text-light-1: rgb(226, 226, 226);
-$text-light-2:rgb(172, 172, 172);
-$text-dark-0: #000;
-$text-dark-1: #444;
-$text-dark-2: #666;
-$text-invert-0: #000;
-$text-invert-1: #444;
-$text-invert-2:#666;
-$text-primary-0: #f1faee;
-$text-primary-1: #dbe2d8;
-$text-primary-2: #c5ccc3;
-$text-primary-muted:rgba(255, 255, 255, 0.658);
-$text-invert-muted:rgba(0, 0, 0, 0.493);
-$text-warn: red;
-$text-success: rgb(0, 187, 0);
-$text-primary: $primary;
-$text-accent: $accent;
-
-//logo
-$logo: "assets/img/brand/white-text.png";
-
-
-//palletes
-
 $primary-dark-pallete:(
     50 : #e4e6ea,
     100 : #bbc1cb,
@@ -167,3 +98,72 @@ $accent-pallete:(
         A700 : #000000,
     )
 );
+$green-card-1:#dbe7e4;
+$green-card-2:#c5dedd;
+$blue-card-1:#d6e2e9;
+$blue-card-2:#bcd4e6;
+$blue-card-3:#99c1de;
+$orange-card-1:#f8edeb;
+$orange-card-2:#fae1dd;
+$orange-card-3:#fcd5ce;
+$orange-card-4:#fec5bb;
+$gray-card-1:#f8f9fa;
+$gray-card-2:#e9ecef;
+$gray-card-3:#dee2e6;
+$gray-card-4:#ced4da;
+
+$dark-bg: #1d3557;
+$dark-nav: #13243b;//#293241;
+$dark-nav-secondary: #3f4244;
+
+$dark-card-1:#1c3150;
+$dark-card-2:#1e385c;
+$dark-card-3:#e63946;
+$card-hover-1: $orange-card-4;
+$card-hover-2:$blue-card-3;
+
+$card-invert-1:#f1faee;
+$color-card-1: #7D80DA;
+$color-card-2: #23967F;
+$color-card-3: #CA3CFF;
+$color-card-4: #4BB3FD;
+$color-card-5: #558C8C;
+$gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
+$gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
+$gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
+$gradient-brady: linear-gradient(to right, #1c92d2,#ffff1c);
+$gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
+$gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
+
+$success:rgb(0, 199, 0);
+$primary:map-get($primary-pallete,500);
+$accent: map-get($accent-pallete,500);
+$warn: rgb(255, 208, 0);;
+
+
+//typography variables
+$text-light-0: rgb(255, 255, 255);
+$text-light-1: rgb(226, 226, 226);
+$text-light-2:rgb(172, 172, 172);
+$text-dark-0: #000;
+$text-dark-1: #444;
+$text-dark-2: #666;
+$text-invert-0: #000;
+$text-invert-1: #444;
+$text-invert-2:#666;
+$text-primary-0: #f1faee;
+$text-primary-1: #dbe2d8;
+$text-primary-2: #c5ccc3;
+$text-primary-muted:rgba(255, 255, 255, 0.658);
+$text-invert-muted:rgba(212, 179, 179, 0.493);
+$text-warn: $warn;
+$text-success: rgb(0, 187, 0);
+$text-primary: $primary;
+$text-accent: $accent;
+
+//logo
+$logo: "assets/img/brand/white-text.png";
+
+
+//palletes
+

@@ -1,0 +1,35 @@
+span{
+    font-size: 1.7rem;
+}
+.reddit-icon{
+    color: #ff4500;
+}
+
+.youtube-icon{
+    color:red;
+}
+
+.twitter-icon{
+    color:#1DA1F2;
+}
+
+.tumblr{
+    color: #34526f;
+}
+.tumblr{
+    &-container{
+        background-color: white;
+        border-radius: 0.4rem;
+        // // height: 2.1rem;
+        // width:2.1rem;
+        padding:0 0.6rem;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // margin:0 !important; 
+    }
+    &-icon{
+        font-size: 1.5rem;
+        color:#34526f;
+    }
+}

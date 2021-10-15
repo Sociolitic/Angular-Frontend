@@ -26,6 +26,7 @@ export class LiveFeedService {
   public sourceCount: Object = {};
   public sentimentCount: Object = {};
   nerCount: nerAggr[] = [];
+  currentNer:nerAggr[] = [];
   readonly uri = "http://localhost:7000";
   constructor(private _http: HttpClient) {}
   socket: Socket;
@@ -59,9 +60,7 @@ export class LiveFeedService {
           aggregate: {
             sources: this.sourceCount,
             sentiment: this.sentimentCount,
-            ner: this.nerCount.length
-              ? this.nerCount[this.nerCount.length - 1]
-              : null,
+            ner: this.currentNer,
           },
         });
       });
@@ -107,6 +106,8 @@ export class LiveFeedService {
           created_time: new Date(obj["created_time"]),
           misc: obj["misc"] ? obj["misc"] : null,
           ner: obj["ner"],
+          url: obj['url'],
+          spam: obj['spam']
         };
         feed.push(feedItem);
         this.updateAggregate(feedItem);
@@ -129,13 +130,17 @@ export class LiveFeedService {
     else this.sentimentCount[source] = [0, 0, 0];
   }
   updateNer(source: string, ner: Ner) {
+    this.currentNer=[];
     for (let i in ner)
       ner[i].forEach((element) => {
-        this.nerCount.push({
+        const aggr:nerAggr={
           source: source,
           tag: i,
-          phrase: ner[i],
-        });
+          phrase: element,
+        };
+        this.currentNer.push(aggr)
+        this.nerCount.push(aggr);
       });
   }
+
 }

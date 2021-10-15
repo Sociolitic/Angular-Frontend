@@ -12,6 +12,7 @@ import { FireLoginService } from '../../shared/services/fire-login.service';
 export class DefaultLayoutComponent implements OnInit{
   public sidebarMinimized = false;
   public navItems = navItems;
+  public isMenuCollapsed = true;
   user:User;
   constructor(private router: Router ,private fireAuth: FireLoginService){}
   ngOnInit(){

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SourceStatisticsComponent } from './source-statistics.component';
+import { SocialIconsComponent } from './social-icons.component';
 
-describe('SourceStatisticsComponent', () => {
-  let component: SourceStatisticsComponent;
-  let fixture: ComponentFixture<SourceStatisticsComponent>;
+describe('SocialIconsComponent', () => {
+  let component: SocialIconsComponent;
+  let fixture: ComponentFixture<SocialIconsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SourceStatisticsComponent ]
+      declarations: [ SocialIconsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SourceStatisticsComponent);
+    fixture = TestBed.createComponent(SocialIconsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

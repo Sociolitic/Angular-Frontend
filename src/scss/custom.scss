@@ -189,7 +189,7 @@ body {
 }
 
 .logo {
-  width: 150px;
+  width: 125px;
 }
 
 // .navbar .navbar-nav .nav-link{
@@ -212,6 +212,11 @@ body {
 //     background-color:rgba($primary,0.2) ;
 //   }
 // }
+.text-primary{
+  &-muted{
+    color: $text-primary-muted;
+  }
+}
 .navbar-light .navbar-nav .nav-link{
   font-size: 1rem;
   transition: all 300ms ease-out;
@@ -219,7 +224,6 @@ body {
   &:hover{
     border-radius: 10px;
     color:$text-dark-0;
-    background-color:rgba($primary,0.2) ;
   }
 }
 .navbar-dark .navbar-nav .nav-link{
@@ -229,8 +233,12 @@ body {
   &:hover{
     border-radius: 10px;
     color:$text-light-0;
-    background-color:rgba($primary,0.2) ;
   }
+}
+.custom-tooltip{
+  font-size: 0.65rem;
+  color:$text-primary-2;
+  background-color: rgba(0, 0, 0, 0.623);
 }
 .footers a {color:$text-primary-0;}
 .footers p {color:$text-primary-1}

@@ -23,12 +23,15 @@
     width: 100%;
 }
 .second {
+    text-align: left;
     text-overflow: ellipsis;
     max-width:400px;
 }
 
 .mat-row {
     transition: all 200ms ease-out;
+    animation: shift-anim 100ms;
+    transform-origin: top;
     &:hover {
         background-color: rgba(123, 104, 238,0.7);
         cursor: pointer;
@@ -96,11 +99,8 @@
 }
 .tweet-container{
     position: relative;
-    display: flex;
-    align-items: center;
     border-radius: 10px;
     height:100%;
-    overflow-y: auto;
     &-anim{
         position:absolute;
         top:0;
@@ -112,6 +112,11 @@
         align-items: center;
         justify-content: center;
     }
+}
+.tweet-box{
+    height:100%;
+    overflow-y: auto;
+    width:100%;
 }
 .twitter-tweet.twitter-tweet-rendered{
     margin-top:0;
@@ -130,4 +135,43 @@
 .stat-info-cards{
     height:100%;
     color: $text-primary-muted;
+}
+
+.spam-icon{
+    color: $warn;
+    margin-right:8px;
+}
+.sentiment-icon{
+    margin-right: 8px;
+    &-positive{
+        color:$success;
+
+    }
+    &-negative{
+        color:$warn;
+        
+    }
+    &-neutral{
+        color:$text-primary-2;
+        
+    }
+}
+.card-text{
+    color: $text-primary-muted;
+    font-size: 0.8rem;
+}
+
+.youtube-embed{
+    min-height: 50%;
+}
+
+@keyframes shift-anim{
+    from{
+        transform: scaleY(0);
+        opacity:0;
+    }
+    to{
+        transform: scaleY(1);
+        opacity:1;
+    }
 }

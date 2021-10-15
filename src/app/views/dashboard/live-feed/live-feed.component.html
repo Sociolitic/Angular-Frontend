@@ -8,23 +8,34 @@
               Source
             </th>
             <td mat-cell *matCellDef="let element" class="mat-cell mx-auto">
-              <img
-                class="source-logo"
-                *ngIf="logos.hasOwnProperty(element.source)"
-                [src]="logos[element.source]"
-                [alt]="element.source"
-              />
+              <sicon [source]='element.source'></sicon>
             </td>
           </ng-container>
           <ng-container matColumnDef="text">
             <th
               mat-header-cell
               *matHeaderCellDef
-              class="mat-header-cell second"
+              class="mat-header-cell"
             >
               Text
             </th>
             <td mat-cell *matCellDef="let element" class="mat-cell second">
+              <span 
+              [ngClass]='{"sentiment-icon-positive":element.sentiment=="Positive","sentiment-icon-negative":element.sentiment=="Negative","sentiment-icon-neutral":element.sentiment=="Neutral"}'
+              [matTooltip]='"sentiment: "+element.sentiment' 
+              matTooltipClass="custom-tooltip"
+              class="sentiment-icon"
+              >
+              <i class="fa fa-comment"></i>
+              </span>
+              <span 
+              *ngIf='element.spam'
+              matTooltip='This post has been marked as spam' 
+              matTooltipClass="custom-tooltip"
+              class="spam-icon"
+              >
+              <i class="fa fa-exclamation-circle"></i>
+            </span>
               {{ element.text?element.text:"Click to view more information" }}
             </td>
           </ng-container>
@@ -36,7 +47,6 @@
           <tr
             mat-row
             class="mat-row"
-            [matTooltip]="row.sentiment"
             *matRowDef="let row; columns: displayedColumns"
             (click)="showMentionDetails(row)"
           ></tr>
@@ -60,7 +70,7 @@
     >
       <div
         *ngIf="showCard && cardObject.source === 'youtube'"
-        class="embed-responsive embed-responsive-16by9 mb-3"
+        class="embed-responsive youtube-embed embed-responsive-16by9 mb-3"
       >
         <iframe
           class="embed-responsive-item embed-frame"
@@ -69,35 +79,34 @@
         ></iframe>
       </div>
       
-      <div #tweetContainer [class.nodisplay]='!showCard || (showCard && cardObject.source!=="twitter")'class="container-fluid tweet-container p-0">
+      <div  [class.nodisplay]='!showCard || (showCard && cardObject.source!=="twitter")'class="container-fluid tweet-container d-flex justify-content-center align-items-center">
         <load-anim *ngIf="showCard && cardObject.source === 'twitter'"class="tweet-container-anim"></load-anim>
-        <blockquote *ngIf='showCard && cardObject.source==="twitter"'class="twitter-tweet">
-          <a [href]="selectedUrl"></a>
-        </blockquote>
+       
+        <div class='tweet-box d-flex justify-content-center align-items-center'#tweetContainer></div>
       </div>
 
       <mat-card  *ngIf=" showCard && cardObject.source !== 'twitter'" class="mention-card">
         <i (click)="showCard = false" class="fa close-icon fa-close fa-lg"></i>
         <mat-card-header>
-          <img
+          <sicon
             mat-card-avatar
-            class="source-logo"
-            *ngIf="logos.hasOwnProperty(cardObject.source)"
-            [src]="logos[cardObject.source]"
-          />
+            [source]='cardObject.source'
+          ></sicon>
           <mat-card-title>{{ cardObject.source }}</mat-card-title>
           <mat-card-subtitle>{{
             datesvc.displayDate(cardObject.created_time)
           }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="moreinfo-container">
-          <div class="mb-1">{{ cardObject.text?cardObject.text:"No text to display" }}</div>
+          <div class="mb-1 card-text">{{ cardObject.text?cardObject.text:"No text to display" }}</div>
+          <mat-divider></mat-divider>
           <div *ngFor='let obj of cardObject.misc | keyvalue' class='mb-1'>
-            <span class="h6">{{obj.key}}: </span><span class="h6">{{obj.value}}</span>
+            <span class="h6">{{obj.key}}: </span><span class="card-text">{{obj.value}}</span>
+            <mat-divider></mat-divider>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <a mat-button target="_blank" color='accent' [href]='cardObject.misc["url"]'>Open Source</a>
+          <a mat-button target="_blank" color='accent' [href]='cardObject.url'>Open Source</a>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -188,7 +197,8 @@
           <ng-container matColumnDef="source">
             <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Source</th>
             <td mat-cell *matCellDef="let element" class='mat-cell mx-auto'>
-                <img class='source-logo' *ngIf='logos.hasOwnProperty(element.source)'[src]='logos[element.source]' [alt]='element.source'>
+              <sicon [source]='element.source'></sicon>
+
             </td>
           </ng-container>
           <tr mat-header-row class='mat-header-row dark-card-3' *matHeaderRowDef="NerDisplayedColumns"></tr>

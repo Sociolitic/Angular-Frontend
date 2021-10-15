@@ -159,8 +159,8 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
           const data = res.aggregate;
           this.updateMentionChart(data["sources"]);
           this.updateSentimentChart(data["sentiment"]);
-          if (data["ner"]) {
-            this.nerGridSource.data.push(data["ner"]);
+          if (data.ner.length) {
+            data.ner.forEach((element:nerAggr)=>this.nerGridSource.data.push(element));
             this.NerTable.renderRows();
           }
         }
@@ -187,6 +187,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
     this.stopFeed();
   }
   showMentionDetails(mention: feedObject) {
+    this.tweetContainer.nativeElement.innerHTML='';
     this.cardObject = mention;
     let url = "";
     this.showCard = true;
@@ -195,8 +196,9 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     } else if (mention.source === "twitter") {
       url = "https://twitter.com/x/status/" + mention.id;
+      
       this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-      (<any>window).twttr.widgets.load(this.tweetContainer.nativeElement);
+      (<any>window).twttr.widgets.createTweet(mention.id,this.tweetContainer.nativeElement);
     }
   }
 
@@ -224,7 +226,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   initializeSentimentChart() {
     console.log("sentiment initialized");
     this.sentimentChart = new Chart("sentimentcanvas", {
-      type: "radar",
+      type: "bar",
       data: {
         labels: ["positive", "negative", "neutral"],
         datasets: [],
@@ -236,31 +238,22 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
             position: "top",
           },
         },
-        scales:{
-          xAxes:[{
-            ticks:{
-              display:false
-            }
-          }],
-          yAxes:[{
-            ticks:{
-              display:false
-            }
-      
-          }]
-        }
-        // scales: {
-        //   xAxes: [
-        //     {
-        //       stacked: true,
-        //     },
-        //   ],
-        //   yAxes: [
-        //     {
-        //       stacked: true,
-        //     },
-        //   ],
-        // },
+        scales: {
+          xAxes: [
+            {
+              stacked: true,
+              
+            },
+          ],
+          yAxes: [
+            {
+              ticks:{
+                display:false
+              },
+              stacked: true,
+            },
+          ],
+        },
       },
     });
     if (Object.keys(this._feedsvc.sentimentCount).length) {
@@ -269,7 +262,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   }
 
   updateSentimentChart(sentiment: Object) {
-    console.log("update sentiment", sentiment);
+    
     const l = graphBackgroundColors.length;
     let counter = 0;
     let br = false;
@@ -280,7 +273,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
         i === this.sentimentChart.data.datasets[counter].label
       ) {
         this.sentimentChart.data.datasets[counter].data = sentiment[i];
-        console.log("old data");
+    
       } else {
         br = true;
         this.sentimentChart.data.datasets.push({
