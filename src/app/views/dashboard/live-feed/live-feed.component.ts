@@ -85,7 +85,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   );
   mentionChart: Chart = null;
   sentimentChart: Chart = null;
-
+  mentionIndex:Object={};
   @ViewChild("NerMatTable") NerTable: MatTable<nerAggr>;
 
   constructor(
@@ -150,14 +150,16 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
     this.socketConn = this._feedsvc.listen(this.selectedProfile).subscribe(
       (res: FeedData) => {
         if (res) {
+    
           res.textFeed.forEach((element) => {
             this.dataGridSource.data.unshift(element);
+  
             this.more = true;
           });
           this.table.renderRows();
-
+          
           const data = res.aggregate;
-          this.updateMentionChart(data["sources"]);
+          this.updateMentionChart(data['sources']);
           this.updateSentimentChart(data["sentiment"]);
           if (data.ner.length) {
             data.ner.forEach((element:nerAggr)=>this.nerGridSource.data.push(element));
@@ -217,6 +219,22 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
             position: "top",
           },
         },
+        // scales: {
+        //   xAxes: [
+        //     {
+        //       ticks:{display:false}
+              
+        //     },
+        //   ],
+        //   // yAxes: [
+        //   //   {
+        //   //     ticks:{
+        //   //       display:false
+        //   //     },
+              
+        //   //   },
+        //   // ],
+        // },
       },
     });
     if (Object.keys(this._feedsvc.sourceCount).length) {
@@ -241,12 +259,18 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
         scales: {
           xAxes: [
             {
+              gridLines:{
+                display:false
+              },
               stacked: true,
               
             },
           ],
           yAxes: [
             {
+              gridLines:{
+                display:false
+              },
               ticks:{
                 display:false
               },
@@ -290,6 +314,24 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   }
 
   updateMentionChart(mentions: Object) {
+    // this.mentionChart.data.labels.push("");
+    // const l = graphBackgroundColors.length;
+    // for(let source in mentions){
+    //   if(this.mentionIndex.hasOwnProperty(source)){
+    //     this.mentionChart.data.datasets[this.mentionIndex[source]].data.push(mentions[source]);
+    //   }
+    //   else{
+    //     this.mentionIndex[source]=this.mentionChart.data.datasets.length;
+    //     let n= this.mentionChart.data.datasets.length?this.mentionChart.data.datasets[0].data.length:0;
+    //     let a = new Array(); for (let i=0; i<n; ++i) a[i] = 0;
+    //     let obj={
+    //       label: source,
+    //       data:[mentions[source]],
+    //       backgroundColor: graphBackgroundColors[this.mentionChart.data.datasets.length % l]
+    //     }
+    //     this.mentionChart.data.datasets.push(obj);
+    //   }
+    // }
     const l = graphBackgroundColors.length;
     let data: any[] = [];
     let colors: string[] = [];

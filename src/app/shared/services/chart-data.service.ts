@@ -10,7 +10,7 @@ import { FireLoginService } from './fire-login.service';
 export class ChartDataService {
 
   constructor(private http: HttpClient,private fireAuth: FireLoginService) { }
-  getChartData(profileId:string):Observable<StatisticsData>{
+  getChartData(profileId:string):Observable<any>{
     console.log(profileId)
     const bearer:string = this.fireAuth.getBearer();
     const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
@@ -19,7 +19,7 @@ export class ChartDataService {
       headers:headers,
       params: params
     }
-    return this.http.get<StatisticsData>(server+'/data/aggregate',options);
+    return this.http.get<any>(server+"/data/aggregate",options);
   }
 
   labels(period):string[]{

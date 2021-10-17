@@ -6,19 +6,21 @@ export interface LineChartData {
 }
 export interface StatisticsData {
     tag: string;
-    all_mentions: ApiSourceData;
-    positive_mentions: ApiSourceData;
-    negative_mentions: ApiSourceData;
-    neutral_mentions: ApiSourceData;  
+    years: ApiSourceData[];
+    months: ApiSourceData[];
+    days: ApiSourceData[];  
+    hours: ApiSourceData[];
+    mins: ApiSourceData[];
   }
 
 export interface ApiSourceData{
-    total: TimeSeriesData;
-    twitter?: TimeSeriesData;
-    youtube?: TimeSeriesData;
-    insta?: TimeSeriesData;
-    reddit?: TimeSeriesData;
-    tumblr?: TimeSeriesData;
+    start: Date;
+    end: Date;
+    total: Number;
+    positive: Number;
+    negative: Number;
+    neutral: Number;
+    sources:Object;
 }  
 export interface TimeSeriesData{
     hourly: number[];

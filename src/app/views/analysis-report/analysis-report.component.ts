@@ -51,7 +51,7 @@ export class AnalysisReportComponent implements OnInit {
 
   updateAllComplete(media:any) {
     this.allComplete = this.mediaArray != null && this.mediaArray.every(t => t.mentionCompleted);
-    this.createMentionChart();
+    //this.createMentionChart();
   }
 
   someComplete(): boolean {
@@ -67,7 +67,7 @@ export class AnalysisReportComponent implements OnInit {
       return;
     }
     this.mediaArray.forEach(t => t.mentionCompleted = mentionCompleted);
-    this.createMentionChart();
+    //this.createMentionChart();
   }
   
   initializeMentionChart(){
@@ -109,67 +109,67 @@ export class AnalysisReportComponent implements OnInit {
     })
     
   }
-  createMentionChart(){
-    let lineDataset=[];
-    let counter=0;
-    this.mediaArray.forEach(source =>{
-      if(source.mentionCompleted){
-        let lineData:number[]=this.statisticsData.all_mentions[source.name][this.period];
-        lineDataset.push({
-          data:lineData,
-          label:source.name,
-          borderColor:graphBorderColors[counter],
-          backgroundColor:graphBackgroundColors[counter]
-        })
-        counter++;
-      }
-    })
-    if(lineDataset.length===0)
-    {      
-      lineDataset.push(
-        {
-          data:this.statisticsData.all_mentions.total[this.period],
-          label: "Aggregate",
-          borderColor: graphBorderColors[0],
-          backgroundColor: graphBackgroundColors[0]
-        }); 
-    }
-    if(this.mentionChart){
-      this.mentionChart.data={
-        labels: this.dataService.labels(this.period),
-        datasets: lineDataset
-      }
-      this.mentionChart.update();
-    }
-  }
-  createSentimentPieChart(){
-    let source=this.pieChartSource;
-    const postiveCount:number=this.statisticsData.
-        positive_mentions[source][this.period].reduce((a,b)=>a+b,0);
-        const negativeCount:number=this.statisticsData.
-        negative_mentions[source][this.period].reduce((a,b)=>a+b,0);
-        const neutralCount:number=this.statisticsData.
-        neutral_mentions[source][this.period].reduce((a,b)=>a+b,0);
-        const pieData:LineChartData[] = [{
-          data: [postiveCount,negativeCount,neutralCount],
-          backgroundColor:graphBorderColors.slice(0,3) 
-        }]
-    if(this.sentimentPieChart){
-      this.sentimentPieChart.data={
-        labels: ['positive','negative','neutral'],
-        datasets: pieData
-      }
-      this.sentimentPieChart.update();
-    }
-  }
+  // createMentionChart(){
+  //   let lineDataset=[];
+  //   let counter=0;
+  //   this.mediaArray.forEach(source =>{
+  //     if(source.mentionCompleted){
+  //       let lineData:number[]=this.statisticsData.all_mentions[source.name][this.period];
+  //       lineDataset.push({
+  //         data:lineData,
+  //         label:source.name,
+  //         borderColor:graphBorderColors[counter],
+  //         backgroundColor:graphBackgroundColors[counter]
+  //       })
+  //       counter++;
+  //     }
+  //   })
+  //   if(lineDataset.length===0)
+  //   {      
+  //     lineDataset.push(
+  //       {
+  //         data:this.statisticsData.all_mentions.total[this.period],
+  //         label: "Aggregate",
+  //         borderColor: graphBorderColors[0],
+  //         backgroundColor: graphBackgroundColors[0]
+  //       }); 
+  //   }
+  //   if(this.mentionChart){
+  //     this.mentionChart.data={
+  //       labels: this.dataService.labels(this.period),
+  //       datasets: lineDataset
+  //     }
+  //     this.mentionChart.update();
+  //   }
+  // }
+  // createSentimentPieChart(){
+  //   let source=this.pieChartSource;
+  //   const postiveCount:number=this.statisticsData.
+  //       positive_mentions[source][this.period].reduce((a,b)=>a+b,0);
+  //       const negativeCount:number=this.statisticsData.
+  //       negative_mentions[source][this.period].reduce((a,b)=>a+b,0);
+  //       const neutralCount:number=this.statisticsData.
+  //       neutral_mentions[source][this.period].reduce((a,b)=>a+b,0);
+  //       const pieData:LineChartData[] = [{
+  //         data: [postiveCount,negativeCount,neutralCount],
+  //         backgroundColor:graphBorderColors.slice(0,3) 
+  //       }]
+  //   if(this.sentimentPieChart){
+  //     this.sentimentPieChart.data={
+  //       labels: ['positive','negative','neutral'],
+  //       datasets: pieData
+  //     }
+  //     this.sentimentPieChart.update();
+  //   }
+  // }
   fetchGraphData(){
     this.loading=true;
     this.dataService.getChartData(this.selectedProfile).subscribe(
-      (statData:StatisticsData)=> {
+      (statData)=> {
         this.statisticsData=statData;
         console.log(this.statisticsData);
-        this.createMentionChart();
-        this.createSentimentPieChart();
+        // this.createMentionChart();
+        // this.createSentimentPieChart();
         this.loading=false;
       },
       error => {
@@ -177,10 +177,10 @@ export class AnalysisReportComponent implements OnInit {
       }
     );
   }
-  refreshGraphPeriod(){
-    this.createSentimentPieChart();
-    this.createMentionChart();
-  }
+  // refreshGraphPeriod(){
+  //   this.createSentimentPieChart();
+  //   this.createMentionChart();
+  // }
   changeProfile(){
     this.fetchGraphData();
   }
