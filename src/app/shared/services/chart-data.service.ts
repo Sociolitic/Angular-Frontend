@@ -19,7 +19,7 @@ export class ChartDataService {
       headers:headers,
       params: params
     }
-    return this.http.get<any>(server+"/data/aggregate",options);
+    return this.http.get<any>(server+"/data/aggregate-count",options);
   }
 
   labels(period):string[]{

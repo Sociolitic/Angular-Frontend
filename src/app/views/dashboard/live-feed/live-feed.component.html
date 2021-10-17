@@ -88,10 +88,12 @@
       <mat-card  *ngIf=" showCard && cardObject.source !== 'twitter'" class="mention-card">
         <i (click)="showCard = false" class="fa close-icon fa-close fa-lg"></i>
         <mat-card-header>
-          <sicon
-            mat-card-avatar
-            [source]='cardObject.source'
-          ></sicon>
+          <span mat-card-avatar class='d-flex justify-content-center align-items-center'>
+            
+            <sicon
+              [source]='cardObject.source'
+            ></sicon>
+          </span>
           <mat-card-title>{{ cardObject.source }}</mat-card-title>
           <mat-card-subtitle>{{
             datesvc.displayDate(cardObject.created_time)
@@ -114,7 +116,7 @@
 </div>
 
 <div class='container-fluid px-0'>
-  <div class="row g-3 mb-3">
+  <!-- <div class="row g-3 mb-3">
     <div class="col-md-3 col-sm-5">
       <mat-card class="stat-info-cards color-card-1">
         <div class='h5'>Total mentions:</div>
@@ -128,11 +130,16 @@
         <div><span class='h5'>Neutral mentions:</span> <span class='h5'>{{_feedsvc.sentimentCounter[2]}} ({{sentimentCounter(2)}}%)</span></div>
       </mat-card>
     </div>
-  </div>
+  </div> -->
   <div class='row g-3 mb-3'>
     <div class='col-md-6'>
       <div class="chart-container">
-        <div class="chart-wrapper dark-card-1">
+        <div class="stat-info-cards">
+          <span class='h1'>{{_feedsvc.totalCount}}</span>
+          <div class='h5'>Total mentions</div>
+          
+        </div>
+        <div class="chart-wrapper">
           <!-- <div
               class="
                 spinner-container
@@ -151,31 +158,36 @@
       </div>
     </div>
     <div class='col-md-6'>
-      
-        <div class="chart-wrapper">
-          <!-- <div
-              class="
-                spinner-container
-                d-flex
-                justify-content-center
-                align-items-center
-              "
-              *ngIf="loadingSentiment"
-            >
-              <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div> -->
-            <!-- <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType"> -->
-            <canvas id='sentimentcanvas'></canvas>
-    
+      <div class="chart-container">
+        <div class="stat-info-cards row">
+          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[0]}} ({{sentimentCounter(0)}}%)</span><div class='h5'>Positive mentions</div> </div>
+          <div class='col-4'> <span class='h2'>{{_feedsvc.sentimentCounter[1]}} ({{sentimentCounter(1)}}%)</span><div class='h5'>Negative mentions</div></div>
+          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[2]}} ({{sentimentCounter(2)}}%)</span> <div class='h5'>Neutral mentions</div> </div>
         </div>
-      
+          <div class="chart-wrapper">
+            <!-- <div
+                class="
+                  spinner-container
+                  d-flex
+                  justify-content-center
+                  align-items-center
+                "
+                *ngIf="loadingSentiment"
+              >
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div> -->
+              <!-- <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"> -->
+              <canvas id='sentimentcanvas'></canvas>
+          </div>
+      </div>
+        
     </div>
   </div>
   <div class='row g-3'>

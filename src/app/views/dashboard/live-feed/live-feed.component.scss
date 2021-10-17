@@ -128,15 +128,20 @@
 }
 
 .chart-wrapper{
-    background-color: $card-invert-1;
-    padding: 1.5rem;
-    border-radius: 4px;
+    //background-color: $card-invert-1;
+    padding: 0.6rem 1.25rem;
+    //border-radius: 4px;
 }
 .stat-info-cards{
-    height:100%;
-    color: $text-primary-muted;
+    padding: 0.6rem 1.25rem 1rem 1.25rem;
+    color: $text-primary-2;
 }
-
+.chart-container{
+    background-color: #222;
+    height: 100%;
+    border-radius: 4px;
+    
+}
 .spam-icon{
     color: $warn;
     margin-right:8px;

@@ -30,7 +30,7 @@ import {
   SafeResourceUrl,
   SafeUrl,
 } from "@angular/platform-browser";
-Chart.defaults.global.defaultFontColor='#000';
+Chart.defaults.global.defaultFontColor='#eee';
 export interface feedSource {
   source_name: string;
   source_observable: Observable<feedObject[]>;
@@ -218,23 +218,14 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
           legend: {
             position: "top",
           },
+          
         },
-        // scales: {
-        //   xAxes: [
-        //     {
-        //       ticks:{display:false}
-              
-        //     },
-        //   ],
-        //   // yAxes: [
-        //   //   {
-        //   //     ticks:{
-        //   //       display:false
-        //   //     },
-              
-        //   //   },
-        //   // ],
-        // },
+        title:{
+          display:true,
+          text:"Distribution of Mentions",
+          fontColor: "#ffe",
+        }
+        
       },
     });
     if (Object.keys(this._feedsvc.sourceCount).length) {
@@ -255,6 +246,11 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
           legend: {
             position: "top",
           },
+        },
+        title:{
+          display:true,
+          text:"Sentiment across platforms",
+          fontColor: "#ffe",
         },
         scales: {
           xAxes: [

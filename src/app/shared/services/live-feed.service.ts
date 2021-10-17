@@ -82,6 +82,7 @@ export class LiveFeedService {
   }
 
   private formatStream(data: Array<any>): feedObject[] {
+    this.currentNer=[];
     let feed: feedObject[] = [];
     data.forEach((obj: Object) => {
       let feedItem: feedObject;
@@ -130,7 +131,7 @@ export class LiveFeedService {
     else this.sentimentCount[source] = [0, 0, 0];
   }
   updateNer(source: string, ner: Ner) {
-    this.currentNer=[];
+    
     for (let i in ner)
       ner[i].forEach((element) => {
         const aggr:nerAggr={
