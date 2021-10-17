@@ -40,12 +40,12 @@
 .mention-container {
     height: 70vh;
     overflow-y: auto;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color:$dark-card-1;
 
 }
 .mention-card {
-    border-radius: 10px;
+    border-radius: 4px;
     position:relative;
     background-color: $dark-card-1;
     width:100%;
@@ -84,7 +84,7 @@
 }
 
 .embed-frame {
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 @keyframes mention-card-anim {
@@ -99,7 +99,7 @@
 }
 .tweet-container{
     position: relative;
-    border-radius: 10px;
+    border-radius: 4px;
     height:100%;
     &-anim{
         position:absolute;
@@ -130,7 +130,7 @@
 .chart-wrapper{
     background-color: $card-invert-1;
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 .stat-info-cards{
     height:100%;
