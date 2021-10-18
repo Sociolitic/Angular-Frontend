@@ -11,6 +11,7 @@ import { BrandRegistrationService } from '../../shared/services/brand-registrati
   templateUrl: './analysis-report.component.html',
   styleUrls: ['./analysis-report.component.scss']
 })
+
 export class AnalysisReportComponent implements OnInit {
   constructor(private dataService: ChartDataService, private brandReg: BrandRegistrationService) {}
   loading:boolean=true;
@@ -21,6 +22,10 @@ export class AnalysisReportComponent implements OnInit {
   sentimentPieChart:Chart=null;
   sentimentBarChart:Chart=null;
   statisticsData:StatisticsData=null;
+
+  
+
+
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user);
@@ -166,8 +171,9 @@ export class AnalysisReportComponent implements OnInit {
     this.loading=true;
     this.dataService.getChartData(this.selectedProfile).subscribe(
       (statData)=> {
-        this.statisticsData=statData;
-        console.log(this.statisticsData);
+        
+        //this.statisticsData=statData;
+        console.log(statData);
         // this.createMentionChart();
         // this.createSentimentPieChart();
         this.loading=false;
@@ -184,4 +190,5 @@ export class AnalysisReportComponent implements OnInit {
   changeProfile(){
     this.fetchGraphData();
   }
+
 }

@@ -73,7 +73,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   profiles: object = {};
   selectedProfile: string = "";
   user: User;
-
+  showTweet:boolean=false;
   //statistics variables
 
   NerDisplayedColumns: string[] = ["phrase", "tag", "source"];
@@ -189,6 +189,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
     this.stopFeed();
   }
   showMentionDetails(mention: feedObject) {
+    this.showTweet=false;
     this.tweetContainer.nativeElement.innerHTML='';
     this.cardObject = mention;
     let url = "";
@@ -200,7 +201,10 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       url = "https://twitter.com/x/status/" + mention.id;
       
       this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-      (<any>window).twttr.widgets.createTweet(mention.id,this.tweetContainer.nativeElement);
+      (<any>window).twttr.widgets.createTweet(mention.id,this.tweetContainer.nativeElement).then(
+        res => {},
+        err => this.showTweet=true
+      );
     }
   }
 

@@ -34,26 +34,58 @@ $primary-dark-pallete:(
 );
 
 $primary-pallete:(
-    50 : #fce7e9,
-    100 : #f8c4c8,
-    200 : #f39ca3,
-    300 : #ee747e,
-    400 : #ea5762,
-    500 : #e63946,
-    600 : #e3333f,
-    700 : #df2c37,
-    800 : #db242f,
-    900 : #d51720,
+    50 : #eef1ff,
+    100 : #d6dcfe,
+    200 : #bac5fe,
+    300 : #9eaefe,
+    400 : #8a9cfd,
+    500 : #758bfd,
+    600 : #6d83fd,
+    700 : #6278fc,
+    800 : #586efc,
+    900 : #455bfc,
     A100 : #ffffff,
-    A200 : #ffd4d5,
-    A400 : #ffa1a4,
-    A700 : #ff878b,
+    A200 : #ffffff,
+    A400 : #e9ebff,
+    A700 : #cfd5ff,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #000000,
+        400 : #2b2a2a,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$accent-pallete:(
+    50 : #ffebec,
+    100 : #ffcdcf,
+    200 : #ffacaf,
+    300 : #ff8b8e,
+    400 : #ff7276,
+    500 : #ff595e,
+    600 : #ff5156,
+    700 : #ff484c,
+    800 : #ff3e42,
+    900 : #ff2e31,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffdada,
+    A700 : #ffc0c1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ebebeb,
         500 : #ffffff,
         600 : #ffffff,
         700 : #ffffff,
@@ -66,38 +98,7 @@ $primary-pallete:(
     )
 );
 
-$accent-pallete:(
-    50 : #e0f5f7,
-    100 : #b3e7ea,
-    200 : #80d7dc,
-    300 : #4dc7ce,
-    400 : #26bbc4,
-    500 : #00afb9,
-    600 : #00a8b2,
-    700 : #009faa,
-    800 : #0096a2,
-    900 : #008693,
-    A100 : #bef8ff,
-    A200 : #8bf3ff,
-    A400 : #58eeff,
-    A700 : #3febff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
-);
+
 $green-card-1:#dbe7e4;
 $green-card-2:#c5dedd;
 $blue-card-1:#d6e2e9;
@@ -112,13 +113,13 @@ $gray-card-2:#e9ecef;
 $gray-card-3:#dee2e6;
 $gray-card-4:#ced4da;
 
-$dark-bg: #1d3557;
-$dark-nav: #13243b;//#293241;
-$dark-nav-secondary: #3f4244;
+$dark-bg: #202020;
+$dark-nav: #252525;//#293241;
+$dark-nav-secondary: #131313;
 
-$dark-card-1:#1c3150;
-$dark-card-2:#1e385c;
-$dark-card-3:#e63946;
+$dark-card-1:#252525;
+$dark-card-2:#272727;
+$dark-card-3:map-get($primary-pallete, 500 );
 $card-hover-1: $orange-card-4;
 $card-hover-2:$blue-card-3;
 
@@ -167,3 +168,10 @@ $logo: "assets/img/brand/white-text.png";
 
 //palletes
 
+@mixin card-shadow {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25), 
+              0 2px 2px rgba(0,0,0,0.20), 
+              0 4px 4px rgba(0,0,0,0.15), 
+              0 8px 8px rgba(0,0,0,0.10),
+              0 16px 16px rgba(0,0,0,0.05);
+}

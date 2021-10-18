@@ -85,7 +85,7 @@
         <div class='tweet-box d-flex justify-content-center align-items-center'#tweetContainer></div>
       </div>
 
-      <mat-card  *ngIf=" showCard && cardObject.source !== 'twitter'" class="mention-card">
+      <mat-card  *ngIf=" showCard && (cardObject.source !== 'twitter' ||showTweet)" class="mention-card">
         <i (click)="showCard = false" class="fa close-icon fa-close fa-lg"></i>
         <mat-card-header>
           <span mat-card-avatar class='d-flex justify-content-center align-items-center'>
@@ -135,7 +135,7 @@
     <div class='col-md-6'>
       <div class="chart-container">
         <div class="stat-info-cards">
-          <span class='h1'>{{_feedsvc.totalCount}}</span>
+          <span class='h2'>{{_feedsvc.totalCount}}</span>
           <div class='h5'>Total mentions</div>
           
         </div>

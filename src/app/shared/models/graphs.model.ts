@@ -6,25 +6,20 @@ export interface LineChartData {
 }
 export interface StatisticsData {
     tag: string;
-    years: ApiSourceData[];
-    months: ApiSourceData[];
-    days: ApiSourceData[];  
-    hours: ApiSourceData[];
-    mins: ApiSourceData[];
+    years: ApiSourceData;
+    months: ApiSourceData;
+    days: ApiSourceData;  
+    hours: ApiSourceData;
+    mins: ApiSourceData;
   }
 
 export interface ApiSourceData{
-    start: Date;
-    end: Date;
-    total: Number;
-    positive: Number;
-    negative: Number;
-    neutral: Number;
+    aggregate:TimeSeriesData,
     sources:Object;
 }  
 export interface TimeSeriesData{
-    hourly: number[];
-    daily: number[];
-    monthly: number[];
-    yearly: number[];   
+    total: Number[];
+    positive: Number[];
+    negative: Number[];
+    neutral: Number[];   
 }
