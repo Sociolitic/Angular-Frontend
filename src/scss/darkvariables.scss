@@ -66,31 +66,31 @@ $primary-pallete:(
     )
 );
 $accent-pallete:(
-    50 : #ffebec,
-    100 : #ffcdcf,
-    200 : #ffacaf,
-    300 : #ff8b8e,
-    400 : #ff7276,
-    500 : #ff595e,
-    600 : #ff5156,
-    700 : #ff484c,
-    800 : #ff3e42,
-    900 : #ff2e31,
+    50 : #fff3e0,
+    100 : #ffe0b3,
+    200 : #ffcc80,
+    300 : #ffb84d,
+    400 : #ffa826,
+    500 : #ff9900,
+    600 : #ff9100,
+    700 : #ff8600,
+    800 : #ff7c00,
+    900 : #ff6b00,
     A100 : #ffffff,
-    A200 : #ffffff,
-    A400 : #ffdada,
-    A700 : #ffc0c1,
+    A200 : #fff7f2,
+    A400 : #ffd6bf,
+    A700 : #ffc6a6,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #ebebeb,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
         A100 : #000000,
         A200 : #000000,
         A400 : #000000,
@@ -139,7 +139,7 @@ $gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
 $success:rgb(0, 199, 0);
 $primary:map-get($primary-pallete,500);
 $accent: map-get($accent-pallete,500);
-$warn: rgb(255, 208, 0);;
+$warn: red;
 
 
 //typography variables
