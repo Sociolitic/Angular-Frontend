@@ -22,32 +22,38 @@ export class ChartDataService {
     return this.http.get<any>(server+"/data/aggregate-count",options);
   }
 
-  labels(period):string[]{
+  labels(period:string,length:number):string[]{
     console.log(period);
     let res=[];
     let currentDate:Date = new Date();
     switch(period){
-      case 'hourly':{
-        for( let i=23;i>=0;i--){
-          res.push(this.subtractPeriod(currentDate,period,i));
+      case 'mins':{
+        for( let i=0;i<length;i++){
+          res.push(''+i);
         }
         break;
       }
-      case 'daily':{
-        for( let i=29;i>=0;i--){
-          res.push(this.subtractPeriod(currentDate,period,i));
+      case 'hours':{
+        for( let i=0;i<length;i++){
+          res.push(''+i);
         }
         break;
       }
-      case 'monthly':{
-        for( let i=11;i>=0;i--){
-          res.push(this.subtractPeriod(currentDate,period,i));
+      case 'days':{
+        for( let i=0;i<length;i++){
+          res.push(''+i);
         }
         break;
       }
-      case 'yearly':{
-        for( let i=4;i>=0;i--){
-          res.push(this.subtractPeriod(currentDate,period,i));
+      case 'months':{
+        for( let i=0;i<length;i++){
+          res.push(''+i);
+        }
+        break;
+      }
+      case 'years':{
+        for( let i=0;i<length;i++){
+          res.push(''+i);
         }
         break;
       }

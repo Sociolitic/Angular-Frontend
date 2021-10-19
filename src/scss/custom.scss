@@ -243,3 +243,12 @@ body {
 .footers a {color:$text-primary-0;}
 .footers p {color:$text-primary-1}
 .footers ul {line-height:30px;}
+
+.mat-button-toggle{
+  background-color: $dark-card-2;
+  color:$text-primary-1;
+}
+
+.mat-button-toggle-checked {
+  background-color:$accent;
+}

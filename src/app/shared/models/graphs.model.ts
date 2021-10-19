@@ -14,7 +14,10 @@ export interface StatisticsData {
   }
 
 export interface ApiSourceData{
-    aggregate:TimeSeriesData,
+    total: Number[];
+    positive: Number[];
+    negative: Number[];
+    neutral: Number[]; 
     sources:Object;
 }  
 export interface TimeSeriesData{

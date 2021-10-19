@@ -14,6 +14,7 @@ export interface nerAggr {
   source: string;
   tag: string;
   phrase: string;
+  sentiment: string;
 }
 const source = "combinedStream";
 @Injectable({
@@ -122,7 +123,7 @@ export class LiveFeedService {
     } else this.sourceCount[feedItem.source] = 1;
     //this.updateSentiment('combined',feedItem.sentiment);
     this.updateSentiment(feedItem.source, feedItem.sentiment);
-    this.updateNer(feedItem.source, feedItem.ner);
+    this.updateNer(feedItem.source, feedItem.ner,feedItem.sentiment);
   }
 
   updateSentiment(source: string, sentiment: string) {
@@ -130,7 +131,7 @@ export class LiveFeedService {
       this.sentimentCount[source][sentMap[sentiment]] += 1;
     else this.sentimentCount[source] = [0, 0, 0];
   }
-  updateNer(source: string, ner: Ner) {
+  updateNer(source: string, ner: Ner,sentiment:string) {
     
     for (let i in ner)
       ner[i].forEach((element) => {
@@ -138,6 +139,7 @@ export class LiveFeedService {
           source: source,
           tag: i,
           phrase: element,
+          sentiment: sentiment
         };
         this.currentNer.push(aggr)
         this.nerCount.push(aggr);

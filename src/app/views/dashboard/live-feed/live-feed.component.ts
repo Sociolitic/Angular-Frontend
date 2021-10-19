@@ -30,6 +30,7 @@ import {
   SafeResourceUrl,
   SafeUrl,
 } from "@angular/platform-browser";
+import { MatButtonToggleChange } from "@angular/material/button-toggle";
 Chart.defaults.global.defaultFontColor='#eee';
 export interface feedSource {
   source_name: string;
@@ -42,6 +43,7 @@ export interface feedSource {
   styleUrls: ["./live-feed.component.scss"],
 })
 export class LiveFeedComponent implements OnInit, OnDestroy {
+  sidenav=false;
   logos = mediaImages;
   @ViewChild("tweetContainer") tweetContainer: ElementRef<any>;
   @ViewChild("FeedMatTable") table: MatTable<feedObject>;
@@ -76,7 +78,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   showTweet:boolean=false;
   //statistics variables
 
-  NerDisplayedColumns: string[] = ["phrase", "tag", "source"];
+  NerDisplayedColumns: string[] = ["phrase", "tag", "source","sentiment"];
   loadingMentions: boolean = true;
   loadingSentiment: boolean = true;
   loadingNer: boolean = true;
@@ -161,6 +163,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
           const data = res.aggregate;
           this.updateMentionChart(data['sources']);
           this.updateSentimentChart(data["sentiment"]);
+          console.log(data.ner);
           if (data.ner.length) {
             data.ner.forEach((element:nerAggr)=>this.nerGridSource.data.push(element));
             this.NerTable.renderRows();
@@ -357,5 +360,8 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
             this._feedsvc.totalCount
         : 0
     );
+  }
+  sentimentChange(event:MatButtonToggleChange){
+    console.log(event.value);
   }
 }

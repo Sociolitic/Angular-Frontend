@@ -58,27 +58,58 @@
 
 
     .header{
-        padding: 30px;
         height:90vh;
         background-image:linear-gradient(rgba(17, 15, 36, 0.877), rgba(17, 15, 36, 0.877)), url('/assets/img/background/social-background.jpg');
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
     .banner-container{
+        height:100%;
         animation: banner-anim 700ms ease-out;
         animation-fill-mode: backwards;
     }
     .banner-text{
+        margin-top: 25%;
         color: $text-light-0;
             font-family: monospace;
-            font-size: 3.4rem;
-            line-height: 3.4rem;
-            font-weight: 300;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            font-weight: 200;
             text-align: center;
     }
-
+    .banner-img-container{
+        height:100%;
+        position: relative;
+        background-color: rgba(0,0,0,0.5);
+        overflow-y: hidden;
+        &>.img1{
+            position: absolute;
+            top:25%;
+            width:60%;
+            height:auto;
+            z-index:3;
+            -webkit-box-reflect: below 3rem linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+            @include card-shadow;
+        }
+        &>.img2{
+            position: absolute;
+            top:28%;
+            width:45%;
+            height:auto;
+            left:5%;
+            
+            -webkit-box-reflect: below 3rem linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+            @include card-shadow;
+        }
+        &>.img3{
+            position: absolute;
+            top:28%;
+            width:45%;
+            
+            right:5%;
+            height:auto;
+            -webkit-box-reflect: below 3rem linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+            @include card-shadow;
+        }
+    }
     .card,.card-header,.card-body{
         text-align: center;
         background: None;

@@ -1,4 +1,5 @@
 <div class="container-fluid mb-3 px-0">
+
   <div class="row feed-row gx-2">
     <div class="col-md-7">
       <div class="mention-container">
@@ -136,7 +137,7 @@
       <div class="chart-container">
         <div class="stat-info-cards">
           <span class='h2'>{{_feedsvc.totalCount}}</span>
-          <div class='h5'>Total mentions</div>
+          <div class='h6'>Total mentions</div>
           
         </div>
         <div class="chart-wrapper">
@@ -160,9 +161,9 @@
     <div class='col-md-6'>
       <div class="chart-container">
         <div class="stat-info-cards row">
-          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[0]}} ({{sentimentCounter(0)}}%)</span><div class='h5'>Positive mentions</div> </div>
-          <div class='col-4'> <span class='h2'>{{_feedsvc.sentimentCounter[1]}} ({{sentimentCounter(1)}}%)</span><div class='h5'>Negative mentions</div></div>
-          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[2]}} ({{sentimentCounter(2)}}%)</span> <div class='h5'>Neutral mentions</div> </div>
+          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[0]}} ({{sentimentCounter(0)}}%)</span><div class='h6'>Positive mentions</div> </div>
+          <div class='col-4'> <span class='h2'>{{_feedsvc.sentimentCounter[1]}} ({{sentimentCounter(1)}}%)</span><div class='h6'>Negative mentions</div></div>
+          <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[2]}} ({{sentimentCounter(2)}}%)</span> <div class='h6'>Neutral mentions</div> </div>
         </div>
           <div class="chart-wrapper">
             <!-- <div
@@ -191,8 +192,25 @@
     </div>
   </div>
   <div class='row g-3'>
-    <div class='col-md-6'>
-      <div class="mention-container">
+    <div class='col-md-8'>
+      
+      <mat-sidenav-container hasBackdrop='false' class="mention-container" >
+        <mat-sidenav [opened]='sidenav' mode="over" position="end">
+          <div class="table-sidenav d-flex flex-column p-2">
+            <button class='sidenav-close-btn mb-3'mat-icon-button color="primary" (click)='sidenav=!sidenav'aria-label="Example icon button with a delete icon">
+            <mat-icon>close</mat-icon>
+            </button>
+            <span class='h6'>Sentiment</span>
+            <mat-button-toggle-group color='primary'(change)='sentimentChange($event)' multiple>
+              <mat-button-toggle value="Positive">Positive</mat-button-toggle>
+              <mat-button-toggle value="Neutral">Neutral</mat-button-toggle>
+              <mat-button-toggle value="Negative">Negative</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </mat-sidenav>
+        <button class='sidenav-btn' mat-mini-fab color="primary" (click)='sidenav=!sidenav'aria-label="Example icon button with a delete icon">
+          <i class="fa fa-filter"></i>
+        </button>
         <table mat-table #NerMatTable [dataSource]='nerGridSource'>
           <ng-container matColumnDef="phrase">
             <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Phrase</th>
@@ -213,13 +231,23 @@
 
             </td>
           </ng-container>
+          <ng-container matColumnDef="sentiment">
+            <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Sentiment</th>
+            <td mat-cell *matCellDef="let element" class='mat-cell mx-auto'
+            [ngClass]='{"sentiment-icon-positive":element.sentiment=="Positive","sentiment-icon-negative":element.sentiment=="Negative","sentiment-icon-neutral":element.sentiment=="Neutral"}'
+            >
+              {{element.sentiment}}
+
+            </td>
+          </ng-container>
           <tr mat-header-row class='mat-header-row dark-card-3' *matHeaderRowDef="NerDisplayedColumns"></tr>
             <tr mat-row class='mat-row'
              *matRowDef="let row; columns: NerDisplayedColumns"
              ></tr>
         </table>
-      </div>
+      </mat-sidenav-container>
     </div>
-  </div>
+    </div>
+  
   
 </div>

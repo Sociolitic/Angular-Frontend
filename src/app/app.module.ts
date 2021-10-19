@@ -96,6 +96,8 @@ import { ScrollAnimDirective } from './containers/home/scroll-anim.directive';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { LoadingAnimationComponent } from './views/loading-animation/loading-animation.component';
 import { SocialIconsComponent } from './views/social-icons/social-icons.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   imports: [
     BrowserModule,
@@ -146,6 +148,8 @@ import { SocialIconsComponent } from './views/social-icons/social-icons.componen
     MatTooltipModule,
     NgxStripeModule.forRoot('pk_test_51HJE3RGX3LiFGzdnbkkeuOOHWoT3cR3HjadPMBGA7ftisLj0iihOIWbI9EqQZP7H65Dd0ElkgwhJ7y8jKdjQt8Ob00bbCbdUAY'),
     GoogleChartsModule,
+    MatSidenavModule,
+    MatButtonToggleModule
   ],
   declarations: [
     AppComponent,

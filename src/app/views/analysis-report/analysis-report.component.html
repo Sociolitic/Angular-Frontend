@@ -32,13 +32,15 @@
         <mat-form-field appearance="fill" color='accent'>
           <mat-label>Select Analysis Period</mat-label>
           <mat-select
+            [disabled]='!statisticsData'
             [(ngModel)]="period"
             (selectionChange)="refreshGraphPeriod()"
           >
-            <mat-option value="hourly">last 24 hours</mat-option>
-            <mat-option value="daily">this month</mat-option>
-            <mat-option value="monthly">this year</mat-option>
-            <mat-option value="yearly">last five years</mat-option>
+            <mat-option [disabled]='!(statisticsData && statisticsData.mins)' value="mins">This hour</mat-option>
+            <mat-option  [disabled]='!(statisticsData && statisticsData.hours)' value="hours">Today</mat-option>
+            <mat-option  [disabled]='!(statisticsData && statisticsData.days)' value="days">this month</mat-option>
+            <mat-option  [disabled]='!(statisticsData && statisticsData.months)' value="months">this year</mat-option>
+            <mat-option  [disabled]='!(statisticsData && statisticsData.years)' value="years">last five years</mat-option>
           </mat-select>
         </mat-form-field>
       </li>
@@ -84,7 +86,7 @@
           </div>
         </mat-menu>
       </div>
-      <div class="card-body card-invert-1">
+      <div class="card-body dark-card-1">
         <div
           class="
             spinner-container
@@ -132,7 +134,7 @@
           </div>
         </mat-menu>
       </div>
-      <div class="card-body card-invert-1">
+      <div class="card-body dark-card-1">
         <div
           class="
             spinner-container

@@ -43,6 +43,14 @@
     border-radius: 4px;
     background-color:$dark-card-1;
     @include card-shadow;
+    position:relative;
+    
+}
+.filter-button{
+    position:absolute;
+    top:0;
+    right:-3rem;
+    width:3rem;
 }
 .mention-card {
     border-radius: 4px;
@@ -134,7 +142,7 @@
     //border-radius: 4px;
 }
 .stat-info-cards{
-    padding: 0.6rem 1.25rem 1rem 1.25rem;
+    padding: 0.6rem 1.25rem 0 1.25rem;
     color: $text-primary-2;
 }
 .chart-container{
@@ -180,4 +188,13 @@
         transform: scaleY(1);
         opacity:1;
     }
+}
+.sidenav-btn{
+
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+.table-sidenav{
+    color:$text-primary-2;
 }
