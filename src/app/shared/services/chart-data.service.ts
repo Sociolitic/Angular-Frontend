@@ -10,9 +10,21 @@ import { FireLoginService } from './fire-login.service';
 export class ChartDataService {
 
   constructor(private http: HttpClient,private fireAuth: FireLoginService) { }
+
+  getNerData(profileId:string){
+    const bearer:string = this.fireAuth.getBearer();
+    const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
+    const params = new HttpParams().set('q',profileId);
+    const options ={
+      headers:headers,
+      params: params
+    }
+    return this.http.get<any>(server+"/data/aggregate-ner-count",options);
+  }
   getChartData(profileId:string):Observable<any>{
     console.log(profileId)
     const bearer:string = this.fireAuth.getBearer();
+    console.log(bearer);
     const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
     const params = new HttpParams().set('q',profileId);
     const options ={
@@ -23,7 +35,7 @@ export class ChartDataService {
   }
 
   labels(period:string,length:number):string[]{
-    console.log(period);
+    //console.log(period);
     let res=[];
     let currentDate:Date = new Date();
     switch(period){
@@ -59,7 +71,7 @@ export class ChartDataService {
       }
       default: break;
     }
-    console.log(res);
+    //console.log(res);
     return res;
   }
 

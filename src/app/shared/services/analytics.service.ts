@@ -9,6 +9,20 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class AnalyticsService {
 
   constructor(private http: HttpClient,private fireAuth: FireLoginService) { }
+  startAggregate(profileId:string){
+    console.log(profileId);
+    const bearer:string = this.fireAuth.getBearer();
+    const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
+    const params = new HttpParams().set('q',profileId);
+    const options ={
+      headers:headers,
+      params: params
+    }
+    this.http.get<any>(server+"/data/aggregate",options).subscribe(
+      res=>console.log(res),
+      err => console.log(err)
+    )
+  }
   brandRecommendations(profileId:string){
     const bearer:string = this.fireAuth.getBearer();
     const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
@@ -21,6 +35,7 @@ export class AnalyticsService {
   }
 
   competitorRecommendations(profileId:string){
+    console.log(profileId);
     const bearer:string = this.fireAuth.getBearer();
     const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
     const params = new HttpParams().set('q',profileId);

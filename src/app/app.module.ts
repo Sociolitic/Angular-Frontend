@@ -98,6 +98,10 @@ import { LoadingAnimationComponent } from './views/loading-animation/loading-ani
 import { SocialIconsComponent } from './views/social-icons/social-icons.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { NerFilterComponent } from './views/dashboard/ner-filter/ner-filter.component';
+import { LoadingBgComponent } from './views/loading-animation/loading-bg/loading-bg.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -149,7 +153,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     NgxStripeModule.forRoot('pk_test_51HJE3RGX3LiFGzdnbkkeuOOHWoT3cR3HjadPMBGA7ftisLj0iihOIWbI9EqQZP7H65Dd0ElkgwhJ7y8jKdjQt8Ob00bbCbdUAY'),
     GoogleChartsModule,
     MatSidenavModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatPaginatorModule
+  
   ],
   declarations: [
     AppComponent,
@@ -175,6 +181,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     ScrollAnimDirective,
     LoadingAnimationComponent,
     SocialIconsComponent,
+    NerFilterComponent,
+    LoadingBgComponent,
     
   ],
   providers: [

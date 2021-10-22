@@ -17,6 +17,9 @@ import {
 import { User } from "../../shared/models/user.model";
 import { BrandRegistrationService } from "../../shared/services/brand-registration.service";
 import { AnalyticsService } from "../../shared/services/analytics.service";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
+import { nerAggr } from "../../shared/services/live-feed.service";
+import { nerFilterObj } from "../dashboard/ner-filter/ner-filter.component";
 
 @Component({
   selector: "app-analysis-report",
@@ -24,6 +27,17 @@ import { AnalyticsService } from "../../shared/services/analytics.service";
   styleUrls: ["./analysis-report.component.scss"],
 })
 export class AnalysisReportComponent implements OnInit {
+
+  @ViewChild("NerMatTable") NerTable: MatTable<nerAggr>;
+  nerGridSource: MatTableDataSource<nerAggr> = new MatTableDataSource<nerAggr>([]);
+  NerDisplayedColumns: string[] = ["phrase", "tag", "source","sentiment","count"];
+  
+  showInfo1:boolean=false;
+  showInfo2:boolean=false;
+  showInfo3:boolean=false;
+  showInfo4:boolean=false;
+  showInfo5:boolean=false;
+  
   constructor(
     private dataService: ChartDataService,
     private brandReg: BrandRegistrationService,
@@ -35,10 +49,18 @@ export class AnalysisReportComponent implements OnInit {
   user: User;
   mentionChart: Chart = null;
   sentimentPieChart: Chart = null;
-  sentimentBarChart: Chart = null;
+  sentimentRadarChart: Chart = null;
+  sentimentLineChart: Chart = null;
   statisticsData: StatisticsData = null;
+  descAnalytics:Object=null;
+  nerAggrData:Object=null;
 
+  applyNerFilters(filters: nerFilterObj) {
+    if (filters) this.nerGridSource.filter = JSON.stringify(filters);
+    //console.dir(filters);
+  }
   ngOnInit(): void {
+    this._setFilterPredicate();
     this.user = JSON.parse(localStorage.getItem("user"));
     this.brandReg.findProfiles(this.user.profiles, this.user.bearer).subscribe(
       (res) => {
@@ -46,21 +68,77 @@ export class AnalysisReportComponent implements OnInit {
         this.selectedProfile = this.user.profiles[0];
         this.initializeMentionChart();
         this.initializeSentimentPieChart();
+        this.initializeSentimentRadarChart();
+        this.initializeSentimentLineChart();
         this.changeProfile();
-        this.fetchAnalytics()
       },
       (err) => console.log("error in fetching profiles", err)
     );
   }
 
+  private _setFilterPredicate(): void {
+
+    this.nerGridSource.filterPredicate = (
+      feedItem: nerAggr,
+      filters: string
+    ) => {
+      let filter: nerFilterObj = JSON.parse(filters);
+      let keywordsBool = true;
+      let sourceBool = true;
+      let tagBool = true;
+      if (filter.keywords.length) {
+        switch (filter.booleanFuntion) {
+          case "AND": {
+            if (!filter.keywords.every((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+          case "OR": {
+            if (!filter.keywords.some((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+          case "XOR": {
+            if (
+              filter.keywords.filter((val) => feedItem.phrase.includes(val))
+                .length != 1
+            )
+              keywordsBool = false;
+            break;
+          }
+          case "NOR": {
+            if (filter.keywords.some((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+        }
+      }
+      if (filter.sources.length && !filter.sources.includes(feedItem.source)) {
+        sourceBool = false;
+      }
+      if (filter.tag.length && !filter.tag.includes(feedItem.tag)) {
+        tagBool = false;
+      }
+      let sentimentBool = filter.sentiment.length
+        ? filter.sentiment.indexOf(feedItem.sentiment)> -1
+        : true;
+      return keywordsBool && sourceBool && sentimentBool && tagBool;
+    };
+  }
+
+
+  startAggr(){
+    //console.log("starting agr")
+    this.analyticsSvc.startAggregate(this.selectedProfile);
+  }
   mediaArray = [
-    { name: "reddit", mentionCompleted: false, sentimentPieCompleted: false },
-    // {name: "insta", mentionCompleted: false, sentimentPieCompleted:false},
-    { name: "twitter", mentionCompleted: false, sentimentPieCompleted: false },
-    { name: "youtube", mentionCompleted: false, sentimentPieCompleted: false },
-    { name: "tumblr", mentionCompleted: false, sentimentPieCompleted: false },
+    { name: "reddit", mentionCompleted: false, sentimentLineCompleted: false },
+    { name: "twitter", mentionCompleted: false, sentimentLineCompleted: false },
+    { name: "youtube", mentionCompleted: false, sentimentLineCompleted: false },
+    { name: "tumblr", mentionCompleted: false, sentimentLineCompleted: false },
   ];
   pieChartSource = "total";
+  sentimentLineSource = 'total';
   allComplete: boolean = false;
   period: string = "hours";
 
@@ -68,7 +146,7 @@ export class AnalysisReportComponent implements OnInit {
     this.allComplete =
       this.mediaArray != null &&
       this.mediaArray.every((t) => t.mentionCompleted);
-    //this.createMentionChart();
+    this.createMentionChart();
   }
 
   someComplete(): boolean {
@@ -119,6 +197,36 @@ export class AnalysisReportComponent implements OnInit {
       },
     });
   }
+
+  initializeSentimentLineChart() {
+    this.sentimentLineChart = new Chart("sentimentlinecanvas", {
+      type: "line",
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+        },
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                display: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                display: false,
+              },
+            },
+          ],
+        },
+      },
+    });
+  }
   initializeSentimentPieChart() {
     this.sentimentPieChart = new Chart("piecanvas", {
       type: "pie",
@@ -132,10 +240,42 @@ export class AnalysisReportComponent implements OnInit {
       },
     });
   }
+
+  initializeSentimentRadarChart() {
+    this.sentimentRadarChart = new Chart("radarcanvas", {
+      type: "radar",
+      data:{
+        labels:['positive','negative','neutral'],
+        datasets:[],
+      },
+      options: {
+        
+        scale:{
+          pointLabels:{
+            fontSize:16
+          },
+          ticks:{
+            backdropColor:'rgba(0,0,0,0)',
+            display:false
+          },
+          gridLines:{
+            color:'rgba(255,255,255,0.6)',
+            display:false
+          }
+        },
+        maintainAspectRatio:false,
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+        },
+      },
+    });
+  }
   createMentionChart() {
     let lineDataset = [];
     let counter = 0;
-    //console.log(this.mediaArray);
     this.mediaArray.forEach((source) => {
       if (source.mentionCompleted) {
         let lineData: number[] =
@@ -149,7 +289,6 @@ export class AnalysisReportComponent implements OnInit {
         counter++;
       }
     });
-    //console.log(lineDataset);
     if (lineDataset.length === 0) {
       lineDataset.push({
         data: this.statisticsData[this.period].total,
@@ -166,6 +305,54 @@ export class AnalysisReportComponent implements OnInit {
       };
       this.mentionChart.update();
     }
+  }
+
+  createSentimentLineChart() {
+    let source = this.sentimentLineSource;
+    let positiveCount:number[];
+    let negativeCount:number[];
+    let neutralCount:number[];
+    let labellen=this.statisticsData[this.period]['positive'].length;
+    if(source==='total'){
+      positiveCount=this.statisticsData[this.period]['positive'];
+      negativeCount=this.statisticsData[this.period]['negative']
+      neutralCount=this.statisticsData[this.period]['neutral']
+    }
+    else{
+      positiveCount = this.statisticsData[this.period]["sources"]
+    [source]["positive"]
+     negativeCount = this.statisticsData[this.period]["sources"][
+      source
+    ]["negative"]
+    neutralCount = this.statisticsData[this.period]["sources"][
+      source
+    ]["neutral"]
+}
+    this.sentimentLineChart.data.labels=this.dataService.labels(this.period,labellen);
+    this.sentimentLineChart.data.datasets=[
+      {
+        label:"positive",
+        data:positiveCount,
+        backgroundColor:graphBackgroundTransparent[3],
+        borderColor:graphBorderColors[3]
+      },
+      {
+        label:"negative",
+        data:negativeCount,
+        backgroundColor:graphBackgroundTransparent[4],
+        borderColor:graphBorderColors[4]
+
+      },
+      {
+        label:"neutral",
+        data:neutralCount,
+        backgroundColor:graphBackgroundTransparent[5],
+        borderColor:graphBorderColors[5]
+
+      },
+    ]
+    this.sentimentLineChart.update();
+    
   }
   createSentimentPieChart() {
     let source = this.pieChartSource;
@@ -201,47 +388,149 @@ export class AnalysisReportComponent implements OnInit {
       this.sentimentPieChart.update();
     }
   }
+
+  createSentimentRadarChart() {
+    let l = graphBackgroundTransparent.length;
+    let positiveCount=0;
+    let negativeCount=0;
+    let neutralCount=0;
+    let counter=0;
+    this.sentimentRadarChart.data.datasets=[];
+    for(let source in this.statisticsData[this.period]['sources']){
+      positiveCount = this.statisticsData[this.period]["sources"]
+    [source]["positive"].reduce((a, b) => a + b, 0);
+     negativeCount = this.statisticsData[this.period]["sources"][
+      source
+    ]["negative"].reduce((a, b) => a + b, 0);
+    neutralCount = this.statisticsData[this.period]["sources"][
+      source
+    ]["neutral"].reduce((a, b) => a + b, 0);
+      this.sentimentRadarChart.data.datasets.push(
+        {
+          label:source,
+          data:[positiveCount,negativeCount,neutralCount],
+          backgroundColor:graphBackgroundTransparent[counter%l],
+          borderColor: graphBorderColors[counter%l]
+          
+        }
+      )
+      ++counter;
+    }
+    
+    this.sentimentRadarChart.update();
+  }
   fetchGraphData() {
     this.loading = true;
     this.dataService.getChartData(this.selectedProfile).subscribe(
       (statData) => {
+        console.log(statData);
         this.statisticsData = {
           tag: statData["tag"],
-          mins: statData["mins"] ? statData["mins"][0] : null,
-          hours: statData["hours"] ? statData["hours"][0] : null,
-          days: statData["days"] ? statData["days"][0] : null,
-          months: statData["months"] ? statData["months"][0] : null,
-          years: statData["years"] ? statData["years"][0] : null,
+          mins: this.IsPresent(statData["mins"]) ? statData["mins"] : null,
+          hours: this.IsPresent(statData["hours"]) ? statData["hours"] : null,
+          days: this.IsPresent(statData["days"]) ? statData["days"] : null,
+          months: this.IsPresent(statData["months"]) ? statData["months"] : null,
+          years: this.IsPresent(statData["years"]) ? statData["years"] : null,
         };
-        console.log(this.statisticsData);
-        console.log(statData);
+        //console.log(this.statisticsData);
+        
         this.period = 
         this.statisticsData.mins?'mins':
         this.statisticsData.hours?'hours':
         this.statisticsData.days?'days':
         this.statisticsData.months?'months':
         this.statisticsData.years?'years':null;
-        this.createMentionChart();
-        this.createSentimentPieChart();
+        this.createGraphs();
         this.loading = false;
       },
       (error) => {
+        this.loading=false;
         console.log("error fetching data" + error);
       }
     );
+    this.dataService.getNerData(this.selectedProfile).subscribe(
+      (res)=>{
+        console.log("NER data:");
+        console.log(res);
+        this.nerAggrData=res;
+        this.initializeGrid();
+      },
+      (err)=>{
+        console.log("ERR FETCHING NER",err);
+      }
+    )
   }
   refreshGraphPeriod(){
-    this.createSentimentPieChart();
-    this.createMentionChart();
+    this.createGraphs();
+    this.initializeGrid();
   }
   changeProfile() {
     this.fetchGraphData();
+    this.fetchAnalytics();
   }
-
+  initializeGrid(){
+    console.log("NER GRID called");
+    this.nerGridSource.data=[];
+    if(this.nerAggrData[this.period]){
+    for(let i in this.nerAggrData[this.period]){
+      for(let j in this.nerAggrData[this.period][i])
+        this.nerGridSource.data.push(this.nerAggrData[this.period][i][j]);
+    }}
+    //this.nerGridSource.data=res[this.period]?res[this.period][0]:[];
+    console.log(this.nerGridSource.data);
+    this.NerTable.renderRows();
+  }
   fetchAnalytics(){
-    this.analyticsSvc.brandRecommendations(this.selectedProfile).subscribe(
-      res => console.log(res),
+    //console.log("fetch analytics",this.selectedProfile);
+    this.analyticsSvc.descriptiveAnalytics(this.selectedProfile,10).subscribe(
+      res => {
+        
+      console.log(res);
+      this.descAnalytics={
+        reddit:{
+          hotcomment:res['reddit']["hottopicbasedoncommentscount"]['title'],
+          hotscore:res['reddit']["hottopicbasedonscore"]['title'],
+        },
+        tumblr:{
+          hashtags:res["tumbulr"]['hashtags']
+        },
+        youtube:{
+          engagingCh:res["youtube"]["ChannelWithMoreDiscussions"],
+          categories:res["youtube"]["categoriesOfMentions"],
+          hashtags:res['youtube']['hashtags'],
+          influencingChannels:res['youtube']['influencingChannels']
+        },
+        twitter:{
+          hashtags:res['twitter']['hashtags'],
+          influencers:res['twitter']['influencingUser']['active_users']
+        }
+      };
+      console.log(this.descAnalytics)
+      },
+      err => console.log(err)
+    )
+
+    this.analyticsSvc.textAnalytics(this.selectedProfile,10).subscribe(
+      res=> {
+        console.log("text analytics working");
+        console.log(res);
+      },
       err => console.log(err)
     )
   }
+  IsPresent(obj){
+    if(!obj) return false;
+    for(let i in obj)
+      return true
+    return false;
+  }
+
+  createGraphs(){
+    this.createMentionChart();
+    this.createSentimentPieChart();
+    this.createSentimentRadarChart();
+    this.createSentimentLineChart();
+  }
 }
+
+

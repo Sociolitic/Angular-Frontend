@@ -193,7 +193,12 @@
 
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    right: 2rem;
+    z-index: 2;
+    //transform: translateX(100%);
+    &-parent{
+        position:relative;
+    } 
 }
 .table-sidenav{
     color:$text-primary-2;

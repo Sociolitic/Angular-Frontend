@@ -1,0 +1,40 @@
+.load-bg{
+    //height: 100%;
+    position: absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    bottom: 0;
+    right:0;
+    //animation: load-anim 1.5s forwards infinite alternate;
+    overflow:hidden;
+}
+.load-ele{
+    height:100%;
+    width:100%;
+    background-color: rgb(70, 70, 70);
+    animation: ele-anim 1s cubic-bezier(.89,.09,.42,.91) infinite;
+}
+
+@keyframes load-anim {
+    from{
+        background-color: #181818;
+        opacity:1;
+    }
+    to{
+        background-color: rgb(37, 37, 37);
+        opacity: 0;
+    }
+}
+@keyframes ele-anim{
+    from{
+        transform: scale(0,0);
+        opacity: 1;
+        //transform: rotate(0deg);
+    }
+    to{
+        transform: scale(1,1);
+        //transform: rotate(360deg);
+        opacity: 0;
+    }
+}

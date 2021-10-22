@@ -1,28 +1,48 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-
-export interface filterObj{
+export interface nerFilterObj{
   keywords: string[];
   sources:string[];
-  booleanFuntion:string;
   sentiment:string[];
+  booleanFuntion:string;
+  tag:string;
 }
 @Component({
-  selector: 'app-feed-filter',
-  templateUrl: './feed-filter.component.html',
-  styleUrls: ['./feed-filter.component.scss']
+  selector: 'app-ner-filter',
+  templateUrl: './ner-filter.component.html',
+  styleUrls: ['./ner-filter.component.scss']
 })
-export class FeedFilterComponent implements OnInit {
+export class NerFilterComponent implements OnInit {
   sourceList:string[]=['youtube','twitter','reddit','tumblr'];
+  tagList:string[]=["CARDINAL",
+  "DATE",
+  "EVENT",
+  "FAC",
+  "GPE",
+  "LANGUAGE",
+  "LAW",
+  "LOC",
+  "MONEY",
+  "NORP",
+  "ORDINAL",
+  "ORG",
+  "PERCENT",
+  "PERSON",
+  "PRODUCT",
+  "QUNATITY",
+  "TIME",
+  "WORK_OF_ART",]
+  sentiment:string[]=[];
   keywords= new Set<string>();
   filterGroup:FormGroup= new FormGroup({
     keywordControl: new FormControl(''),
     sourceControl: new FormControl(),
     booleanControl: new FormControl('OR'),
+    tagControl: new FormControl()
   });
-  @Output() filterEmitter: EventEmitter<filterObj> = new EventEmitter<filterObj>();
-  sentiment:string[]=[];
+  @Output() filterEmitter: EventEmitter<nerFilterObj> = new EventEmitter<nerFilterObj>();
+  
   ngOnInit(): void {
   }
   constructor(){}
@@ -43,12 +63,14 @@ export class FeedFilterComponent implements OnInit {
 
   applyFilters(){
     
-      let appliedFilters: filterObj = {
+      let appliedFilters: nerFilterObj = {
         keywords: Array.from(this.keywords),
         sources: this.filterGroup.get('sourceControl').value?
           this.filterGroup.get('sourceControl').value:[],
         booleanFuntion: this.filterGroup.get('booleanControl').value,
-        sentiment: this.sentiment
+        sentiment: this.sentiment,
+        tag: this.filterGroup.get('tagControl').value?
+        this.filterGroup.get('tagControl').value:[],
       }
       console.dir(appliedFilters);
       this.filterEmitter.emit(appliedFilters);

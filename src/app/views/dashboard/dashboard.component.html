@@ -1,4 +1,4 @@
-<div class="container-fluid wrapper dark-nav-secondary mb-3">
+<div class="container-fluid wrapper nav-wrapper sticky-top dark-nav-secondary mb-3">
   <nav class="navbar navbar-expand-md navbar-light px-0">
     <span class="navbar-brand">LIVE FEED</span>
     <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
@@ -37,10 +37,6 @@
             </mat-select>
           </mat-form-field>
         </li>
-        <li class="nav-item mx-2">
-          <app-feed-filter (filterEmitter)="applyFilters($event)">
-          </app-feed-filter>
-        </li>
       </ul>
     </div>
   </nav>
@@ -49,7 +45,7 @@
     <div class="mb-3">
       <app-live-feed
         [changeProfile]="inputProfile"
-        [applyFilters]="filters"
+        
       >
       </app-live-feed>
     </div>

@@ -1,5 +1,4 @@
-
-  <form class='filter-section d-flex flex-column' [formGroup]='filterGroup'>
+<form class='filter-section d-flex flex-column' [formGroup]='filterGroup'>
     <div class='keyword-input-container'>
     <mat-form-field color="accent" class="keyword-form-field mb-3">
       <mat-label>Filter by keywords</mat-label>
@@ -19,6 +18,13 @@
         <mat-option *ngFor="let source of sourceList" [value]="source">{{source}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field class='select-form-field' color="accent" appearance="fill" class='mb-3'>
+      <mat-label>Tag</mat-label>
+      <mat-select formControlName='tagControl' multiple>
+        <mat-option *ngFor="let tag of tagList" [value]="tag">{{tag}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     
     <span class='h6'>Sentiment</span>
     <mat-button-toggle-group color='primary'(change)='sentimentChange($event)' class='align-self-start mb-3'multiple>
@@ -26,23 +32,24 @@
       <mat-button-toggle value="Neutral">Neutral</mat-button-toggle>
       <mat-button-toggle value="Negative">Negative</mat-button-toggle>
     </mat-button-toggle-group>
+
     <mat-expansion-panel>
     
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Advanced
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-form-field appearance="fill" color="accent">
-        <mat-label>Select a boolean funtion</mat-label>
-        <mat-select formControlName='booleanControl'>
-          <mat-option value="AND">AND</mat-option>
-          <mat-option value="OR">OR</mat-option>
-          <mat-option value="XOR">XOR</mat-option>
-          <mat-option value="NOR">NOR</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-expansion-panel>  
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Advanced
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="fill" color="accent">
+          <mat-label>Select a boolean funtion</mat-label>
+          <mat-select formControlName='booleanControl'>
+            <mat-option value="AND">AND</mat-option>
+            <mat-option value="OR">OR</mat-option>
+            <mat-option value="XOR">XOR</mat-option>
+            <mat-option value="NOR">NOR</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-expansion-panel> 
   <div class='form-footer'>
     <button mat-button color='primary'(click)='clearFilters()'>
       Clear All
@@ -50,8 +57,3 @@
     <button mat-button color='accent' (click)='applyFilters()'>Apply</button>
   </div>
   </form>
-
-
-
-
-

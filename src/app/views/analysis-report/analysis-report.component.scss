@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px 10px 0 0;
+    border-radius: 4px 4px 0 0;
 
 }
 ul{
@@ -39,7 +39,7 @@ ul{
 .card-body{
     color: $text-primary-0;
     position: relative;
-    border-radius:0 0 10px 10px;
+    border-radius:0 0 4px 4px;
 
 }
  .spinner-container {
@@ -49,7 +49,7 @@ ul{
     width:100%;
     height:100%;
     background-color: rgb(rgba(209, 209, 209, 0.384),0.4);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 4px 4px;
  }
  .navbar-brand {
     color: $text-primary-0;
@@ -61,6 +61,155 @@ ul{
       }
   }
   .card{
-    border-radius: 10px;
+    border-radius: 4px;
 
   }
+  .wrapper{
+      z-index: 3;
+  }
+
+  .radarchart{
+      min-height:70vh;
+  }
+
+  .descAnalytics{
+      color:white;
+      overflow-y: auto;
+      height:70vh;
+      border-radius: 4px;
+      background-color: $dark-card-1;
+      &>mat-tab{
+          height:100%;
+      }
+      .mattab {
+        .h4{
+        color: $text-primary-2
+      }
+      mat-list mat-list-item{
+          &:nth-child(even){
+            background-color: rgba($primary,0.3);
+
+          }
+          &:nth-child(odd){
+            background-color: $dark-card-2;
+
+          }
+
+      }
+    }
+
+  }
+  .desc-header{
+    color:$accent;
+}
+.info-card{
+    background:rgba(black,0.8);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    z-index:1;
+    transform-origin:top;
+    animation: info-drop 500ms ease-in-out;
+}
+.text-container{
+    padding:1rem;
+    height:100%;
+    animation: text-slide 500ms backwards ease-in-out 1s;
+    text-align: center;
+}
+@keyframes text-slide{
+    from{
+        
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes info-drop {
+    from{
+        
+        transform: scaleY(0);
+    }
+    to{
+        transform:scaleX(1);
+    }
+}
+
+.sentiment-icon{
+    &-positive{
+        color:$success;
+
+    }
+    &-negative{
+        color:$warn;
+        
+    }
+    &-neutral{
+        color:$text-primary-2;
+        
+    }
+}
+.mat-cell,
+.mat-header-cell {
+    color: $text-primary-1;
+  word-wrap: initial;
+  padding: 0px 10px;
+  line-break: unset;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  text-align: center;
+}
+.mat-table {
+    background-color: $dark-card-1;
+    width: 100%;
+}
+.second {
+    text-align: left;
+    text-overflow: ellipsis;
+    max-width:400px;
+}
+
+.mat-row {
+    transition: all 200ms ease-out;
+    animation: shift-anim 100ms;
+    transform-origin: top;
+    &:hover {
+        background-color: rgba(123, 104, 238,0.7);
+        cursor: pointer;
+    }
+}
+.mention-container {
+    height: 70vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    background-color:$dark-card-1;
+    @include card-shadow;
+    position:relative;
+    
+}
+.sidenav-btn{
+
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 2;
+    //transform: translateX(100%);
+    &-parent{
+        position:relative;
+    } 
+}
+.table-sidenav{
+    color:$text-primary-2;
+}
+.mat-header-cell {
+    //background-color: $dark-card-3;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+}

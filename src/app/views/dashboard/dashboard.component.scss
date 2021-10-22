@@ -1,5 +1,7 @@
 @import "variables";
-
+  .nav-wrapper{
+    z-index: 3;
+  }
   .navbar-brand {
     color: $text-primary-0;
     font-weight: 700;

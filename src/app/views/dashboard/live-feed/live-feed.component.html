@@ -1,8 +1,21 @@
 <div class="container-fluid mb-3 px-0">
 
   <div class="row feed-row gx-2">
-    <div class="col-md-7">
-      <div class="mention-container">
+    <div class=" sidenav-btn-parent col-md-7">
+      <button class='sidenav-btn'*ngIf='!sidenavMention' mat-mini-fab color="primary" (click)='sidenavMention=!sidenavMention'>
+        <i class="fa fa-filter"></i>
+      </button>
+      <mat-sidenav-container hasBackdrop='false' class="mention-container">
+        <app-loading-bg *ngIf="loadingMentions" ></app-loading-bg>
+        <mat-sidenav [opened]='sidenavMention' mode="over" position="end">
+          <div class="table-sidenav d-flex flex-column p-2">
+            <button class='sidenav-close-btn mb-3'mat-icon-button color="primary" (click)='sidenavMention=!sidenavMention'>
+            <mat-icon>close</mat-icon>
+            </button>
+          <app-feed-filter (filterEmitter)="applyFilters($event)"></app-feed-filter>
+        </div>
+        </mat-sidenav>
+        
         <table mat-table #FeedMatTable [dataSource]="dataGridSource" class="mat-table">
           <ng-container matColumnDef="source">
             <th mat-header-cell *matHeaderCellDef class="mat-header-cell first">
@@ -52,7 +65,7 @@
             (click)="showMentionDetails(row)"
           ></tr>
         </table>
-      </div>
+      </mat-sidenav-container>
     </div>
     <!-- [class.nodisplay]='showCard && cardObject.source!=="twitter"' -->
     <!-- <div [class.nodisplay]='showCard && cardObject.source==="twitter"'class="col-md-5 cards-container">
@@ -141,25 +154,14 @@
           
         </div>
         <div class="chart-wrapper">
-          <!-- <div
-              class="
-                spinner-container
-                d-flex
-                justify-content-center
-                align-items-center
-              "
-              *ngIf="loadingMentions"
-            >
-              <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div> -->
+          
             <canvas id='mentioncanvas'></canvas>
         </div>
       </div>
     </div>
     <div class='col-md-6'>
       <div class="chart-container">
+        
         <div class="stat-info-cards row">
           <div class='col-4'><span class='h2'>{{_feedsvc.sentimentCounter[0]}} ({{sentimentCounter(0)}}%)</span><div class='h6'>Positive mentions</div> </div>
           <div class='col-4'> <span class='h2'>{{_feedsvc.sentimentCounter[1]}} ({{sentimentCounter(1)}}%)</span><div class='h6'>Negative mentions</div></div>
@@ -192,25 +194,22 @@
     </div>
   </div>
   <div class='row g-3'>
-    <div class='col-md-8'>
-      
+    <div class='col-md-8 sidenav-btn-parent'>
+      <button class='sidenav-btn' mat-mini-fab color="primary" *ngIf='!sidenav'(click)='sidenav=!sidenav'aria-label="Example icon button with a delete icon">
+        <i class="fa fa-filter"></i>
+      </button>
       <mat-sidenav-container hasBackdrop='false' class="mention-container" >
+        <app-loading-bg *ngIf="loadingMentions" ></app-loading-bg>
         <mat-sidenav [opened]='sidenav' mode="over" position="end">
           <div class="table-sidenav d-flex flex-column p-2">
             <button class='sidenav-close-btn mb-3'mat-icon-button color="primary" (click)='sidenav=!sidenav'aria-label="Example icon button with a delete icon">
             <mat-icon>close</mat-icon>
             </button>
-            <span class='h6'>Sentiment</span>
-            <mat-button-toggle-group color='primary'(change)='sentimentChange($event)' multiple>
-              <mat-button-toggle value="Positive">Positive</mat-button-toggle>
-              <mat-button-toggle value="Neutral">Neutral</mat-button-toggle>
-              <mat-button-toggle value="Negative">Negative</mat-button-toggle>
-            </mat-button-toggle-group>
+            <app-ner-filter (filterEmitter)="applyNerFilters($event)"></app-ner-filter>
+            
           </div>
         </mat-sidenav>
-        <button class='sidenav-btn' mat-mini-fab color="primary" (click)='sidenav=!sidenav'aria-label="Example icon button with a delete icon">
-          <i class="fa fa-filter"></i>
-        </button>
+        
         <table mat-table #NerMatTable [dataSource]='nerGridSource'>
           <ng-container matColumnDef="phrase">
             <th mat-header-cell *matHeaderCellDef class='mat-header-cell first'>Phrase</th>

@@ -31,6 +31,7 @@ import {
   SafeUrl,
 } from "@angular/platform-browser";
 import { MatButtonToggleChange } from "@angular/material/button-toggle";
+import { nerFilterObj } from "../ner-filter/ner-filter.component";
 Chart.defaults.global.defaultFontColor='#eee';
 export interface feedSource {
   source_name: string;
@@ -44,6 +45,7 @@ export interface feedSource {
 })
 export class LiveFeedComponent implements OnInit, OnDestroy {
   sidenav=false;
+  sidenavMention=false;
   logos = mediaImages;
   @ViewChild("tweetContainer") tweetContainer: ElementRef<any>;
   @ViewChild("FeedMatTable") table: MatTable<feedObject>;
@@ -58,10 +60,19 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       this.stopFeed();
     }
   }
-  @Input() set applyFilters(filters: filterObj) {
+  applyFilters(filters: filterObj) {
     if (filters) this.dataGridSource.filter = JSON.stringify(filters);
     console.dir(filters);
   }
+
+  applyNerFilters(filters: nerFilterObj) {
+    if (filters) this.nerGridSource.filter = JSON.stringify(filters);
+    console.dir(filters);
+  }
+  // @Input() set applyFilters(filters: filterObj) {
+  //   if (filters) this.dataGridSource.filter = JSON.stringify(filters);
+  //   console.dir(filters);
+  // }
   tableData: feedObject[] = [];
   more: boolean = false;
   dataGridSource: MatTableDataSource<feedObject> =
@@ -79,9 +90,8 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
   //statistics variables
 
   NerDisplayedColumns: string[] = ["phrase", "tag", "source","sentiment"];
-  loadingMentions: boolean = true;
-  loadingSentiment: boolean = true;
-  loadingNer: boolean = true;
+  loadingMentions: boolean = false;
+  
   nerGridSource: MatTableDataSource<nerAggr> = new MatTableDataSource<nerAggr>(
     []
   );
@@ -141,18 +151,67 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       if (filter.sources.length && !filter.sources.includes(feedItem.source)) {
         sourceBool = false;
       }
-      let sentimentBool = filter.sentiment
-        ? filter.sentiment == feedItem.sentiment
+      let sentimentBool = filter.sentiment.length
+        ? filter.sentiment.indexOf(feedItem.sentiment)> -1
         : true;
       return keywordsBool && sourceBool && sentimentBool;
     };
+
+    this.nerGridSource.filterPredicate = (
+      feedItem: nerAggr,
+      filters: string
+    ) => {
+      let filter: nerFilterObj = JSON.parse(filters);
+      let keywordsBool = true;
+      let sourceBool = true;
+      let tagBool = true;
+      if (filter.keywords.length) {
+        switch (filter.booleanFuntion) {
+          case "AND": {
+            if (!filter.keywords.every((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+          case "OR": {
+            if (!filter.keywords.some((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+          case "XOR": {
+            if (
+              filter.keywords.filter((val) => feedItem.phrase.includes(val))
+                .length != 1
+            )
+              keywordsBool = false;
+            break;
+          }
+          case "NOR": {
+            if (filter.keywords.some((val) => feedItem.phrase.includes(val)))
+              keywordsBool = false;
+            break;
+          }
+        }
+      }
+      if (filter.sources.length && !filter.sources.includes(feedItem.source)) {
+        sourceBool = false;
+      }
+
+      if (filter.tag.length && !filter.tag.includes(feedItem.tag)) {
+        tagBool = false;
+      }
+      let sentimentBool = filter.sentiment.length
+        ? filter.sentiment.indexOf(feedItem.sentiment)> -1
+        : true;
+      return keywordsBool && sourceBool && sentimentBool &&tagBool;
+    };
   }
   initialiseLiveFeed() {
+    this.loadingMentions=true;
     console.log(this.selectedProfile);
     this.socketConn = this._feedsvc.listen(this.selectedProfile).subscribe(
       (res: FeedData) => {
         if (res) {
-    
+          this.loadingMentions=false;
           res.textFeed.forEach((element) => {
             this.dataGridSource.data.unshift(element);
   
@@ -171,6 +230,7 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
         }
       },
       (error) => {
+        this.loadingMentions=false;
         console.log("STREAM ERROR", error);
       }
     );
@@ -185,7 +245,6 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       this.socketConn.unsubscribe();
       this.socketConn = null;
       this.loadingMentions = false;
-      this.loadingSentiment = false;
     }
   }
   ngOnDestroy() {
@@ -313,28 +372,11 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
       counter++;
     }
     this.sentimentChart.update();
-    this.loadingSentiment = false;
+    
   }
 
   updateMentionChart(mentions: Object) {
-    // this.mentionChart.data.labels.push("");
-    // const l = graphBackgroundColors.length;
-    // for(let source in mentions){
-    //   if(this.mentionIndex.hasOwnProperty(source)){
-    //     this.mentionChart.data.datasets[this.mentionIndex[source]].data.push(mentions[source]);
-    //   }
-    //   else{
-    //     this.mentionIndex[source]=this.mentionChart.data.datasets.length;
-    //     let n= this.mentionChart.data.datasets.length?this.mentionChart.data.datasets[0].data.length:0;
-    //     let a = new Array(); for (let i=0; i<n; ++i) a[i] = 0;
-    //     let obj={
-    //       label: source,
-    //       data:[mentions[source]],
-    //       backgroundColor: graphBackgroundColors[this.mentionChart.data.datasets.length % l]
-    //     }
-    //     this.mentionChart.data.datasets.push(obj);
-    //   }
-    // }
+    
     const l = graphBackgroundColors.length;
     let data: any[] = [];
     let colors: string[] = [];
@@ -350,7 +392,6 @@ export class LiveFeedComponent implements OnInit, OnDestroy {
     this.mentionChart.data.datasets[0].data = data;
     this.mentionChart.data.datasets[0].backgroundColor = colors;
     this.mentionChart.update();
-    this.loadingMentions = false;
   }
 
   sentimentCounter(index: number): number {

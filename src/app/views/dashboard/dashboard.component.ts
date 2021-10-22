@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   selectedProfile: string = "";
   inputProfile:string = "";
   user: User;
-  filters: filterObj;
   @Output() filterEmitter: EventEmitter<filterObj> =
     new EventEmitter<filterObj>();
   constructor(
@@ -39,9 +38,6 @@ export class DashboardComponent implements OnInit {
   }
   public isMenuCollapsed: boolean = true;
   
-  applyFilters(appliedFilters: filterObj) {
-    this.filters = appliedFilters;
-  }
   changeProfile() {
     this._feedsvc.disconnect();
     this._feedsvc.connect();

@@ -15,6 +15,8 @@ export interface nerAggr {
   tag: string;
   phrase: string;
   sentiment: string;
+  created_date?: string;
+  count?:number;
 }
 const source = "combinedStream";
 @Injectable({
