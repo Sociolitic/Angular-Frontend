@@ -6,8 +6,9 @@
         (click)='openDialog(profile.key)'
         >
             <h1>{{profile.value['brand']}}</h1>
-            <div class='d-flex flex-row justify-content-between'>
-                <h3><strong>Created on</strong> {{datesvc.displayDate(profile.value['createdAt'])}}</h3>
+            <div class='d-flex flex-column justify-content-between'>
+                <h4><strong>Quota Remaining</strong><br>{{profile.value['quota']}} mentions</h4>
+                <h3><strong>Created on</strong><br> {{datesvc.displayDate(profile.value['createdAt'])}}</h3>
             </div>
     </mat-card>
     </div>

@@ -12,7 +12,7 @@ declare const Stripe;
 export class PaymentsService {
 
   constructor(private _http:HttpClient, private auth:FireLoginService,private router: Router) { }
-  checkout(plan:string){
+  checkout(plan:number){
     console.log(plan);
     const user:User= this.auth.getUser();
     const headers: HttpHeaders=new HttpHeaders().set("Content-Type", "application/json");
@@ -42,15 +42,16 @@ export class PaymentsService {
     });
   }
 
-  dummycheckout(plan:string){
+  dummycheckout(plan:number){
     const user:User= this.auth.getUser();
     const headers: HttpHeaders=new HttpHeaders().set("Content-Type", "application/json");
+  
     const body= {
       'email': user.email,
     }
-    this._http.get(server+"/webhook/testConfirm/"+user.email,{responseType:'text'}).subscribe(
+    this._http.get(server+"/webhook/testConfirm/"+user.email+'/'+plan,{responseType:'text'}).subscribe(
       (response)=>{
-        this.router.navigate(["default", "dashboard"]);
+        this.checkout(plan);
       },
       err=> console.log(err)
     );

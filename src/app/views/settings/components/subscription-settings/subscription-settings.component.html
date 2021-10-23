@@ -14,7 +14,6 @@
                   <h1 class="header-text mx-auto">FREE TIER</h1>
                 </mat-card-header>
                 <div
-                *ngIf='selected!=1'
                   class="
                     plan
                     d-flex
@@ -25,7 +24,7 @@
                   "
                 >
                   <h1 class="tier-price mb-2"><strong class="price">$0</strong>/month</h1>
-                  <button mat-stroked-button color="accent" (click)="checkout('1')">
+                  <button mat-stroked-button color="accent" (click)="checkout(0)">
                     Buy Now
                   </button>
                 </div>
@@ -65,7 +64,7 @@
                   <h1 class="header-text mx-auto">PAID I</h1>
                 </mat-card-header>
                 <div
-                *ngIf='selected!=2'
+                
                   class="
                     plan
                     d-flex
@@ -78,7 +77,7 @@
                   <h1 class="tier-price mb-2">
                     <strong class="price">$25</strong>/month
                   </h1>
-                  <button mat-stroked-button color="accent" (click)="checkout('1')">
+                  <button mat-stroked-button color="accent" (click)="checkout(1)">
                     Buy Now
                   </button>
                 </div>
@@ -116,7 +115,7 @@
                 <mat-card-header class="header sub-card-header">
                   <h1 class="header-text mx-auto">PAID II</h1>
                 </mat-card-header>
-                <div *ngIf='selected!=3'
+                <div 
                   class="
                     plan
                     d-flex
@@ -129,7 +128,7 @@
                   <h1 class="tier-price mb-2">
                     <strong class="price">$50</strong>/month
                   </h1>
-                  <button mat-stroked-button color="accent" (click)="checkout('1')">
+                  <button mat-stroked-button color="accent" (click)="checkout(2)">
                     Buy Now
                   </button>
                 </div>

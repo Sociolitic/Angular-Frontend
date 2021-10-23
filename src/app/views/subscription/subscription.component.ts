@@ -12,7 +12,7 @@ export class SubscriptionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  checkout(plan:string){
+  checkout(plan:number){
     this.stripeCheckout.dummycheckout(plan);
   }
 }

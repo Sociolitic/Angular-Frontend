@@ -17,6 +17,19 @@ export class DefaultLayoutComponent implements OnInit{
   constructor(private router: Router ,private fireAuth: FireLoginService){}
   ngOnInit(){
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.fireAuth.fetchDetails(this.user.bearer).subscribe(
+      (res:User) => {
+        console.log(res);
+        let user = res;
+        user.bearer = this.user.bearer;
+        localStorage.setItem("user", JSON.stringify(user));
+        this.user=user;
+        if (user.stage == 1) {
+          this.router.navigate(["subscriptions"]);
+        }
+      },
+      (err) => console.log("HTTP Error in FETCH", err)
+    );
     console.log(this.user.name);
   }
   toggleMinimize(e) {

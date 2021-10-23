@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FireLoginService } from '../../../../shared/services/fire-login.service';
 import { DateTimeService } from '../../../../shared/services/date-time.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 export interface ProfileDialogInterface {
   id:string;
   info:BrandProfile;
@@ -22,7 +23,9 @@ export class ProfileSettingsComponent implements OnInit {
   user: User =null;
   constructor(private brandReg: BrandRegistrationService,
     public dialog:MatDialog,
-    private datesvc:DateTimeService) { }
+    private datesvc:DateTimeService,
+    private fireAuth:FireLoginService,
+    private router:Router) { }
   exampleProfs = ['first','second','third','fourth','fifth','sixth'];
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -48,14 +51,28 @@ export class ProfileSettingsComponent implements OnInit {
       console.log('The dialog was closed');
       this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user);
-    this.brandReg.findProfiles(this.user.profiles,this.user.bearer).subscribe(
-      (res)=>{
-        this.profiles=res;
-        console.log(this.profiles)
+    this.fireAuth.fetchDetails(this.user.bearer).subscribe(
+      (res:User) => {
+        console.log(res);
+        let user = res;
+        user.bearer = this.user.bearer;
+        localStorage.setItem("user", JSON.stringify(user));
+        this.user=user;
+        if (user.stage == 1) {
+          this.router.navigate(["subscriptions"]);
+        }
+        this.brandReg.findProfiles(this.user.profiles,this.user.bearer).subscribe(
+          (res)=>{
+            this.profiles=res;
+            console.log(this.profiles)
+          },
+          err => console.log("error in fetching profiles",err)
+        )
+        });
       },
-      err => console.log("error in fetching profiles",err)
-    )
-    });
+      (err) => console.log("HTTP Error in FETCH", err)
+    );
+    
   }
 }
 
