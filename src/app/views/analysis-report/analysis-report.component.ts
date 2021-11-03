@@ -20,13 +20,15 @@ import { AnalyticsService } from "../../shared/services/analytics.service";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { nerAggr } from "../../shared/services/live-feed.service";
 import { nerFilterObj } from "../dashboard/ner-filter/ner-filter.component";
+import { MatSort,Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-analysis-report",
   templateUrl: "./analysis-report.component.html",
   styleUrls: ["./analysis-report.component.scss"],
 })
-export class AnalysisReportComponent implements OnInit {
+export class AnalysisReportComponent implements OnInit,AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild("NerMatTable") NerTable: MatTable<nerAggr>;
   nerGridSource: MatTableDataSource<nerAggr> = new MatTableDataSource<nerAggr>([]);
@@ -53,11 +55,17 @@ export class AnalysisReportComponent implements OnInit {
   sentimentLineChart: Chart = null;
   statisticsData: StatisticsData = null;
   descAnalytics:Object=null;
+  textAnalytics:Object=null;
+  recommendations:string[]=[];
   nerAggrData:Object=null;
 
   applyNerFilters(filters: nerFilterObj) {
     if (filters) this.nerGridSource.filter = JSON.stringify(filters);
     //console.dir(filters);
+  }
+  ngAfterViewInit(){
+    //this.nerGridSource.sort = this.sort;
+
   }
   ngOnInit(): void {
     this._setFilterPredicate();
@@ -259,8 +267,8 @@ export class AnalysisReportComponent implements OnInit {
             display:false
           },
           gridLines:{
-            color:'rgba(255,255,255,0.6)',
-            display:false
+            color:'rgba(255,255,255,0.3)',
+            
           }
         },
         maintainAspectRatio:false,
@@ -514,9 +522,20 @@ export class AnalysisReportComponent implements OnInit {
       res=> {
         console.log("text analytics working");
         console.log(res);
+        this.textAnalytics=res;
       },
       err => console.log(err)
     )
+    
+    this.analyticsSvc.brandRecommendations(this.selectedProfile).subscribe(
+      res=>{console.log("recommendations work",res);
+      this.recommendations=res['recommendation'];
+      console.log(this.recommendations);
+    },
+      err=>{console.log(err)}
+    )
+
+
   }
   IsPresent(obj){
     if(!obj) return false;

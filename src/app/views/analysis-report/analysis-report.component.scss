@@ -86,6 +86,8 @@ ul{
         color: $text-primary-2
       }
       mat-list mat-list-item{
+          height:fit-content;
+          padding:1rem;
           &:nth-child(even){
             background-color: rgba($primary,0.3);
 
@@ -118,6 +120,19 @@ ul{
     height:100%;
     animation: text-slide 500ms backwards ease-in-out 1s;
     text-align: center;
+}
+.textanalytics{
+    min-height:10vh;
+    .h5{
+        color:$text-primary-2;
+    }
+    .summary{
+        color:$text-primary-1;
+    }
+    mat-list mat-list-item .mat-list-item-content{
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 @keyframes text-slide{
     from{
@@ -212,4 +227,23 @@ ul{
     font-weight: bold;
     font-size: large;
     text-align: center;
+}
+
+.recommendations{
+    display: flex;
+    gap:2rem;
+    flex-wrap: wrap;
+    div{
+        color:$text-primary-1;
+        border-radius: 4px;
+        flex-basis: 200px;
+        &:nth-child(odd){
+            background:linear-gradient(to right, #8e2de2, #4a00e0);
+        }
+        &:nth-child(even){
+            background: linear-gradient(to right, #ff00cc, #333399);
+        }
+
+}
+
 }

@@ -101,6 +101,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { NerFilterComponent } from './views/dashboard/ner-filter/ner-filter.component';
 import { LoadingBgComponent } from './views/loading-animation/loading-bg/loading-bg.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -154,7 +155,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     GoogleChartsModule,
     MatSidenavModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   
   ],
   declarations: [
