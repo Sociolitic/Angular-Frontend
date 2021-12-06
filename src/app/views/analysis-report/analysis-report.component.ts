@@ -534,7 +534,12 @@ export class AnalysisReportComponent implements OnInit,AfterViewInit {
     },
       err=>{console.log(err)}
     )
-
+    this.analyticsSvc.aggregateText(this.selectedProfile).subscribe(
+      res=> {
+        console.log("NEW ANALYTICS!!!");
+        console.log(res);
+      }
+    )
 
   }
   IsPresent(obj){

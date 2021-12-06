@@ -365,7 +365,7 @@
                 <div *ngIf='textAnalytics'>
                   
                   <div class="h4 mt-4 ">Extractive Summarization of posts</div>
-                  <mat-list class='p-0'>
+                  <!-- <mat-list class='p-0'>
                     <mat-list-item *ngFor="
                     let keyValuePair of textAnalytics['reddit']['Summary']
                       | keyvalue
@@ -376,7 +376,7 @@
                       <p class='summary m-0 lead pl-4'> -  {{keyValuePair.value[0]}}</p>
                     </div>
                     </mat-list-item>
-                  </mat-list>
+                  </mat-list> -->
                 </div>
               </div>
             </div>
@@ -392,11 +392,12 @@
               <div class="h4 mt-4 mb-3">Top Hashtags</div>
               <mat-chip-list aria-label="Fish selection">
                 <mat-chip
-                  *ngFor="
-                    let i of descAnalytics['tumblr']['hashtags'].slice(0, 20)
-                  "
-                >
-                  {{ i[0] }}, {{ i[1] }}
+                *ngFor="
+                let keyValuePair of descAnalytics['tumblr']['hashtags']
+                  | keyvalue
+              "
+            >
+              {{ keyValuePair.key }}, {{ keyValuePair.value }}
                 </mat-chip>
               </mat-chip-list>
             </div>

@@ -69,4 +69,14 @@ export class AnalyticsService {
     return this.http.get<any>(server+"/analytics/desc-analytics",options);
   }
 
+  aggregateText(profileId:string){
+    const bearer:string = this.fireAuth.getBearer();
+    const headers = new HttpHeaders().set("Authorization", "Bearer "+bearer);
+    const params = new HttpParams().set('q',profileId);
+    const options ={
+      headers:headers,
+      params: params
+    }
+    return this.http.get<any>(server+"/analytics/text-analytics-new",options);
+  }
 }
