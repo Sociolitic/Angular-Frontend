@@ -518,7 +518,7 @@ export class AnalysisReportComponent implements OnInit,AfterViewInit {
       err => console.log(err)
     )
 
-    this.analyticsSvc.textAnalytics(this.selectedProfile,10).subscribe(
+    this.analyticsSvc.textAnalytics(this.selectedProfile,200).subscribe(
       res=> {
         console.log("text analytics working");
         console.log(res);
