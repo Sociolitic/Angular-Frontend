@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { config } from 'process';
 import { User } from '../models/user.model';
 import { FireLoginService } from './fire-login.service';
-import { server,localhost } from '../constants';
+import { server } from '../constants';
 @Injectable({
   providedIn: 'root'
 })

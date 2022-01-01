@@ -32,11 +32,11 @@ export const graphBackgroundTransparent = [
 ]
 
 
-export const prod:string='http://3.216.86.216';
+export const prod:string='https://sociolitic.com';
 
 export const localhost:string='http://localhost:8080';
 
-export const server:string=localhost;
+export const server:string=prod;
 export const sectionContents=[
     {
         text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin facilisis turpis interdum diam pulvinar tincidunt blandit vel dolor. Curabitur sit amet turpis nec nisi convallis aliquet. Sed eros ex, tempus posuere sodales non, ullamcorper id massa. Aenean finibus dolor id mattis egestas. Nullam quis neque sed nisl porta rhoncus nec eleifend metus.",
