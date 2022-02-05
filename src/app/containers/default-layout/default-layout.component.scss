@@ -6,7 +6,9 @@
     background: none;
 }
 .active {
-    color: $accent !important;
+    color: $text-primary-0 !important;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .navbar-nav {

@@ -1,5 +1,105 @@
 @import '~@angular/material/theming';
 // Variable overrides
+$primary-dark-pallete:(
+    50 : #e4e6ea,
+    100 : #bbc1cb,
+    200 : #8e98a8,
+    300 : #606f85,
+    400 : #3e506a,
+    500 : #1c3150,
+    600 : #192c49,
+    700 : #142540,
+    800 : #111f37,
+    900 : #091327,
+    A100 : #648eff,
+    A200 : #3169ff,
+    A400 : #0045fd,
+    A700 : #003ee4,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$primary-pallete:(
+    50 : #e1faf4,
+    100 : #b4f3e3,
+    200 : #83ebd0,
+    300 : #51e2bd,
+    400 : #2bdcae,
+    500 : #06d6a0,
+    600 : #05d198,
+    700 : #04cc8e,
+    800 : #03c684,
+    900 : #02bc73,
+    A100 : #e5fff3,
+    A200 : #b2ffdd,
+    A400 : #7fffc6,
+    A700 : #65ffbb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$accent-pallete:(
+    50 : #e4f3f5,
+    100 : #bbe1e6,
+    200 : #8dcdd5,
+    300 : #5fb8c4,
+    400 : #3da9b7,
+    500 : #1b9aaa,
+    600 : #1892a3,
+    700 : #148899,
+    800 : #107e90,
+    900 : #086c7f,
+    A100 : #aef0ff,
+    A200 : #7be7ff,
+    A400 : #48deff,
+    A700 : #2fd9ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
 $green-card-1:#dbe7e4;
 $green-card-2:#c5dedd;
 $blue-card-1:#d6e2e9;
@@ -14,22 +114,22 @@ $gray-card-2:#e9ecef;
 $gray-card-3:#dee2e6;
 $gray-card-4:#ced4da;
 
-$dark-bg: #d6e2e9;
-$dark-nav: #373A3C;//#293241;
-$dark-nav-secondary: #3f4244;
-// $dark-component-1:map-get($mat-blue-gray, 900 );
-// $dark-component-2: #171010;
-// $dark-component-3: #595B83;
-//$dark-bg-text-1: #e2e2e2;
-$dark-card-1:#e1edf3;
-$dark-card-2:#cfdce3;
-$dark-card-3:#DC136C;
+$primary-bg: #d7dde2;
+$nav-primary: map-get($primary-pallete, 900 );//#293241;
+$nav-secondary: #131313;
+
+$dark-card-1: mix($primary-bg, white, 50%);
+$dark-card-2:mix(map-get($primary-pallete, 500), white, 50%);
+$dark-card-3:map-get($primary-pallete, 500 );
 $card-hover-1: $orange-card-4;
 $card-hover-2:$blue-card-3;
-//$dark-button-1:rgb(0, 4, 240);
-//$dark-button-2:red;
-//$dark-bg-text-2: white;
-//$dark-text-dark: black;
+
+$card-invert-1:#f1faee;
+$color-card-1: #7D80DA;
+$color-card-2: #23967F;
+$color-card-3: #CA3CFF;
+$color-card-4: #4BB3FD;
+$color-card-5: #558C8C;
 $gradient-zinc:linear-gradient(to right,#ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
 $gradient-dull:linear-gradient(to right,#C9D6FF,#E2E2E2);
 $gradient-telegram: linear-gradient(to right, #1c92d2,#f2fcfe);
@@ -38,8 +138,8 @@ $gradient-purple: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9);
 $gradient-lawrence:linear-gradient(to right,#0f0c29,#302b63,#24243e);
 
 $success:rgb(0, 199, 0);
-$primary: map-get( $mat-indigo,400);
-$accent: map-get($mat-pink,400);
+$primary:map-get($primary-pallete,500);
+$accent: map-get($accent-pallete,500);
 $warn: red;
 
 
@@ -70,3 +170,9 @@ $text-accent: map-get($mat-pink,400);
 $logo: "assets/img/brand/black-text.png";
 
 
+@mixin card-shadow {
+    box-shadow: 
+              0 4px 6px rgba(0,0,0,0.15), 
+              0 8px 8px rgba(0,0,0,0.10),
+              0 16px 16px rgba(0,0,0,0.05);
+}

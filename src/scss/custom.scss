@@ -110,22 +110,22 @@
 // }
 
 body {
-   background-color: $dark-bg ;
+   background-color: $primary-bg ;
     // background-image:url('/assets/img/background/Hexagon-gradient.svg');
-    //color:$dark-bg-text-1;
+    //color:$primary-bg-text-1;
 }
 
 // .dark-bg-text-1{
 //   color: $text-primary-0;
 // }
 // .dark-bg-text-2{
-//   color: $dark-bg-text-2;
+//   color: $primary-bg-text-2;
 // }
 .dark-nav{
-    background-color: $dark-nav;
+    background-color: $nav-primary;
 }
 .dark-nav-secondary{
-    background-color:$dark-nav-secondary;
+    background-color:$nav-secondary;
 }
 .dark-card-1{
     background-color: $dark-card-1;
@@ -251,4 +251,8 @@ body {
 
 .mat-button-toggle-checked {
   background-color:$accent;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: $text-invert-1;
 }

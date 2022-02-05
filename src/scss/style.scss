@@ -21,7 +21,7 @@ $ng-accent-light: mat-palette($accent-pallete,500,400,600);
 $custom-light-bg:(
   status-bar: black,
 app-bar:    map-get($mat-grey, 900),
-background: $dark-bg,
+background: $primary-bg,
 hover:      rgba(white, 0.04), 
 card:       $dark-card-1,
 dialog:     $dark-card-1,
@@ -54,7 +54,7 @@ $ng-theme-light: mat-light-theme((
 $custom-dark-bg:(
   status-bar: black,
 app-bar:    map-get($mat-grey, 900),
-background: $dark-bg,
+background: $primary-bg,
 hover:      rgba(white, 0.04), 
 card:       $dark-card-1,
 dialog:     $dark-card-1,
@@ -89,7 +89,7 @@ $ng-theme-dark: mat-dark-theme((
 );
 
 
-@include angular-material-theme($ng-theme-dark);
+@include angular-material-theme($ng-theme-light);
 
 // If you want to override variables do it here
 
