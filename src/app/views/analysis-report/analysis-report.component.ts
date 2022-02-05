@@ -21,6 +21,7 @@ import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { nerAggr } from "../../shared/services/live-feed.service";
 import { nerFilterObj } from "../dashboard/ner-filter/ner-filter.component";
 import { MatSort,Sort } from "@angular/material/sort";
+// import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 
 @Component({
   selector: "app-analysis-report",
@@ -33,7 +34,7 @@ export class AnalysisReportComponent implements OnInit,AfterViewInit {
   @ViewChild("NerMatTable") NerTable: MatTable<nerAggr>;
   nerGridSource: MatTableDataSource<nerAggr> = new MatTableDataSource<nerAggr>([]);
   NerDisplayedColumns: string[] = ["phrase", "tag", "source","sentiment","count"];
-  
+  cloudData: Array<Object> = [];
   showInfo1:boolean=false;
   showInfo2:boolean=false;
   showInfo3:boolean=false;
@@ -513,6 +514,15 @@ export class AnalysisReportComponent implements OnInit,AfterViewInit {
           influencers:res['twitter']['influencingUser']['active_users']
         }
       };
+      this.descAnalytics['tumblr']['hashtags'].forEach(element => {
+        this.cloudData.push(
+          {
+            text:element[0],
+            value: parseInt(element[1])
+          }
+        )
+      });
+      
       console.log(this.descAnalytics)
       },
       err => console.log(err)

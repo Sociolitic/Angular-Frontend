@@ -18,6 +18,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
+import { AngularD3CloudModule } from 'angular-d3-cloud';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -156,7 +158,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatSidenavModule,
     MatButtonToggleModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    AngularD3CloudModule
   
   ],
   declarations: [

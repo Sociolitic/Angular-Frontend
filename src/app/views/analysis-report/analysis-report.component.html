@@ -390,7 +390,7 @@
           <div class="mattab">
             <div *ngIf="descAnalytics" class="p-4">
               <div class="h4 mt-4 mb-3">Top Hashtags</div>
-              <mat-chip-list aria-label="Fish selection">
+              <!-- <mat-chip-list aria-label="Fish selection">
                 <mat-chip
                 *ngFor="
                 let keyValuePair of descAnalytics['tumblr']['hashtags']
@@ -399,7 +399,16 @@
             >
               {{ keyValuePair.value }}
                 </mat-chip>
-              </mat-chip-list>
+              </mat-chip-list> -->
+              <angular-d3-cloud
+  [data]="cloudData"
+  [width]="900"
+  [height]="600"
+  [padding]="8"
+  font="serif"
+  [rotate]="0"
+  [autoFill]="true"
+></angular-d3-cloud>
             </div>
           </div>
         </mat-tab>
